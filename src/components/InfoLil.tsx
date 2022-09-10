@@ -38,7 +38,10 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold mb-8">Gotta Mint &apos;em All</h1>
+      <h1 className="text-3xl font-bold mb-2">Gotta Mint &apos;em All </h1>
+      <p className="font-bold text-red-500 text-md mb-6">
+        Data is not accurate. Do not make any decisions based on this information.
+      </p>
       <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 mb-6">
         <Tab.Group as="div" className="flex flex-col-reverse">
           <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
