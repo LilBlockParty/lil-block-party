@@ -1,5 +1,9 @@
 import { Tab } from "@headlessui/react";
 import { Result } from "ethers/lib/utils";
+import GameBoyNoun from "./GameboyNoun";
+
+import { useBlockNumber } from "wagmi";
+
 const lilNoun = {
   name: "Lil Noun #9999",
   price: "0.15 Ξ",
@@ -30,20 +34,28 @@ interface Props {
 }
 
 const InfoLil = ({ data, isFetching, isFetched }: Props) => {
+  const { data: blockNumber } = useBlockNumber();
+
   return (
     <>
-      <h1 className="text-3xl font-bold mb-8">Lil Preview</h1>
-      <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
+      <h1 className="text-3xl font-bold mb-8">Gotta Mint &apos;em All</h1>
+      <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 mb-6">
         <Tab.Group as="div" className="flex flex-col-reverse">
           <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
             <Tab.Panel>
+              <p className="text-2xl font-bold tracking-tight text-gray-900  mb-1">
+                Lil Noun @ block: {blockNumber ? blockNumber : ""}
+              </p>
               {isFetched && !isFetching && data && (
-                <img
-                  src={`data:image/svg+xml;base64,${data[2]}`}
-                  alt={"nouns"}
-                  className="h-full w-full object-cover shadow-xl object-center sm:rounded-lg"
-                />
+                <>
+                  <img
+                    src={`data:image/svg+xml;base64,${data[2]}`}
+                    alt={"nouns"}
+                    className="h-full w-full object-cover shadow-xl object-center sm:rounded-lg"
+                  />
+                </>
               )}
+
               {isFetching && (
                 <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center animate-pulse bg-gray-200"></div>
               )}
@@ -71,8 +83,10 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
             />
           </div>
 
-          {/* <div className="mt-8 divide-y divide-gray-200 border-t">
-              {lilNoun.details.map((detail) => (
+          <div className="mt-8">
+            {/* <GameBoyNoun /> */}
+
+            {/* {lilNoun.details.map((detail) => (
                 <div key={detail.name}>
                   <>
                     <h3>
@@ -89,8 +103,8 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
                     </section>
                   </>
                 </div>
-              ))}
-            </div> */}
+              ))} */}
+          </div>
         </div>
       </div>
     </>
