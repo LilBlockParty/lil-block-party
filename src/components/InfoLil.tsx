@@ -43,9 +43,6 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
         <Tab.Group as="div" className="flex flex-col-reverse">
           <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
             <Tab.Panel>
-              <p className="text-2xl font-bold tracking-tight text-gray-900  mb-1">
-                Lil Noun @ block: {blockNumber ? blockNumber : ""}
-              </p>
               {isFetched && !isFetching && data && (
                 <>
                   <img
@@ -59,6 +56,9 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
               {isFetching && (
                 <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center animate-pulse bg-gray-200"></div>
               )}
+              <p className="mt-3 text-md text-gray-500 mb-1">
+                @ block: {blockNumber ? blockNumber : ""}
+              </p>
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
