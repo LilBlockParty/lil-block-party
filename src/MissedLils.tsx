@@ -71,10 +71,7 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
             {missedList?.map((lil, index) => {
               if (!lil) return;
               return (
-                <div
-                  key={index}
-                  className="group relative drop-shadow-lg first:border-8 last:border-8"
-                >
+                <div key={index} className="group relative drop-shadow-lg">
                   <div className=" rounded-md bg-gray-200  lg:aspect-none ">
                     <img
                       width={256}
