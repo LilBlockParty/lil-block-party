@@ -60,7 +60,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
                 <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center animate-pulse bg-gray-200"></div>
               )}
               <p className="mt-3 text-md text-gray-500 mb-1">
-                @ block: {blockNumber ? blockNumber : ""}
+                {blockNumber ? `@ block ${blockNumber}` : ""}
               </p>
             </Tab.Panel>
           </Tab.Panels>

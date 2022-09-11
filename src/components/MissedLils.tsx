@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Result } from "ethers/lib/utils";
+import type { Result } from "ethers/lib/utils";
 import { useEffect, useState } from "react";
+import { useBlockNumber } from "wagmi";
 
 interface Props {
   data: Result | undefined;
@@ -10,17 +11,23 @@ interface Props {
 
 export default function MissedLils({ data, isFetched, isFetching }: Props) {
   const imgData: Result | null = data ? data[2] : null;
-  const [missedList, SetMissedList] = useState([]);
 
+  const { data: blockNumber, isFetched: isBlockFetched } = useBlockNumber();
+  const [missedList, setMissedList] = useState([
+    {
+      imgData,
+      blockNumber,
+    },
+  ]);
   useEffect(() => {
     if (isFetched && !isFetching && typeof imgData == "string") {
-      if (missedList.length <= 4) {
-        SetMissedList((prev) => [...prev, imgData]);
+      if (missedList.length <= 4 && blockNumber !== 0) {
+        setMissedList((prevArray) => [...prevArray, { imgData, blockNumber }]);
       }
 
-      if (missedList.length >= 5) {
+      if (missedList.length >= 5 && imgData !== null) {
         missedList.shift();
-        SetMissedList((prev) => [...prev, imgData]);
+        setMissedList((prevArray) => [...prevArray, { imgData, blockNumber }]);
       }
     }
   }, [imgData]);
@@ -32,18 +39,21 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
         <div className="flex pb-10 pt-1 w-full">
           <div className="flex flex-nowrap gap-x-3 py-8">
             {missedList?.map((lil, index) => {
-              if (!lil) return;
+              if (!lil.imgData) return;
               return (
                 <div key={index} className="group relative drop-shadow-lg">
                   <div className=" rounded-md bg-gray-200  lg:aspect-none ">
                     <img
                       width={256}
                       height={256}
-                      src={`data:image/svg+xml;base64,${lil}`}
+                      src={`data:image/svg+xml;base64,${lil.imgData}`}
                       className=" object-cover object-center"
                       alt="lil"
                     />
                   </div>
+                  <p className="mt-2 text-md text-gray-500">
+                    {blockNumber ? `@ block ${blockNumber}` : ""}
+                  </p>
                 </div>
               );
             })}

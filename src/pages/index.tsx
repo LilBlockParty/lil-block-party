@@ -1,7 +1,11 @@
 import type { NextPage } from "next";
 import dynamic from "next/dynamic";
 
-import MissedLils from "../MissedLils";
+
+
+const MissedLils = dynamic(() => import("../components/MissedLils"), {
+  ssr: false,
+});
 
 const InfoLil = dynamic(() => import("../components/InfoLil"), {
   ssr: false,
