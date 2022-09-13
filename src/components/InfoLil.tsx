@@ -76,11 +76,11 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
         <Tab.Group as="div" className="flex flex-col-reverse">
           <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
             <Tab.Panel>
-              {data && data[3] === AuctionState.ACTIVE ? (
+              {/* {data && data[3] === AuctionState.ACTIVE ? (
                 <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center animate-pulse bg-gray-200" />
               ) : (
                 ""
-              )}
+              )} */}
 
               {isFetched && !isFetching && data && (
                 <img
