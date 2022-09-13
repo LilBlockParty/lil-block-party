@@ -22,7 +22,7 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
     },
   ]);
   useEffect(() => {
-    // if (data && data[3] === AuctionState.ACTIVE) return;
+    if (data && data[3] === AuctionState.ACTIVE) return;
     return () => {
       if (isFetched && !isFetching && typeof imgData == "string") {
         if (missedList.length < 3) {
