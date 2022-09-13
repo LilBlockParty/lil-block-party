@@ -2,9 +2,11 @@ import { Tab } from "@headlessui/react";
 import { Result } from "ethers/lib/utils";
 import GameBoyNoun from "./GameboyNoun";
 
-import { useBlockNumber } from "wagmi";
+import { useBlockNumber, useContractWrite, usePrepareContractWrite } from "wagmi";
 import { AuctionState } from "../pages";
 import ConnectWalletBtn from "./ConnectWallet";
+
+import LilNounsOracleAbi from "../abis/preview.json";
 
 const lilNoun = {
   name: "Lil Noun #9999",
@@ -35,7 +37,26 @@ interface Props {
 }
 
 const InfoLil = ({ data, isFetching, isFetched }: Props) => {
-  const { data: blockNumber } = useBlockNumber();
+  const blockNumber = useBlockNumber();
+
+  const {
+    config,
+    error: prepareError,
+    isError: isPrepareError,
+  } = usePrepareContractWrite({
+    addressOrName: "0xA1879c5dC7049106f641cC5C3A567e7ABF31035C",
+    contractInterface: LilNounsOracleAbi,
+    functionName: "settleCurrentAndCreateNewAuction",
+    args: data?.[0],
+  });
+
+  const {
+    data: writeData,
+    error: writeError,
+    isError: isWriteError,
+    isLoading: isWriteLoading,
+    write,
+  } = useContractWrite(config);
 
   return (
     <>
@@ -47,10 +68,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
           </p>
         </section>
         <section className="w-1/3">
-          <span></span>
-          <span className="mr-auto">
-            <ConnectWalletBtn />
-          </span>
+          <ConnectWalletBtn />
         </section>
       </div>
 
@@ -58,21 +76,25 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
         <Tab.Group as="div" className="flex flex-col-reverse">
           <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
             <Tab.Panel>
+              {data && data[3] === AuctionState.ACTIVE ? (
+                <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center animate-pulse bg-gray-200" />
+              ) : (
+                ""
+              )}
+
               {isFetched && !isFetching && data && (
-                <>
-                  <img
-                    src={`data:image/svg+xml;base64,${data[2]}`}
-                    alt={"nouns"}
-                    className="h-full w-full object-cover shadow-xl object-center sm:rounded-lg"
-                  />
-                </>
+                <img
+                  src={`data:image/svg+xml;base64,${data[2]}`}
+                  alt={"nouns"}
+                  className="h-full w-full object-cover shadow-xl object-center sm:rounded-lg"
+                />
               )}
 
               {isFetching && (
-                <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center animate-pulse bg-gray-200"></div>
+                <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center animate-pulse bg-gray-200" />
               )}
               <p className="mt-3 text-md text-gray-500 mb-1">
-                {blockNumber ? `@ block ${blockNumber}` : ""}
+                {blockNumber.data && `@ block ${blockNumber.data}`}
               </p>
             </Tab.Panel>
           </Tab.Panels>
@@ -100,7 +122,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
 
           <div className="mt-8">
             {/* <GameBoyNoun /> */}
-            {data && data[3] === AuctionState.OVER_NOT_SETTLED && (
+            {data && data[3] === AuctionState.OVER_NOT_SETTLED && !isFetching && (
               <button
                 type="button"
                 className="inline-flex items-center rounded border border-transparent bg-[#0343DF] px-5 py-2 text-md font-medium text-white shadow-sm hover:bg-[#1c56e2]"
@@ -109,7 +131,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
               </button>
             )}
 
-            {data && data[3] === AuctionState.ACTIVE && (
+            {data && data[3] === AuctionState.ACTIVE && !isFetching && (
               <button
                 type="button"
                 disabled

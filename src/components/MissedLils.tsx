@@ -3,6 +3,7 @@ import type { Result } from "ethers/lib/utils";
 import Image from "next/future/image";
 import { useEffect, useState } from "react";
 import { useBlockNumber } from "wagmi";
+import { AuctionState } from "../pages";
 
 interface Props {
   data: Result | undefined;
@@ -21,7 +22,7 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
     },
   ]);
   useEffect(() => {
-    if (missedList.length < 1) return;
+    if (data && data[3] === AuctionState.ACTIVE) return;
 
     if (isFetched && !isFetching && typeof imgData == "string") {
       if (missedList.length <= 4) {
@@ -35,6 +36,14 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
     }
   }, [imgData]);
 
+  if (missedList.length === 0) {
+    return (
+      <div className="bg-white">
+        <div className="mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-0 lg:max-w-6xl"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-0 lg:max-w-6xl">
@@ -47,8 +56,8 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
                 <div key={index} className="group relative drop-shadow-lg max-w-[256px]">
                   <div className=" rounded-md bg-gray-200  lg:aspect-none ">
                     <Image
-                      width={256}
-                      height={256}
+                      width={208}
+                      height={208}
                       src={`data:image/svg+xml;base64,${lil.imgData}`}
                       className=" object-cover object-center"
                       alt="lil"

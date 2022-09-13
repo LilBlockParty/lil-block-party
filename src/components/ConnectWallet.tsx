@@ -2,6 +2,8 @@ import { useDisconnect, useConnect, useAccount } from "wagmi";
 import { useNetwork } from "wagmi";
 import EthIcon from "./EthIcon";
 
+
+
 const ConnectWalletBtn = () => {
   const { address } = useAccount();
   const { disconnect } = useDisconnect();
