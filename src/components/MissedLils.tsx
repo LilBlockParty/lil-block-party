@@ -39,7 +39,7 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
         }
       }
     };
-  }, [imgData]);
+  }, [imgData, blockNumber]);
 
   if (missedList.length < 1) {
     return (

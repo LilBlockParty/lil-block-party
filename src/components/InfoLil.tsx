@@ -39,24 +39,12 @@ interface Props {
 const InfoLil = ({ data, isFetching, isFetched }: Props) => {
   const blockNumber = useBlockNumber();
 
-  const {
-    config,
-    error: prepareError,
-    isError: isPrepareError,
-  } = usePrepareContractWrite({
-    addressOrName: "0xA1879c5dC7049106f641cC5C3A567e7ABF31035C",
+  const { config } = usePrepareContractWrite({
+    addressOrName: "0xA1879c5dC7049106f641cC5C3A567ABF31035C",
     contractInterface: LilNounsOracleAbi,
-    functionName: "settleCurrentAndCreateNewAuction",
-    args: data?.[0],
+    functionName: "settleAuction",
   });
-
-  const {
-    data: writeData,
-    error: writeError,
-    isError: isWriteError,
-    isLoading: isWriteLoading,
-    write,
-  } = useContractWrite(config);
+  const { data: writeData, isLoading, isSuccess, write, error, e } = useContractWrite(config);
 
   return (
     <>
@@ -125,6 +113,10 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
             {data && data[3] === AuctionState.OVER_NOT_SETTLED && !isFetching && (
               <button
                 type="button"
+                onClick={() => {
+                  console.log(write);
+                  return write?.();
+                }}
                 className="inline-flex items-center rounded border border-transparent bg-[#0343DF] px-5 py-2 text-md font-medium text-white shadow-sm hover:bg-[#1c56e2]"
               >
                 Start Auction
@@ -135,9 +127,9 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
               <button
                 type="button"
                 disabled
-                className="inline-flex items-center rounded border border-transparent bg-[#E11833] px-5 py-2 text-md font-medium text-gray-50 shadow-sm cursor-not-allowed"
+                className="inline-flex items-center rounded border border-transparent bg-[#E11833] px-5 py-2 text-md font-medium text-white shadow-sm cursor-not-allowed"
               >
-                Auction Actie
+                Auction Active
               </button>
             )}
 

@@ -3,14 +3,16 @@ import type { AppType } from "next/dist/shared/lib/utils";
 
 import { WagmiConfig, createClient, chain, configureChains } from "wagmi";
 import { infuraProvider } from "wagmi/providers/infura";
+import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 
-const { provider } = configureChains(
+const { provider, chains } = configureChains(
   [chain.mainnet],
   [infuraProvider({ apiKey: "c96c03327ec643dfa9a47e47ab5889bd" })]
 );
 
 const client = createClient({
   autoConnect: true,
+  connectors: [new MetaMaskConnector({ chains })],
   provider,
 });
 
