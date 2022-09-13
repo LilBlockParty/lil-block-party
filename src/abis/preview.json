@@ -3,6 +3,11 @@
     "inputs": [
       {
         "internalType": "address",
+        "name": "lilNounsTokenAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
         "name": "auctionHouseAddress",
         "type": "address"
       },
@@ -41,7 +46,7 @@
   },
   {
     "inputs": [],
-    "name": "AuctionHouse",
+    "name": "auctionHouse",
     "outputs": [
       {
         "internalType": "contract NounsAuctionHouse",
@@ -54,7 +59,7 @@
   },
   {
     "inputs": [],
-    "name": "Descriptor",
+    "name": "descriptor",
     "outputs": [
       {
         "internalType": "contract INounsDescriptor",
@@ -67,38 +72,12 @@
   },
   {
     "inputs": [],
-    "name": "Seeder",
+    "name": "fetchNextNoun",
     "outputs": [
       {
-        "internalType": "contract INounsSeeder",
+        "internalType": "bytes32",
         "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "_feeAmount",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "fetchNextNounAndAuctionState",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
+        "type": "bytes32"
       },
       {
         "internalType": "uint256",
@@ -114,6 +93,51 @@
         "internalType": "enum LilNounsOracle.AuctionState",
         "name": "",
         "type": "uint8"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint48",
+            "name": "background",
+            "type": "uint48"
+          },
+          {
+            "internalType": "uint48",
+            "name": "body",
+            "type": "uint48"
+          },
+          {
+            "internalType": "uint48",
+            "name": "accessory",
+            "type": "uint48"
+          },
+          {
+            "internalType": "uint48",
+            "name": "head",
+            "type": "uint48"
+          },
+          {
+            "internalType": "uint48",
+            "name": "glasses",
+            "type": "uint48"
+          }
+        ],
+        "internalType": "struct INounsSeeder.Seed",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "lilNounsToken",
+    "outputs": [
+      {
+        "internalType": "contract NounsToken",
+        "name": "",
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -134,33 +158,40 @@
   },
   {
     "inputs": [],
+    "name": "refreshContractAddresses",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "renounceOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [
+    "inputs": [],
+    "name": "seeder",
+    "outputs": [
       {
-        "internalType": "uint256",
-        "name": "feeAmount_",
-        "type": "uint256"
+        "internalType": "contract INounsSeeder",
+        "name": "",
+        "type": "address"
       }
     ],
-    "name": "setFeeAmount",
-    "outputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
       {
-        "internalType": "uint256",
-        "name": "invalidAfter",
-        "type": "uint256"
+        "internalType": "bytes32",
+        "name": "expectedParentBlockhash",
+        "type": "bytes32"
       }
     ],
-    "name": "settleCurrentAndCreateNewAuction",
+    "name": "settleAuction",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"

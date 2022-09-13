@@ -20,4 +20,7 @@ export default defineNextConfig({
     locales: ["en"],
     defaultLocale: "en",
   },
+  images: {
+    unoptimized: true,
+  },
 });

@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import type { Result } from "ethers/lib/utils";
+import Image from "next/future/image";
 import { useEffect, useState } from "react";
 import { useBlockNumber } from "wagmi";
 
@@ -15,13 +16,15 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
   const { data: blockNumber, isFetched: isBlockFetched } = useBlockNumber();
   const [missedList, setMissedList] = useState([
     {
-      imgData,
+      imgData: "",
       blockNumber,
     },
   ]);
   useEffect(() => {
+    if (missedList.length < 1) return;
+
     if (isFetched && !isFetching && typeof imgData == "string") {
-      if (missedList.length <= 4 && blockNumber !== 0) {
+      if (missedList.length <= 4) {
         setMissedList((prevArray) => [...prevArray, { imgData, blockNumber }]);
       }
 
@@ -34,16 +37,16 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
 
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-0 lg:max-w-7xl">
+      <div className="mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-0 lg:max-w-6xl">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">Missed Lils </h2>
         <div className="flex pb-10 pt-1 w-full">
           <div className="flex flex-nowrap gap-x-3 py-8">
             {missedList?.map((lil, index) => {
               if (!lil.imgData) return;
               return (
-                <div key={index} className="group relative drop-shadow-lg">
+                <div key={index} className="group relative drop-shadow-lg max-w-[256px]">
                   <div className=" rounded-md bg-gray-200  lg:aspect-none ">
-                    <img
+                    <Image
                       width={256}
                       height={256}
                       src={`data:image/svg+xml;base64,${lil.imgData}`}
@@ -51,9 +54,6 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
                       alt="lil"
                     />
                   </div>
-                  <p className="mt-2 text-md text-gray-500">
-                    {blockNumber ? `@ block ${blockNumber}` : ""}
-                  </p>
                 </div>
               );
             })}

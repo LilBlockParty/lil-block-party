@@ -3,11 +3,11 @@ import { Result } from "ethers/lib/utils";
 import GameBoyNoun from "./GameboyNoun";
 
 import { useBlockNumber } from "wagmi";
+import { AuctionState } from "../pages";
 
 const lilNoun = {
   name: "Lil Noun #9999",
   price: "0.15 Ξ",
-  images: [],
   description: `
     <p>ONE LIL NOUN,
     EVERY 15 MINUTES,
@@ -88,6 +88,24 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
 
           <div className="mt-8">
             {/* <GameBoyNoun /> */}
+            {data && data[3] === AuctionState.OVER_NOT_SETTLED && (
+              <button
+                type="button"
+                className="inline-flex items-center rounded border border-transparent bg-[#0343DF] px-5 py-2 text-md font-medium text-white shadow-sm hover:bg-[#1c56e2]"
+              >
+                Start Auction
+              </button>
+            )}
+
+            {data && data[3] === AuctionState.ACTIVE && (
+              <button
+                type="button"
+                disabled
+                className="inline-flex items-center rounded border border-transparent bg-[#E11833] px-5 py-2 text-md font-medium text-gray-50 shadow-sm cursor-not-allowed"
+              >
+                Auction Active, Cannot Settle
+              </button>
+            )}
 
             {/* {lilNoun.details.map((detail) => (
                 <div key={detail.name}>
