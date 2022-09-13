@@ -9,7 +9,6 @@ const ConnectWalletBtn = () => {
   const { disconnect } = useDisconnect();
   const { connect, connectors, isLoading, pendingConnector } = useConnect();
 
-  console.log(address);
   return (
     <>
       {connectors.map((connector) => (

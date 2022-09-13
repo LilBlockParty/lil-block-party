@@ -22,22 +22,26 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
     },
   ]);
   useEffect(() => {
-    if (data && data[3] === AuctionState.ACTIVE) return;
+    // if (data && data[3] === AuctionState.ACTIVE) return;
     return () => {
       if (isFetched && !isFetching && typeof imgData == "string") {
-        if (missedList.length <= 3) {
+        if (missedList.length < 3) {
           setMissedList((prevArray) => [...prevArray, { imgData, blockNumber }]);
         }
 
-        if (missedList.length >= 4 && imgData !== null) {
-          missedList.shift();
-          setMissedList((prevArray) => [...prevArray, { imgData, blockNumber }]);
+        if (missedList.length > 3 && isFetched && !isFetching && typeof imgData == "string") {
+          console.log("got here");
+          // missedList.shift();
+          setMissedList((prevArray) => {
+            prevArray.shift();
+            return [...prevArray, { imgData, blockNumber }];
+          });
         }
       }
     };
   }, [imgData]);
 
-  if (missedList.length === 0) {
+  if (missedList.length < 1) {
     return (
       <div className="bg-white">
         <div className="mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-0 lg:max-w-6xl"></div>
@@ -51,8 +55,8 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
         {missedList.length > 0 && (
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">Missed Lils </h2>
         )}
-        <div className="flex pb-10 pt-1 w-full">
-          <div className="flex flex-nowrap gap-x-3 py-8">
+        <div className="flex pb-10 pt-1 w-full overflow-x-scroll">
+          <div className="flex flex-nowrap gap-x-3 py-8 ">
             {missedList?.map((lil, index) => {
               if (!lil.imgData) return;
               return (

@@ -137,7 +137,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
                 disabled
                 className="inline-flex items-center rounded border border-transparent bg-[#E11833] px-5 py-2 text-md font-medium text-gray-50 shadow-sm cursor-not-allowed"
               >
-                Auction Active, Cannot Settle
+                Auction Actie
               </button>
             )}
 
