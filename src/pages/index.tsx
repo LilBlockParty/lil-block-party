@@ -11,6 +11,7 @@ const InfoLil = dynamic(() => import("../components/InfoLil"), {
 
 import LilNounsOracleAbi from "../abis/preview.json";
 import { useContractRead } from "wagmi";
+import { useEffect, useState } from "react";
 /*
 
   signature for fetchNextNoun
@@ -34,13 +35,19 @@ export enum AuctionState {
 }
 
 const Home: NextPage = () => {
+  const [watching, setWatching] = useState(true);
   const { data, isFetching, isFetched } = useContractRead({
     addressOrName: "0xA1879c5dC7049106f641cC5C3A567e7ABF31035C",
     contractInterface: LilNounsOracleAbi,
     functionName: "fetchNextNoun",
-    watch: true,
+    watch: watching,
     overrides: { blockTag: "pending" },
   });
+
+  useEffect(() => {
+    data?.[3] === AuctionState.ACTIVE ? setWatching(false) : setWatching(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data?.[3]]);
 
   return (
     <div className="bg-white h-full w-full">

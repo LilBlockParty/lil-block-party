@@ -1,12 +1,13 @@
 import { Tab } from "@headlessui/react";
 import { Result } from "ethers/lib/utils";
-import GameBoyNoun from "./GameboyNoun";
 
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import { AuctionState } from "../pages";
-import ConnectWalletBtn from "./ConnectWallet";
 
 import LilNounsOracleAbi from "../abis/preview.json";
+import ConnectWalletBtn from "./ConnectWallet";
+
+import Logo from "../images/lil-logo.png";
 
 const lilNoun = {
   name: "Lil Noun #9999",
@@ -62,10 +63,14 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
   };
   return (
     <div className="mx-auto max-w-2xl px-4 py-6 lg:max-w-6xl">
-      <section></section>
+      <div className="w-full flex justify-between items-center">
+        <img src={Logo.src} alt="logo" />
+
+        <ConnectWalletBtn />
+      </div>
       <div className="flex flex-wrap items-start pt-8 ">
-        <h1 className="text-4xl font-bold mb-2 text-[#F8F8F2] w-full">Gotta Mint &apos;em All </h1>
-        <p className="font-bold text-[#92FFFF] text-md mb-6">
+        <h1 className="text-5xl font-bold mb-2 text-[#F8F8F2] w-full">Gotta Mint &apos;em All </h1>
+        <p className="font-bold text-[#92FFFF] text-lg mb-6">
           Help give birth to the next Lil Noun—settle and start the auction!
         </p>
       </div>
@@ -92,8 +97,8 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
         {/* lilNoun info */}
 
         <div className="flex flex-col justify-center mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 my-auto h-full">
-          <p className="text-[#92FFFF] font-bold pb-3">Up next on the block...</p>
-          <h1 className="text-3xl font-bold tracking-tight text-[#F8F8F2]">
+          <p className="text-[#92FFFF] font-bold mb-6 text-xl">Up next on the block...</p>
+          <h1 className="text-4xl font-bold tracking-tight text-[#F8F8F2]">
             {data ? `Lil Noun # ${parseInt(data[1]._hex.toString())}` : ""}
           </h1>
 

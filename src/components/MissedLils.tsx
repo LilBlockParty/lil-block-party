@@ -2,7 +2,6 @@
 import type { Result } from "ethers/lib/utils";
 import Image from "next/future/image";
 import { useLayoutEffect, useState } from "react";
-import { useBlockNumber } from "wagmi";
 import { AuctionState } from "../pages";
 
 interface Props {
@@ -14,14 +13,13 @@ interface Props {
 export default function MissedLils({ data, isFetched, isFetching }: Props) {
   const imgData = data?.[2];
 
-  const { data: blockNumber, isFetched: isBlockFetched } = useBlockNumber();
   const [missedList, setMissedList] = useState([
     {
       imgData: "",
     },
   ]);
   useLayoutEffect(() => {
-    if (data && data[3] === AuctionState.ACTIVE) return;
+    if (data?.[3] === AuctionState.ACTIVE) return;
     return () => {
       if (typeof imgData == "string" && imgData.length > 0) {
         if (missedList.length < 3) {
@@ -52,7 +50,9 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
     <div className="bg-white">
       <div className="mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-0 lg:max-w-6xl">
         {missedList.length > 0 && (
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900">In Memorium</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+            {missedList.length > 1 && "In Memorium"}
+          </h2>
         )}
         <div className="flex pb-10 pt-1 w-full overflow-x-scroll">
           <div className="flex flex-nowrap gap-x-3 py-8 ">
