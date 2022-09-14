@@ -88,32 +88,11 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
           </div>
 
           <div className="mt-8">
-            {isConnected ? "Connected" : "Not Connected"}
-
             {data?.[3] === AuctionState.OVER_NOT_SETTLED && (
               <AuctionBtn data={data} isFetching={isFetching} />
             )}
 
             {data?.[3] === AuctionState.ACTIVE && <DisabledAuctionBtn />}
-
-            {/* {lilNoun.details.map((detail) => (
-                <div key={detail.name}>
-                  <>
-                    <h3>
-                      <button className="group relative flex w-full items-center justify-between py-6 text-left">
-                        <span className="text-gray-900 font-medium text-lg">{detail.name}</span>
-                      </button>
-                    </h3>
-                    <section className="prose prose-sm pb-6">
-                      <ul role="list">
-                        {detail.items.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    </section>
-                  </>
-                </div>
-              ))} */}
           </div>
         </div>
       </div>

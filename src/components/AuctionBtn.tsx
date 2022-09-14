@@ -1,4 +1,4 @@
-import { useContractWrite, usePrepareContractWrite } from "wagmi";
+import { useAccount, useContractWrite, usePrepareContractWrite } from "wagmi";
 import LilNounsOracleAbi from "../abis/preview.json";
 import LoadingSpinner from "./LoadingSpinner";
 
@@ -8,6 +8,7 @@ interface Props {
 }
 
 const AuctionBtn = ({ data, isFetching }: Props) => {
+  const { address, isConnected } = useAccount();
   const {
     config,
     error: prepareError,
@@ -34,14 +35,27 @@ const AuctionBtn = ({ data, isFetching }: Props) => {
   return (
     <button
       type="button"
-      disabled={isFetching}
+      disabled={isFetching || !isConnected}
       onClick={() => handleButtonClicked()}
       className="inline-flex items-center cursor-pointer rounded-lg border text-center border-transparent bg-[#92FFFF] px-5 py-4 w-80 text-xl font-medium text-black shadow-sm hover:bg-[#83e6e6]"
     >
-      {isFetching ? (
+      {/* {isFetching && isConnected ? (
         <section className="text-center w-full flex items-center justify-center">
-          <LoadingSpinner />
           <span>Fetching Next Block</span>
+          <LoadingSpinner />
+        </section>
+      ) : (
+        <span className="w-full"> Settle and start auction</span>
+      )} */}
+
+      {!isConnected ? (
+        <section className="text-center w-full flex items-center justify-center">
+          <span>Connect Wallet</span>
+        </section>
+      ) : isFetching ? (
+        <section className="text-center w-full flex items-center justify-center">
+          <span>Fetching Next Block</span>
+          <LoadingSpinner />
         </section>
       ) : (
         <span className="w-full"> Settle and start auction</span>
