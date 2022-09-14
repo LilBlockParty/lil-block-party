@@ -1,13 +1,14 @@
 import { Tab } from "@headlessui/react";
 import { Result } from "ethers/lib/utils";
 
-import { useContractWrite, usePrepareContractWrite } from "wagmi";
+import { useAccount } from "wagmi";
 import { AuctionState } from "../pages";
 
-import LilNounsOracleAbi from "../abis/preview.json";
 import ConnectWalletBtn from "./ConnectWallet";
 
 import Logo from "../images/lil-logo.png";
+import AuctionBtn from "./AuctionBtn";
+import DisabledAuctionBtn from "./DisabledAuctionBtn";
 
 const lilNoun = {
   name: "Lil Noun #9999",
@@ -38,29 +39,8 @@ interface Props {
 }
 
 const InfoLil = ({ data, isFetching, isFetched }: Props) => {
-  const {
-    config,
-    error: prepareError,
-    isError: isPrepareError,
-  } = usePrepareContractWrite({
-    addressOrName: "0x6c3810649c140d2f43Ec4D88B2f733e1375E4C74",
-    contractInterface: LilNounsOracleAbi,
-    functionName: "settleAuction",
-    args: [data?.[0]],
-  });
+  const { address, isConnected } = useAccount();
 
-  const {
-    error: writeError,
-    isError: isWriteError,
-    isLoading: isWriteLoading,
-    write,
-  } = useContractWrite(config);
-
-  const handleButtonClicked = () => {
-    console.log("?");
-    console.log(prepareError);
-    write?.();
-  };
   return (
     <div className="mx-auto max-w-2xl px-4 py-6 lg:max-w-6xl">
       <div className="w-full flex justify-between items-center">
@@ -70,7 +50,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
       </div>
       <div className="flex flex-wrap items-start pt-8 ">
         <h1 className="text-5xl font-bold mb-2 text-[#F8F8F2] w-full">Gotta Mint &apos;em All </h1>
-        <p className="font-bold text-[#92FFFF] text-lg mb-6">
+        <p className="font-bold text-[#92FFFF] text-xl mb-6">
           Help give birth to the next Lil Noun—settle and start the auction!
         </p>
       </div>
@@ -97,9 +77,9 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
         {/* lilNoun info */}
 
         <div className="flex flex-col justify-center mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 my-auto h-full">
-          <p className="text-[#92FFFF] font-bold mb-6 text-xl">Up next on the block...</p>
+          <p className="text-[#92FFFF] font-bold mb-6 text-2xl">Up next on the block...</p>
           <h1 className="text-4xl font-bold tracking-tight text-[#F8F8F2]">
-            {data ? `Lil Noun # ${parseInt(data[1]._hex.toString())}` : ""}
+            {data?.[1] && `Lil Noun # ${parseInt(data[1]._hex.toString())}`}
           </h1>
 
           <div className="mt-3">
@@ -108,31 +88,13 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
           </div>
 
           <div className="mt-8">
-            {/* <GameBoyNoun /> */}
+            {isConnected ? "Connected" : "Not Connected"}
+
             {data?.[3] === AuctionState.OVER_NOT_SETTLED && (
-              <button
-                type="button"
-                // disabled={!write}
-                onClick={() => handleButtonClicked()}
-                className="inline-flex items-center cursor-pointer rounded-lg border text-center border-transparent bg-[#92FFFF] px-5 py-4 w-80 text-xl font-medium text-black shadow-sm hover:bg-[#83e6e6]"
-              >
-                <span className="w-full"> Settle and start auction</span>
-              </button>
+              <AuctionBtn data={data} isFetching={isFetching} />
             )}
 
-            {data?.[3] === AuctionState.ACTIVE && (
-              <button
-                type="button"
-                disabled
-                className="inline-flex items-center rounded border border-transparent bg-[#E11833] px-5 py-2 text-md font-medium text-white shadow-sm cursor-not-allowed"
-              >
-                Auction Active
-              </button>
-            )}
-
-            {isFetching && (
-              <p className="mt-2 text-md font-medium text-slate-400">Fetching Next Block</p>
-            )}
+            {data?.[3] === AuctionState.ACTIVE && <DisabledAuctionBtn />}
 
             {/* {lilNoun.details.map((detail) => (
                 <div key={detail.name}>

@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Londrina Solid", ...fontFamily.sans],
+        balsamiq: ["Balsamiq", ...fontFamily.sans],
       },
     },
   },
