@@ -7,12 +7,16 @@ import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 
 const { provider, chains } = configureChains(
   [chain.mainnet],
-  [infuraProvider({ apiKey: "c96c03327ec643dfa9a47e47ab5889bd" })]
+  [infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_KEY })]
 );
 
 const client = createClient({
   autoConnect: true,
-  connectors: [new MetaMaskConnector({ chains })],
+  connectors: [
+    new MetaMaskConnector({
+      chains,
+    }),
+  ],
   provider,
 });
 

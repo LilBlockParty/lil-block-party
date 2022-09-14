@@ -43,9 +43,11 @@ const Home: NextPage = () => {
   });
 
   return (
-    <div className="bg-white h-full">
-      <div className="mx-auto max-w-2xl py-2 px-4 sm:py-8 sm:px-6 lg:max-w-6xl lg:px-8">
-        <InfoLil data={data} isFetching={isFetching} isFetched={isFetched} />
+    <div className="bg-white h-full w-full">
+      <div className="mx-auto">
+        <div className="bg-[#22212C] ">
+          <InfoLil data={data} isFetching={isFetching} isFetched={isFetched} />
+        </div>
         <MissedLils data={data} isFetching={isFetching} isFetched={isFetched} />
       </div>
     </div>

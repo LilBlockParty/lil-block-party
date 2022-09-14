@@ -2,7 +2,7 @@ import { Tab } from "@headlessui/react";
 import { Result } from "ethers/lib/utils";
 import GameBoyNoun from "./GameboyNoun";
 
-import { useBlockNumber, useContractWrite, usePrepareContractWrite } from "wagmi";
+import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import { AuctionState } from "../pages";
 import ConnectWalletBtn from "./ConnectWallet";
 
@@ -10,7 +10,7 @@ import LilNounsOracleAbi from "../abis/preview.json";
 
 const lilNoun = {
   name: "Lil Noun #9999",
-  price: "0.15 Ξ",
+  price: "Ξ 0.15",
   description: `
     <p>ONE LIL NOUN,
     EVERY 15 MINUTES,
@@ -37,93 +37,85 @@ interface Props {
 }
 
 const InfoLil = ({ data, isFetching, isFetched }: Props) => {
-  const blockNumber = useBlockNumber();
-
-  const { config } = usePrepareContractWrite({
-    addressOrName: "0xA1879c5dC7049106f641cC5C3A567ABF31035C",
+  const {
+    config,
+    error: prepareError,
+    isError: isPrepareError,
+  } = usePrepareContractWrite({
+    addressOrName: "0x6c3810649c140d2f43Ec4D88B2f733e1375E4C74",
     contractInterface: LilNounsOracleAbi,
     functionName: "settleAuction",
+    args: [data?.[0]],
   });
-  const { data: writeData, isLoading, isSuccess, write, error, e } = useContractWrite(config);
 
+  const {
+    error: writeError,
+    isError: isWriteError,
+    isLoading: isWriteLoading,
+    write,
+  } = useContractWrite(config);
+
+  const handleButtonClicked = () => {
+    console.log("?");
+    console.log(prepareError);
+    write?.();
+  };
   return (
-    <>
-      <div className="flex items-start ">
-        <section className="w-full">
-          <h1 className="text-3xl font-bold mb-2">Gotta Mint &apos;em All </h1>
-          <p className="font-bold text-[#E7A32C] text-md mb-6">
-            This is a work in progress. Results not guaranteed
-          </p>
-        </section>
-        <section className="w-1/3">
-          <ConnectWalletBtn />
-        </section>
+    <div className="mx-auto max-w-2xl px-4 py-6 lg:max-w-6xl">
+      <section></section>
+      <div className="flex flex-wrap items-start pt-8 ">
+        <h1 className="text-4xl font-bold mb-2 text-[#F8F8F2] w-full">Gotta Mint &apos;em All </h1>
+        <p className="font-bold text-[#92FFFF] text-md mb-6">
+          Help give birth to the next Lil Noun—settle and start the auction!
+        </p>
       </div>
 
       <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 mb-6">
         <Tab.Group as="div" className="flex flex-col-reverse">
           <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
             <Tab.Panel>
-              {/* {data && data[3] === AuctionState.ACTIVE ? (
-                <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center animate-pulse bg-gray-200" />
-              ) : (
-                ""
-              )} */}
-
-              {isFetched && !isFetching && data && (
-                <img
-                  src={`data:image/svg+xml;base64,${data[2]}`}
-                  alt={"nouns"}
-                  className="h-full w-full object-cover shadow-xl object-center sm:rounded-lg"
-                />
+              {!isFetching && (
+                <>
+                  <img
+                    src={`data:image/svg+xml;base64,${data?.[2]}`}
+                    alt={"nouns"}
+                    className="h-full w-full object-cover shadow-xl object-center sm:rounded-lg"
+                  />
+                </>
               )}
-
-              {isFetching && (
-                <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center animate-pulse bg-gray-200" />
+              {isFetching && AuctionState.ACTIVE && (
+                <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center animate-pulse bg-gray-100" />
               )}
-              <p className="mt-3 text-md text-gray-500 mb-1">
-                {blockNumber.data && `@ block ${blockNumber.data}`}
-              </p>
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
         {/* lilNoun info */}
 
-        <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+        <div className="flex flex-col justify-center mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 my-auto h-full">
+          <p className="text-[#92FFFF] font-bold pb-3">Up next on the block...</p>
+          <h1 className="text-3xl font-bold tracking-tight text-[#F8F8F2]">
             {data ? `Lil Noun # ${parseInt(data[1]._hex.toString())}` : ""}
           </h1>
 
           <div className="mt-3">
             <h2 className="sr-only">lilNoun information</h2>
-            <p className="text-3xl tracking-tight text-gray-900">{lilNoun.price}</p>
-          </div>
-
-          <div className="mt-6">
-            <h3 className="sr-only">Description</h3>
-
-            <div
-              className="space-y-6 text-base text-gray-700"
-              dangerouslySetInnerHTML={{ __html: lilNoun.description }}
-            />
+            <p className="text-3xl tracking-tight text-[#F8F8F2]">{lilNoun.price}</p>
           </div>
 
           <div className="mt-8">
             {/* <GameBoyNoun /> */}
-            {data && data[3] === AuctionState.OVER_NOT_SETTLED && !isFetching && (
+            {data?.[3] === AuctionState.OVER_NOT_SETTLED && (
               <button
                 type="button"
-                onClick={() => {
-                  console.log(write);
-                  return write?.();
-                }}
-                className="inline-flex items-center rounded border border-transparent bg-[#0343DF] px-5 py-2 text-md font-medium text-white shadow-sm hover:bg-[#1c56e2]"
+                // disabled={!write}
+                onClick={() => handleButtonClicked()}
+                className="inline-flex items-center cursor-pointer rounded-lg border text-center border-transparent bg-[#92FFFF] px-5 py-4 w-80 text-xl font-medium text-black shadow-sm hover:bg-[#83e6e6]"
               >
-                Start Auction
+                <span className="w-full"> Settle and start auction</span>
               </button>
             )}
 
-            {data && data[3] === AuctionState.ACTIVE && !isFetching && (
+            {data?.[3] === AuctionState.ACTIVE && (
               <button
                 type="button"
                 disabled
@@ -131,6 +123,10 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
               >
                 Auction Active
               </button>
+            )}
+
+            {isFetching && (
+              <p className="mt-2 text-md font-medium text-slate-400">Fetching Next Block</p>
             )}
 
             {/* {lilNoun.details.map((detail) => (
@@ -154,7 +150,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

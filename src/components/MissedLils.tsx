@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import type { Result } from "ethers/lib/utils";
 import Image from "next/future/image";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useBlockNumber } from "wagmi";
 import { AuctionState } from "../pages";
 
@@ -12,21 +12,20 @@ interface Props {
 }
 
 export default function MissedLils({ data, isFetched, isFetching }: Props) {
-  const imgData: Result | null = data ? data[2] : null;
+  const imgData = data?.[2];
 
   const { data: blockNumber, isFetched: isBlockFetched } = useBlockNumber();
   const [missedList, setMissedList] = useState([
     {
       imgData: "",
-      blockNumber,
     },
   ]);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (data && data[3] === AuctionState.ACTIVE) return;
     return () => {
-      if (isFetched && !isFetching && typeof imgData == "string") {
+      if (typeof imgData == "string" && imgData.length > 0) {
         if (missedList.length < 3) {
-          setMissedList((prevArray) => [...prevArray, { imgData, blockNumber }]);
+          setMissedList((prevArray) => [...prevArray, { imgData }]);
         }
 
         if (missedList.length > 3 && isFetched && !isFetching && typeof imgData == "string") {
@@ -34,12 +33,12 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
           // missedList.shift();
           setMissedList((prevArray) => {
             prevArray.shift();
-            return [...prevArray, { imgData, blockNumber }];
+            return [...prevArray, { imgData }];
           });
         }
       }
     };
-  }, [imgData, blockNumber]);
+  }, [imgData]);
 
   if (missedList.length < 1) {
     return (
@@ -53,14 +52,17 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
     <div className="bg-white">
       <div className="mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-0 lg:max-w-6xl">
         {missedList.length > 0 && (
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900">Missed Lils </h2>
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900">In Memorium</h2>
         )}
         <div className="flex pb-10 pt-1 w-full overflow-x-scroll">
           <div className="flex flex-nowrap gap-x-3 py-8 ">
             {missedList?.map((lil, index) => {
               if (!lil.imgData) return;
               return (
-                <div key={index} className="group relative drop-shadow-lg max-w-[256px]">
+                <div
+                  key={index}
+                  className="group relative drop-shadow-md max-w-[256px] filter grayscale hover:filter-none"
+                >
                   <div className=" rounded-md bg-gray-200  lg:aspect-none ">
                     <Image
                       width={208}
