@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const TermsPage: NextPage = () => {
   return (
-    <div className="w-full mx-auto max-w-2xl px-16 py-6 lg:max-w-6xl pt-16 ">
+    <div className="w-full mx-auto max-w-2xl px-4 md:px-16 py-6 lg:max-w-6xl pt-16 ">
       <section className="w-full text-left mb-8">
         <Link href="/">
           <a className="text-lg">⏪ Back</a>
@@ -22,7 +22,7 @@ const TermsPage: NextPage = () => {
         <p className="max-w-[90ch] text-lg font-balsamiq">
           <ul className="list-disc px-8">
             <li>One Lil Noun is born, and trustlessly auctioned every 15 minutes, forever.</li>
-            <li>The auction must be &quote;settled&quote; to start the next auction.</li>
+            <li>The auction must be "settled"; to start the next auction.</li>
             <li>The block that "settlement" occurs in determines the next Lil Noun.</li>
             <li>Lil Block Party lets you watch, block by block, the next possible Lil Nouns.</li>
             <li>
