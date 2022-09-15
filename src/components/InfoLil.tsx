@@ -1,7 +1,6 @@
 import { Tab } from "@headlessui/react";
 import { Result } from "ethers/lib/utils";
 
-import { useAccount } from "wagmi";
 import { AuctionState } from "../pages";
 
 import ConnectWalletBtn from "./ConnectWallet";
@@ -9,28 +8,7 @@ import ConnectWalletBtn from "./ConnectWallet";
 import Logo from "../images/lil-logo.png";
 import AuctionBtn from "./AuctionBtn";
 import DisabledAuctionBtn from "./DisabledAuctionBtn";
-
-const lilNoun = {
-  name: "Lil Noun #9999",
-  price: "Ξ 0.15",
-  description: `
-    <p>ONE LIL NOUN,
-    EVERY 15 MINUTES,
-    FOREVER.</p>
-  `,
-  details: [
-    {
-      name: "Traits",
-      items: [
-        "bg-cool",
-        "body-blue-sky",
-        "accessory-stripes-olive",
-        "head-abstract",
-        "glasses-square-black-rgb",
-      ],
-    },
-  ],
-};
+import Link from "next/link";
 
 interface Props {
   data: Result | undefined;
@@ -39,14 +17,20 @@ interface Props {
 }
 
 const InfoLil = ({ data, isFetching, isFetched }: Props) => {
-  const { address, isConnected } = useAccount();
-
   return (
     <div className="mx-auto max-w-2xl px-4 py-6 lg:max-w-6xl">
-      <div className="w-full flex justify-between items-center">
-        <img src={Logo.src} alt="logo" />
-
-        <ConnectWalletBtn />
+      <div className="w-full flex justify-between items-end">
+        <span className="w-2/3">
+          <img src={Logo.src} alt="logo" />
+        </span>
+        <div className="flex justify-between items-end w-1/3">
+          <Link href="/terms">
+            <a className="text-white text-lg hover:underline">Terms & Conditions</a>
+          </Link>
+          <span className="hidden md:block">
+            <ConnectWalletBtn />
+          </span>
+        </div>
       </div>
       <div className="flex flex-wrap items-start pt-8 ">
         <h1 className="text-5xl font-bold mb-2 text-[#F8F8F2] w-full">Lil&apos; Block Party </h1>
@@ -84,7 +68,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
 
           <div className="mt-3">
             <h2 className="sr-only">lilNoun information</h2>
-            <p className="text-3xl tracking-tight text-[#F8F8F2]">{lilNoun.price}</p>
+            <p className="text-3xl tracking-tight text-[#F8F8F2]">Ξ 0.15</p>
           </div>
 
           <div className="mt-8">
