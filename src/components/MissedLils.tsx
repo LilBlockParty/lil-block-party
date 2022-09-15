@@ -47,7 +47,7 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
   }
 
   return (
-    <div className="bg-white">
+    <div className="bg-white hidden md:block">
       <div className="mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-0 lg:max-w-6xl">
         {missedList.length > 0 && (
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
