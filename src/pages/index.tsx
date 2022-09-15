@@ -37,7 +37,7 @@ export enum AuctionState {
 const Home: NextPage = () => {
   const [watching, setWatching] = useState(true);
   const { data, isFetching, isFetched } = useContractRead({
-    addressOrName: "0xA1879c5dC7049106f641cC5C3A567e7ABF31035C",
+    addressOrName: "0x6c3810649c140d2f43Ec4D88B2f733e1375E4C74",
     contractInterface: LilNounsOracleAbi,
     functionName: "fetchNextNoun",
     watch: watching,
