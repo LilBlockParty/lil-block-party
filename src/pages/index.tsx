@@ -11,6 +11,8 @@ const InfoLil = dynamic(() => import("../components/InfoLil"), {
 
 import LilNounsOracleAbi from "../abis/preview.json";
 import { useContractRead } from "wagmi";
+import { useWebSocketProvider } from "wagmi";
+
 import { useEffect, useState } from "react";
 /*
 
