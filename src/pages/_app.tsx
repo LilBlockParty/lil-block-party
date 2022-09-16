@@ -2,12 +2,12 @@ import "../styles/globals.css";
 import type { AppType } from "next/dist/shared/lib/utils";
 
 import { WagmiConfig, createClient, chain, configureChains } from "wagmi";
-import { infuraProvider } from "wagmi/providers/infura";
+import { alchemyProvider } from "wagmi/providers/alchemy";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 
 const { provider, chains } = configureChains(
   [chain.mainnet],
-  [infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_KEY })]
+  [alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_KEY, stallTimeout: 2_000 })]
 );
 
 const client = createClient({
