@@ -26,9 +26,7 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
           setMissedList((prevArray) => [...prevArray, { imgData }]);
         }
 
-        if (missedList.length > 3 && isFetched && !isFetching && typeof imgData == "string") {
-          console.log("got here");
-          // missedList.shift();
+        if (missedList.length >= 3 && isFetched && !isFetching && typeof imgData == "string") {
           setMissedList((prevArray) => {
             prevArray.shift();
             return [...prevArray, { imgData }];
@@ -50,8 +48,8 @@ export default function MissedLils({ data, isFetched, isFetching }: Props) {
     <div className="bg-white hidden md:block">
       <div className="mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-0 lg:max-w-6xl">
         {missedList.length > 0 && (
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-            {missedList.length > 1 && "In Memorium"}
+          <h2 className="text-4xl font-bold tracking-tight text-gray-900">
+            {missedList.length > 0 && "In Memorium"}
           </h2>
         )}
         <div className="flex pb-10 pt-1 w-full overflow-x-scroll">

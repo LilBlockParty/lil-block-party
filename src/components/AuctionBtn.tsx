@@ -28,7 +28,6 @@ const AuctionBtn = ({ data, isFetching }: Props) => {
   } = useContractWrite(config);
 
   const handleButtonClicked = () => {
-    console.log("?");
     console.log(prepareError);
     write?.();
   };
