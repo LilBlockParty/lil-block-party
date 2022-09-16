@@ -17,6 +17,14 @@ interface Props {
 }
 
 const InfoLil = ({ data, isFetching, isFetched }: Props) => {
+  // const props = useSpring({
+  //   to: { opacity: 1 },
+  //   from: { opacity: 0.5 },
+  //   reset: false,
+  //   delay: 20,
+  //   config: config.gentle,
+  // });
+
   return (
     <div className="mx-auto max-w-2xl px-4 py-6 lg:max-w-6xl">
       <div className="w-full flex justify-between items-end">
@@ -53,7 +61,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
                 </>
               )}
               {isFetching && AuctionState.ACTIVE && (
-                <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center animate-pulse bg-gray-100" />
+                <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center bg-[#D4D7E1]" />
               )}
             </Tab.Panel>
           </Tab.Panels>
