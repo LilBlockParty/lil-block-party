@@ -35,7 +35,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
       <div className="flex flex-wrap items-start pt-8 ">
         <h1 className="text-5xl font-bold mb-2 text-[#F8F8F2] w-full">Lil&apos; Block Party </h1>
         <p className="font-bold text-[#92FFFF] text-xl mb-6">
-          Help give birth to the next Lil Noun—settle and start the auction!
+          Watch the blocks. Pick your lil. Join the party
         </p>
       </div>
 
