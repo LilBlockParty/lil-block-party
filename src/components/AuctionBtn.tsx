@@ -31,34 +31,55 @@ const AuctionBtn = ({ data, isFetching }: Props) => {
     console.log(prepareError);
     write?.();
   };
+
+  if (isConnected) {
+    return (
+      <button
+        type="button"
+        disabled={isFetching || !isConnected}
+        onClick={() => handleButtonClicked()}
+        className="hidden md:inline-flex items-center cursor-pointer rounded-lg border text-center border-transparent bg-[#92FFFF] px-5 py-4 w-auto md:w-96 text-xl font-medium text-black shadow-sm hover:bg-[#83e6e6]"
+      >
+        {isFetching ? (
+          <section className="text-center w-full flex items-center justify-center">
+            <span>Fetching Next Block</span>
+            <LoadingSpinner />
+          </section>
+        ) : (
+          <span className="w-full text-2xl"> Settle auction</span>
+        )}
+      </button>
+    );
+  }
+
+  if (!isConnected) {
+    return (
+      <button
+        type="button"
+        disabled
+        className="hidden md:inline-flex items-center cursor-not-allowed rounded-lg border text-center border-transparent bg-[#8AFF80] px-5 py-4 w-auto md:w-80 text-xl font-medium text-black shadow-sm hover:bg-[#96ff8d]"
+      >
+        {isFetching ? (
+          <section className="text-center w-full flex items-center justify-center">
+            <span>Fetching Next Block</span>
+            <LoadingSpinner />
+          </section>
+        ) : (
+          <section className="text-center w-full flex items-center justify-center">
+            <span>Connect Wallet</span>
+          </section>
+        )}
+      </button>
+    );
+  }
+
   return (
     <button
       type="button"
-      disabled={isFetching || !isConnected}
-      onClick={() => handleButtonClicked()}
+      disabled
       className="hidden md:inline-flex items-center cursor-pointer rounded-lg border text-center border-transparent bg-[#92FFFF] px-5 py-4 w-auto md:w-80 text-xl font-medium text-black shadow-sm hover:bg-[#83e6e6]"
     >
-      {/* {isFetching && isConnected ? (
-        <section className="text-center w-full flex items-center justify-center">
-          <span>Fetching Next Block</span>
-          <LoadingSpinner />
-        </section>
-      ) : (
-        <span className="w-full"> Settle and start auction</span>
-      )} */}
-
-      {!isConnected ? (
-        <section className="text-center w-full flex items-center justify-center">
-          <span>Connect Wallet</span>
-        </section>
-      ) : isFetching ? (
-        <section className="text-center w-full flex items-center justify-center">
-          <span>Fetching Next Block</span>
-          <LoadingSpinner />
-        </section>
-      ) : (
-        <span className="w-full"> Settle and start auction</span>
-      )}
+      {"lol"}
     </button>
   );
 };

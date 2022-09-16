@@ -3,7 +3,7 @@ const DisabledAuctionBtn = () => {
     <button
       type="button"
       disabled
-      className="inline-flex items-center rounded border border-transparent bg-[#E11833] px-5 py-2 text-md font-medium text-white shadow-sm cursor-not-allowed"
+      className="inline-flex items-center rounded border border-transparent bg-[#E11833] text-md font-medium text-white shadow-sm cursor-not-allowed w-96 px-5 py-4  md:w-96 text-2xl "
     >
       Auction Active
     </button>
