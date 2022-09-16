@@ -25,7 +25,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
         </span>
         <div className="flex justify-between items-end w-1/3">
           <Link href="/terms">
-            <a className="text-white text-lg hover:underline">Terms & Conditions</a>
+            <a className="text-white text-lg hover:underline">WTF is this?</a>
           </Link>
           <span className="hidden md:block">
             <ConnectWalletBtn />
