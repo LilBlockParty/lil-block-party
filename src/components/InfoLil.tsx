@@ -27,7 +27,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
           <img src={Logo.src} alt="logo" />
         </span>
         <div className="flex justify-between items-end w-2/5">
-          <Link href="/terms">
+          <Link href="#wtf">
             <a className="text-white text-2xl hover:underline">WTF?</a>
           </Link>
           <Link href="https://lilnouns.wtf">
@@ -66,7 +66,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
         </Tab.Group>
         {/* lilNoun info */}
 
-        <div className="flex flex-col justify-center mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 my-auto h-full">
+        <div className="flex flex-col justify-center mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 my-auto h-full max-w-sm">
           <p className="text-[#92FFFF] font-bold mb-6 text-2xl">Up next on block {blockNumber} </p>
           <h1 className="text-6xl font-bold text-[#F8F8F2]">
             {data?.[1] && `Lil Noun # ${parseInt(data[1]._hex.toString())}`}
@@ -82,12 +82,16 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
               <>
                 <AuctionBtn data={data} isFetching={isFetching} />
                 {isConnected ? (
-                  <p className="mt-4 text-white font-balsamiq max-w-96">
+                  <p className="mt-4 text-white font-balsamiq">
+                    After an auction has ended, a gas-only transaction is required to settle the
+                    previous auction to start the next one. Learn more about settling and bidding on
+                    Lil Nouns
+                  </p>
+                ) : (
+                  <p className="mt-4 text-white font-balsamiq">
                     Connect your wallet to settle the latest auction and give birth to the next Lil
                     on the block. Learn more about settling and bidding on Lil Nouns
                   </p>
-                ) : (
-                  ""
                 )}
               </>
             )}

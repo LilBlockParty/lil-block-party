@@ -10,6 +10,10 @@ const InfoLil = dynamic(() => import("../components/InfoLil"), {
   ssr: false,
 });
 
+const Wtf = dynamic(() => import("../components/Wtf"), {
+  ssr: false,
+});
+
 import LilNounsOracleAbi from "../abis/preview.json";
 import { useContractRead } from "wagmi";
 import { useEffect, useState } from "react";
@@ -62,6 +66,8 @@ const Home: NextPage = () => {
         </div>
         <MissedLils data={lilData} isFetching={isFetching} isFetched={isFetched} />
       </div>
+
+      <Wtf />
     </div>
   );
 };
