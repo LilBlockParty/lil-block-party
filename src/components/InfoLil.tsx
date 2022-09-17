@@ -50,28 +50,25 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
         <Tab.Group as="div" className="flex flex-col-reverse">
           <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
             <Tab.Panel>
-              {!isFetching && data?.[3] !== undefined ? (
-                <>
-                  <img
-                    src={`data:image/svg+xml;base64,${data?.[2] || ""}`}
-                    alt={"nouns"}
-                    className="h-full w-full object-cover shadow-xl object-center sm:rounded-lg"
-                  />
-                </>
-              ) : (
-                <PendingLil />
+              {!isFetching && data?.[3] !== undefined && (
+                <img
+                  src={`data:image/svg+xml;base64,${data?.[2] || ""}`}
+                  alt={"nouns"}
+                  className="h-full w-full object-cover shadow-xl object-center sm:rounded-lg"
+                />
               )}
+
               {isFetching && data?.[3] !== undefined && (
                 <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center bg-[#D4D7E1]" />
               )}
+
+              {data?.[3] === undefined && <PendingLil />}
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
         {/* lilNoun info */}
 
         <div className="flex flex-col justify-center mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 my-auto h-full max-w-sm">
-          {}
-
           <div className="mt-8">
             {data?.[3] === AuctionState.OVER_NOT_SETTLED && (
               <>
