@@ -5,7 +5,7 @@ const Wtf = () => {
     <div className="w-full mx-auto max-w-2xl px-4  py-2 lg:max-w-6xl pt-20 mb-48">
       <section className="w-full text-left mb-8">
         <h1 className="text-5xl mb-4 mt-4">WTF?</h1>
-        <p className="max-w-[90ch] text-lg font-balsamiq">
+        <p className="max-w-[90ch] text-lg font-balsamiq" id="wtf">
           Lil Block Party is a project for the Lil Nouns DAO community. Lil Block Party shows
           upcoming Lil Nouns based on the current block. Settling and Starting The Auction gives you
           a chance to mint the current Lil Noun as the next auction. This happens REALLY fast, so
@@ -13,9 +13,7 @@ const Wtf = () => {
         </p>
       </section>
       <section className="w-full text-left mb-8">
-        <h2 className="text-4xl mb-4" id="wtf">
-          Summary
-        </h2>
+        <h2 className="text-4xl mb-4">Summary</h2>
         <p className="max-w-[90ch] text-lg font-balsamiq">
           <ul className="list-disc px-8">
             <li className="mb-2">
