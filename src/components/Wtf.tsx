@@ -1,14 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
-import type { NextPage } from "next";
-import Link from "next/link";
 
-const TermsPage: NextPage = () => {
+const Wtf = () => {
   return (
-    <div className="w-full mx-auto max-w-2xl px-4 md:px-16 py-6 lg:max-w-6xl pt-16 ">
+    <div className="w-full mx-auto max-w-2xl px-4  py-2 lg:max-w-6xl pt-20 mb-48">
       <section className="w-full text-left mb-8">
-        <Link href="/">
-          <a className="text-lg">⏪ Back</a>
-        </Link>
         <h1 className="text-5xl mb-4 mt-4">WTF?</h1>
         <p className="max-w-[90ch] text-lg font-balsamiq">
           Lil Block Party is a project for the Lil Nouns DAO community. Lil Block Party shows
@@ -18,7 +13,9 @@ const TermsPage: NextPage = () => {
         </p>
       </section>
       <section className="w-full text-left mb-8">
-        <h2 className="text-4xl mb-4">Summary</h2>
+        <h2 className="text-4xl mb-4" id="wtf">
+          Summary
+        </h2>
         <p className="max-w-[90ch] text-lg font-balsamiq">
           <ul className="list-disc px-8">
             <li className="mb-2">
@@ -79,4 +76,4 @@ const TermsPage: NextPage = () => {
   );
 };
 
-export default TermsPage;
+export default Wtf;
