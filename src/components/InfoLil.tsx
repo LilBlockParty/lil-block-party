@@ -84,7 +84,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
                 {isConnected ? (
                   <p className="mt-4 text-white font-balsamiq">
                     After an auction has ended, a gas-only transaction is required to settle the
-                    previous auction to start the next one.
+                    previous auction and start the next one.
                     <Link href="#wtf">
                       <a className="text-[#92FFFF] underline ml-[1ch]">
                         Learn more about settling and bidding on Lil Nouns
