@@ -1,0 +1,39 @@
+.img {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.imgWrapper {
+  position: relative;
+  padding-top: 100%;
+  width: 100%;
+  height: 0;
+}
+
+.circular {
+  border-radius: 50%;
+}
+
+.rounded {
+  border-radius: 15px;
+}
+
+.circularNounWrapper {
+  height: 42px;
+  width: 42px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 1200px) {
+  .circularNounWrapper {
+    height: 70%;
+    width: 70%;
+  }
+}
