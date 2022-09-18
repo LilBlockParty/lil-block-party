@@ -1,7 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+## frontend
 # dependencies
 /node_modules
+frontend/node_modules
 /.pnp
 .pnp.js
 
@@ -13,15 +15,16 @@
 /prisma/db.sqlite-journal
 
 # next.js
-/.next/
-/out/
+frontend/.next/
+frontend/out/
 
 # production
-/build
+frontend/build
 
 # misc
 .DS_Store
 *.pem
+.notes.md
 
 # debug
 npm-debug.log*
@@ -38,3 +41,10 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+## contracts
+/contracts/artifacts
+/contracts/cache
+/contracts/node_modules
+/contracts/.env
+/contracts/deployments/*.localhost.json

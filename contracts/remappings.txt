@@ -1,0 +1,5 @@
+forge-std/=lib/forge-std/src/
+@openzeppelin/=../node_modules/@openzeppelin
+openzeppelin-contracts/=lib/openzeppelin-contracts/
+lil-nouns/=lib/lilnouns-monorepo/packages/nouns-contracts/contracts
+nouns/=lib/nouns-monorepo/packages/nouns-contracts/contracts
