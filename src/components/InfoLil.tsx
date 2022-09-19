@@ -26,7 +26,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
       <div className="w-full flex justify-between items-end">
         <span className="w-3/5">
           <Link href="https://lilnouns.wtf">
-            <img src={Logo.src} alt="logo" />
+            <img src={Logo.src} alt="logo" className="cursor-pointer" />
           </Link>
         </span>
         <div className="flex justify-around items-end w-2/5">
