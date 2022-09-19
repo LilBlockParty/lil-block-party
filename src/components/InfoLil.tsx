@@ -89,25 +89,17 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
                 </div>
                 <AuctionBtn data={data} isFetching={isFetching} />
                 {isConnected ? (
-                  <p className="mt-4 text-white font-balsamiq">
-                    After an auction has ended, a gas-only transaction is required to settle the
-                    previous auction and start the next one.
-                    <Link href="#wtf">
-                      <a className="text-[#92FFFF] underline ml-[1ch]">
-                        Learn more about settling and bidding on Lil Nouns
-                      </a>
-                    </Link>
-                  </p>
+                  <Link href="#wtf">
+                    <a className="text-[#92FFFF] underline font-balsamiq mt-4 inline-block">
+                      Learn more about settling and bidding on Lil Nouns
+                    </a>
+                  </Link>
                 ) : (
-                  <p className="mt-4 text-white font-balsamiq">
-                    Connect your wallet to settle the latest auction and give birth to the next Lil
-                    on the block.
-                    <Link href="#wtf">
-                      <a className="text-[#92FFFF] underline ml-[1ch]">
-                        Learn more about settling and bidding on Lil Nouns
-                      </a>
-                    </Link>
-                  </p>
+                  <Link href="#wtf">
+                    <a className="text-[#92FFFF] underline font-balsamiq mt-4 inline-block">
+                      Learn more about settling and bidding on Lil Nouns
+                    </a>
+                  </Link>
                 )}
               </>
             )}
