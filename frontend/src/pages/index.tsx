@@ -6,8 +6,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useIdle } from "react-use";
 import { useContractRead } from "wagmi";
-
-import LilNounsOracleAbi from "../abis/preview.json";
+import { LilNounsOracle } from "../deployments/LilNounsOracle";
 import EulogyModal from "../components/EulogyModal";
 
 const MissedLils = dynamic(() => import("../components/MissedLils"));
@@ -40,8 +39,8 @@ const Home: NextPage = () => {
   const [lilData, setLilData] = useState<Result | undefined>();
 
   const { data, isFetching, isFetched } = useContractRead({
-    addressOrName: "0x6c3810649c140d2f43Ec4D88B2f733e1375E4C74",
-    contractInterface: LilNounsOracleAbi,
+    addressOrName: LilNounsOracle.address,
+    contractInterface: LilNounsOracle.abi,
     functionName: "fetchNextNoun",
     watch: true,
     overrides: { blockTag: "pending" },

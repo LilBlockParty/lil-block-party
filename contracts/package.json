@@ -1,0 +1,26 @@
+{
+  "name": "lil-nouns-preview-contracts",
+  "private": true,
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.1.0",
+    "@nomiclabs/hardhat-etherscan": "^3.1.0",
+    "@openzeppelin/contracts": "4.1.0",
+    "@openzeppelin/contracts-upgradeable": "4.1.0",
+    "base64-sol": "1.0.1",
+    "ethers": "^5.6.9",
+    "hardhat": "^2.11.1",
+    "prettier": "^2.7.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.24"
+  },
+  "scripts": {
+    "build": "forge build",
+    "console": "npx hardhat console --network hardhat --no-compile",
+    "deploy": "npx hardhat run script/deploy.js --network localhost --no-compile",
+    "deploy-goerli": "forge build --force && npx hardhat run script/deploy.js --network goerli --no-compile",
+    "deploy-rinkeby": "forge build --force && npx hardhat run script/deploy.js --network rinkeby --no-compile",
+    "deploy-mainnet": "forge build --force && npx hardhat run script/deploy.js --network mainnet --no-compile",
+    "prettier": "npx prettier --write './src/*.sol' './test/*.sol'",
+    "start-rpc": "npx hardhat node --network hardhat",
+    "test": "forge test -vv"
+  }
+}

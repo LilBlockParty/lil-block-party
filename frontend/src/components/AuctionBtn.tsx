@@ -1,7 +1,6 @@
 import type { Result } from "ethers/lib/utils";
 import { useAccount, useContractWrite, usePrepareContractWrite } from "wagmi";
-
-import LilNounsOracleAbi from "../abis/preview.json";
+import { LilNounsOracle } from "../deployments/LilNounsOracle";
 import LoadingSpinner from "./LoadingSpinner";
 
 interface Props {
@@ -16,8 +15,8 @@ const AuctionBtn = ({ data, isFetching }: Props) => {
     error: prepareError,
     isError: isPrepareError,
   } = usePrepareContractWrite({
-    addressOrName: "0x6c3810649c140d2f43Ec4D88B2f733e1375E4C74",
-    contractInterface: LilNounsOracleAbi,
+    addressOrName: LilNounsOracle.address,
+    contractInterface: LilNounsOracle.abi,
     functionName: "settleAuction",
     args: [data?.[0]],
   });
