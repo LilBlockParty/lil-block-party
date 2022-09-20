@@ -19,8 +19,10 @@
     "deploy-goerli": "forge build --force && npx hardhat run script/deploy.js --network goerli --no-compile",
     "deploy-rinkeby": "forge build --force && npx hardhat run script/deploy.js --network rinkeby --no-compile",
     "deploy-mainnet": "forge build --force && npx hardhat run script/deploy.js --network mainnet --no-compile",
+    "forge-install": "forge install foundry-rs/forge-std Brechtpd/base64 OpenZeppelin/openzeppelin-contracts lilnounsDAO/lilnouns-monorepo --no-commit --no-git",
     "prettier": "npx prettier --write './src/*.sol' './test/*.sol'",
     "start-rpc": "npx hardhat node --network hardhat",
     "test": "forge test -vv"
   }
 }
+

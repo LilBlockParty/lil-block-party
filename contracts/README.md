@@ -5,6 +5,7 @@
 
 ## Install
 * Install the npm dependencies `npm install`
+* Install forge dependencies `npm run forge-install`
 * Configure the environment variables: Create a file .env using .env.example as a template
 * Build the contracts: `npm run build`
 * Start a local blockchain node: `npm run rpc`
