@@ -14,7 +14,7 @@ const Wtf = dynamic(() => import("../components/Wtf"), {
   ssr: false,
 });
 
-import LilNounsOracleAbi from "../abis/preview.json";
+import { LilNounsOracle } from "../deployments/LilNounsOracle";
 import { useContractRead } from "wagmi";
 import { useEffect, useState } from "react";
 import { Result } from "ethers/lib/utils";
@@ -45,8 +45,8 @@ const Home: NextPage = () => {
   const [lilData, setLilData] = useState<Result | undefined>();
 
   const { data, isFetching, isFetched } = useContractRead({
-    addressOrName: "0x6c3810649c140d2f43Ec4D88B2f733e1375E4C74",
-    contractInterface: LilNounsOracleAbi,
+    addressOrName: LilNounsOracle.address,
+    contractInterface: LilNounsOracle.abi,
     functionName: "fetchNextNoun",
     watch: true,
     overrides: { blockTag: "pending" },
