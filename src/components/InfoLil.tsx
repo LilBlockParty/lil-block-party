@@ -4,13 +4,11 @@ import { Result } from "ethers/lib/utils";
 import { AuctionState } from "../pages";
 import { useAccount, useBlockNumber } from "wagmi";
 
-import ConnectWalletBtn from "./ConnectWallet";
-
-import Logo from "../images/lil-logo.png";
 import AuctionBtn from "./AuctionBtn";
 import DisabledAuctionBtn from "./DisabledAuctionBtn";
 import Link from "next/link";
 import PendingLil from "./PendingLil";
+import Header from "./Header";
 
 interface Props {
   data: Result | undefined;
@@ -22,34 +20,14 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
   const { data: blockNumber } = useBlockNumber();
   const { isConnected } = useAccount();
   return (
-    <div className="mx-auto max-w-2xl px-4 py-6 lg:max-w-6xl">
-      <div className="w-full flex justify-between items-end">
-        <span className="w-3/5">
-          <Link href="https://lilnouns.wtf">
-            <img src={Logo.src} alt="logo" className="cursor-pointer" />
-          </Link>
-        </span>
-        <div className="flex justify-around items-end w-2/5">
-          <Link href="#wtf">
-            <a className="text-white text-2xl hover:underline mr-2 md:mr-0">WTF?</a>
-          </Link>
-
-          <Link href="https://twitter.com/lilblockparty">
-            <a className="text-white text-2xl hover:underline mr-2 md:mr-0">Twitter</a>
-          </Link>
-
-          <span className="hidden md:block">
-            <ConnectWalletBtn />
-          </span>
-        </div>
-      </div>
+    <div className="mx-auto max-w-2xl px-4 pt-6 pb-12 lg:max-w-6xl">
+      <Header />
       <div className="flex flex-wrap items-start pt-8 ">
         <h1 className="text-5xl font-bold mb-2 text-[#F8F8F2] w-full">Lil&apos; Block Party </h1>
         <p className="font-bold text-[#92FFFF] text-3xl mb-6">
           Watch the blocks. Pick a lil. Join the party.
         </p>
       </div>
-
       <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 mb-6">
         <Tab.Group as="div" className="flex flex-col-reverse">
           <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">

@@ -8,7 +8,7 @@ import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 
 const { provider, chains, webSocketProvider } = configureChains(
   [chain.mainnet],
-  [alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_KEY, stallTimeout: 2_000 })]
+  [alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_KEY, stallTimeout: 2_000 })]
 );
 
 const client = createClient({
