@@ -4,72 +4,83 @@ const Wtf = () => {
   return (
     <div className="w-full mx-auto max-w-2xl px-4  py-2 lg:max-w-6xl pt-20 mb-48">
       <section className="w-full text-left mb-8">
-        <h1 className="text-5xl mb-4 mt-4" id="wtf">
+        <h1 className="text-5xl mb-8 mt-4" id="wtf">
           WTF?
         </h1>
-        <p className="max-w-[90ch] text-lg font-balsamiq">
-          Lil Block Party is a project for the Lil Nouns DAO community. Lil Block Party shows
-          upcoming Lil Nouns based on the current block. Settling and Starting The Auction gives you
-          a chance to mint the current Lil Noun as the next auction. This happens REALLY fast, so
-          decide if you like the Lil Noun quick to try and settle on the current block!
+        <p className="max-w-[90ch] text-lg font-balsamiq mb-16">
+          Lil Block Party is a project for the{" "}
+          <a className="text-[#D63C5E] hover:underline" href="https://lilnouns.wtf">
+            Lil Nouns DAO
+          </a>{" "}
+          community. It shows upcoming Lil Nouns based on the current block. Settling the auction
+          gives you a chance to mint the current Lil Noun as the next auction..
         </p>
       </section>
-      <section className="w-full text-left mb-8">
+      <section className="w-full text-left mb-20">
         <h2 className="text-4xl mb-4">Summary</h2>
         <p className="max-w-[90ch] text-lg font-balsamiq">
           <ul className="list-disc px-8">
+            <li className="mb-2">Lil Block Party helps you preview and mint real Lil Nouns.</li>
             <li className="mb-2">
-              One Lil Noun is born, and trustlessly auctioned every 15 minutes, forever.
-            </li>
-            <li className="mb-2">The auction must be "settled"; to start the next auction.</li>
-            <li className="mb-2">
-              The block that "settlement" occurs in determines the next Lil Noun.
+              Lil Nouns are determined by the block that they are minted on.{" "}
             </li>
             <li className="mb-2">
-              Lil Block Party lets you watch, block by block, the next possible Lil Nouns.
+              Lil Block Party lets youwatch, block by block, the next possible Lil Nouns.{" "}
             </li>
             <li className="mb-2">
-              Settling and Starting The Auction gives you a chance to mint the current Lil Noun as
-              the next auction.
+              The block where “settlement” occurs determines the next Lil Noun.
             </li>
             <li className="mb-2">
-              They change REALLY FAST, so have your wallet ready and decide you want a Lil Noun
-              quickly. You only have seconds!
+              Settling the auction allows you to mint the shown Lil Noun as the next auction.{" "}
             </li>
-            <li>A Lil Noun can't always be minted if the chain moves too fast. Keep trying!</li>
+            <li className="mb-2">
+              Settlement and wallet confirmation have to happen all within the current block.
+            </li>
+            <li className="mb-2">
+              Blocks change REALLY FAST, so decide you want your Lil Noun quickly.You only have
+              seconds!
+            </li>
+
+            <li className="mb-2">
+              A Lil Noun can’t always be minted if the chain moves too fast. Keep trying!
+            </li>
+            <li className="mb-2">
+              If you successfully settle an auction, you still need to bid on Lil Nouns. Good luck!
+            </li>
           </ul>
         </p>
       </section>
-      <section className="w-full text-left mb-8">
-        <h2 className="text-4xl mb-4">About Lil Nouns</h2>
+      <section className="w-full text-left mb-20">
+        <h2 className="text-4xl mb-4">About Lil Block Party</h2>
         <p className="max-w-[90ch] text-lg font-balsamiq">
-          <ul className="list-decimal px-8">
-            <li className="mb-2">
-              Lil Nouns are an expansion DAO based on Nouns DAO and uses a fork of the Nouns
-              Contract. If you know how Nouns work, you know how Lil Nouns work, but you can read
-              more about it here.
-            </li>
-            <li className="mb-2">
-              The block in which settlement of the previous Lil Noun auction occurs determines the
-              next Lil Noun that is minted. Lil Block Party shows you what Lil Noun would be minted
-              if settlement occurred during the current block. We connect with the Lil Nouns
-              Contract, allowing you to see in real-time the current Lil Noun based on the current
-              block, and Settling and Starting The Auction to give you the best chance of settling
-              on the Lil Noun you want.
-            </li>
+          Lil Block Party is an extension of Lil Nouns DAO. We show you what Lil noun would be
+          minted if settlement occurs during the current block. We interact with the real Lil Nouns
+          Contract, allowing you to mint the current Lil Noun. 100% of auction proceeds (ETH) are
+          automatically deposited in the Lil Nouns DAO treasury, so Lil Nouns minted on Lil Block
+          Party benefit the Lil Nouns community just the same.
+        </p>
+      </section>
 
-            <li className="mb-2">
-              Ethereum Blocks only last 12 seconds, so you need to be ready to settle your
-              transaction quickly with enough gas to mint the Lil Noun currently shown. Lil Block
-              Party cannot promise that your settlement will occur on the block you want, but we
-              give you a much better chance of minting the Lil Noun of your choosing.
-            </li>
+      <section className="w-full text-left mb-20">
+        <h2 className="text-4xl mb-4">Settling Auctions</h2>
 
-            <li className="mb-2">
-              Lil Block Party mints are REAL Lil Nouns. We interact with the real Lil Nouns
-              Contract.
-            </li>
-          </ul>
+        <p className="max-w-[90ch] text-lg font-balsamiq mb-8">
+          Ethereum Blocks last 12 seconds, so you need to act FAST. When a Lil Noun appears that you
+          want to mint, you must click “Settle auction” and confirm in your wallet. Both of these
+          steps must occur during the current block. Otherwise, your transaction will fail.
+        </p>
+
+        <h3 className="text-2xl mb-4 font-balsamiq">Successful Settlement</h3>
+        <p className="max-w-[90ch] text-lg font-balsamiq mb-8">
+          Congratulations! You have successfully invited a Lil Noun to the party, but you’re not
+          done yet! Your Lil Noun is now up for auction on the Lil Nouns website for the next 15
+          minutes, with a floor bid of .15 ETH. Place your bid and good luck!
+        </p>
+
+        <h3 className="text-2xl mb-4 font-balsamiq">Failed Settlement</h3>
+        <p className="max-w-[90ch] text-lg font-balsamiq mb-8">
+          If you have a failed transaction, your transaction didn’t make it onto the current block,
+          and no auction was started. This can be frustrating, but keep trying!
         </p>
       </section>
     </div>
