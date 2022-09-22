@@ -19,6 +19,7 @@ interface Props {
 const InfoLil = ({ data, isFetching, isFetched }: Props) => {
   const { data: blockNumber } = useBlockNumber();
   const { isConnected } = useAccount();
+
   return (
     <div className="mx-auto max-w-2xl px-4 pt-6 pb-12 lg:max-w-6xl">
       <Header />
@@ -65,7 +66,8 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
                   <h2 className="sr-only">lilNoun information</h2>
                   <p className="text-5xl text-[#F8F8F2]">Ξ 0.15</p>
                 </div>
-                <AuctionBtn data={data} isFetching={isFetching} />
+
+                {isConnected && <AuctionBtn data={data} isFetching={isFetching} />}
 
                 <Link href="#wtf">
                   <a className="text-[#92FFFF] underline font-balsamiq mt-4 inline-block">

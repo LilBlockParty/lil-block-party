@@ -4,18 +4,22 @@ import { useRouter } from "next/router";
 import Tombstone from "./Tombstone";
 import PendingLil from "../components/PendingLil";
 import Toast from "./Toast";
+import { Result } from "ethers/lib/utils";
 
 interface Props {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   selectedLil: Record<string, unknown>;
+  data: Result | undefined;
 }
 
 const newDate = new Date();
 
-const EulogyModal = ({ open, setOpen, selectedLil }: Props) => {
+const EulogyModal = ({ open, setOpen, selectedLil, data }: Props) => {
   const [eulogy, setEulogy] = useState("");
-  const router = useRouter();
+  const tweetString = encodeURIComponent(
+    `\n🪦 #restinpixels lil noun: ${parseInt(data?.[1]._hex.toString())} @lilblockparty`
+  );
 
   return (
     <>
@@ -93,9 +97,7 @@ const EulogyModal = ({ open, setOpen, selectedLil }: Props) => {
                           onClick={() => {
                             if (eulogy.trim().length < 3) return;
                             window.open(
-                              encodeURI(
-                                `https://twitter.com/intent/tweet?text=${eulogy}\n@lilblockparty`
-                              ),
+                              `https://twitter.com/intent/tweet?text=${eulogy}${tweetString}`,
                               "_blank"
                             );
                           }}

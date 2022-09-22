@@ -81,7 +81,7 @@ const Home: NextPage = () => {
       </div>
 
       <Wtf />
-      <EulogyModal open={open} setOpen={setOpen} selectedLil={selectedLil} />
+      <EulogyModal open={open} setOpen={setOpen} selectedLil={selectedLil} data={data} />
     </div>
   );
 };

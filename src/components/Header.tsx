@@ -1,8 +1,8 @@
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { SiTwitter } from "react-icons/si";
 import { ImDatabase } from "react-icons/im";
-const ConnectWalletBtn = dynamic(() => import("./ConnectWallet"), { ssr: false });
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+
 import Logo from "../images/logo.svg";
 
 const Header = () => {
@@ -31,7 +31,7 @@ const Header = () => {
         </Link>
 
         <span className="hidden md:block">
-          <ConnectWalletBtn />
+          <ConnectButton />
         </span>
       </div>
     </div>
