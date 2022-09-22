@@ -79,7 +79,7 @@ const EulogyModal = ({ open, setOpen, selectedLil, data }: Props) => {
                     </section>
 
                     <section className="w-full text-white my-auto">
-                      <h2 className="text-5xl">Lil Noun</h2>
+                      <h2 className="text-5xl">Lil Noun {parseInt(data?.[1]._hex.toString())}</h2>
                       <p className="text-2xl mb-2">
                         Burned On {newDate.toLocaleString().split(",")[0]}
                       </p>
@@ -88,7 +88,9 @@ const EulogyModal = ({ open, setOpen, selectedLil, data }: Props) => {
                           rows={5}
                           onChange={(e) => setEulogy(e.target.value)}
                           className="bg-[#22212C] border rounded w-2/3 text-2xl p-2 block mb-4"
-                          placeholder="Rest in pixels, Lil Noun"
+                          placeholder={`Rest in pixels, Lil Noun ${parseInt(
+                            data?.[1]._hex.toString()
+                          )}`}
                           minLength={3}
                         />
                         <button
