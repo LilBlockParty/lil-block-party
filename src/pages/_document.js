@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html className="scroll-smooth">
       <Head>
-        <link rel="shortcut icon" href="https://www.lilblockparty.wtf/images/favicon.png" />
+        <link rel="shortcut icon" href="https://www.lilblockparty.wtf/favicon.png" />
       </Head>
       <body>
         <Main />
