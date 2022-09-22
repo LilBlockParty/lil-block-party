@@ -20,6 +20,7 @@ import { useContractRead } from "wagmi";
 import { useEffect, useState } from "react";
 import { Result } from "ethers/lib/utils";
 import EulogyModal from "../components/EulogyModal";
+import Head from "next/head";
 
 /*
 
@@ -67,6 +68,29 @@ const Home: NextPage = () => {
 
   return (
     <div className="bg-white h-full w-full">
+      <Head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Lil Block Party</title>
+        <meta name="description" content="Watch the blocks. Pick a lil. Join the party" />
+
+        {/* <!-- Facebook Meta Tags --> */}
+        <meta property="og:url" content="https://www.lilblockparty.wtf" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Lil Block Paty" />
+        <meta property="og:description" content="Watch the blocks. Pick a lil. Join the party" />
+        <meta property="og:image" content="https://www.lilblockparty/images/og.jpeg" />
+
+        {/* <!-- Twitter Meta Tags --> */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="lilblockparty.wtf" />
+        <meta property="twitter:url" content="https://www.lilblockparty.wtf" />
+        <meta name="twitter:title" content="Lil Block Party" />
+        <meta name="twitter:description" content="Watch the blocks. Pick a lil. Join the party" />
+        <meta name="twitter:image" content="https://www.lilblockparty/images/og.jpeg" />
+
+        {/* <!-- Meta Tags Generated via https://www.opengraph.xyz --> */}
+      </Head>
       <div className="mx-auto">
         <div className="bg-[#22212C] ">
           <InfoLil data={lilData} isFetching={isFetching} isFetched={isFetched} />
