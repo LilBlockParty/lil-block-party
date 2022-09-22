@@ -63,24 +63,65 @@ const Wtf = () => {
 
       <section className="w-full text-left mb-20">
         <h2 className="text-4xl mb-4">Settling Auctions</h2>
-
         <p className="max-w-[90ch] text-lg font-balsamiq mb-8">
           Ethereum Blocks last 12 seconds, so you need to act FAST. When a Lil Noun appears that you
           want to mint, you must click “Settle auction” and confirm in your wallet. Both of these
           steps must occur during the current block. Otherwise, your transaction will fail.
         </p>
-
         <h3 className="text-2xl mb-4 font-balsamiq">Successful Settlement</h3>
         <p className="max-w-[90ch] text-lg font-balsamiq mb-8">
           Congratulations! You have successfully invited a Lil Noun to the party, but you’re not
           done yet! Your Lil Noun is now up for auction on the Lil Nouns website for the next 15
           minutes, with a floor bid of .15 ETH. Place your bid and good luck!
         </p>
-
         <h3 className="text-2xl mb-4 font-balsamiq">Failed Settlement</h3>
-        <p className="max-w-[90ch] text-lg font-balsamiq mb-8">
+        <p className="max-w-[90ch] text-lg font-balsamiq mb-20">
           If you have a failed transaction, your transaction didn’t make it onto the current block,
           and no auction was started. This can be frustrating, but keep trying!
+        </p>
+        <h2 className="text-4xl mb-4 mt-8">The Team</h2>
+        <ul className="list-disc px-8 text-lg font-balsamiq mb-16">
+          <li className="mb-2">
+            <a className="text-[#D63C5E] hover:underline" href="https://twitter.com/nvonpentz">
+              {" "}
+              @nvonpentz.eth{" "}
+            </a>{" "}
+            solidity
+          </li>
+
+          <li className="mb-2">
+            <a className="text-[#D63C5E] hover:underline" href="https://twitter.com/mulford_dev">
+              @mulford.eth
+            </a>{" "}
+            dev
+          </li>
+
+          <li className="mb-2">
+            <a className="text-[#D63C5E] hover:underline" href="https://twitter.com/betterlawMLA">
+              @lilpanda.branigan.eth
+            </a>{" "}
+            PM
+          </li>
+
+          <li className="mb-2">
+            <a className="text-[#D63C5E] hover:underline" href="https://twitter.com/meesh_lin">
+              @meeshlin.eth
+            </a>{" "}
+            design
+          </li>
+
+          <li className="mb-2">
+            <a className="text-[#D63C5E] hover:underline" href="https://twitter.com/JamesKrahula">
+              @lildonut.ethh
+            </a>{" "}
+            copy & design
+          </li>
+        </ul>
+        <p className="text-2xl ">
+          funded via{" "}
+          <a className="text-[#D63C5E] hover:underline" href="https://prop.house/proposal/1340">
+            lil prop 1340
+          </a>
         </p>
       </section>
     </div>
