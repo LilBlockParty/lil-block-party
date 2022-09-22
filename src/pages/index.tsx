@@ -77,7 +77,7 @@ const Home: NextPage = () => {
         {/* <!-- Facebook Meta Tags --> */}
         <meta property="og:url" content="https://www.lilblockparty.wtf" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Lil Block Paty" />
+        <meta property="og:title" content="Lil Block Party" />
         <meta property="og:description" content="Watch the blocks. Pick a lil. Join the party" />
         <meta property="og:image" content="https://www.lilblockparty.wtf/images/og.jpeg" />
 
