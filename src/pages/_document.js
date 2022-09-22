@@ -3,7 +3,9 @@ import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html className="scroll-smooth">
-      <Head />
+      <Head>
+        <link rel="shortcut icon" href="https://www.lilblockparty.wtf/images/favicon.png" />
+      </Head>
       <body>
         <Main />
         <NextScript />
