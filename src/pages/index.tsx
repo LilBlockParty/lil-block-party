@@ -79,7 +79,7 @@ const Home: NextPage = () => {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Lil Block Paty" />
         <meta property="og:description" content="Watch the blocks. Pick a lil. Join the party" />
-        <meta property="og:image" content="https://www.lilblockparty/images/og.jpeg" />
+        <meta property="og:image" content="https://www.lilblockparty.wtf/images/og.jpeg" />
 
         {/* <!-- Twitter Meta Tags --> */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -87,7 +87,7 @@ const Home: NextPage = () => {
         <meta property="twitter:url" content="https://www.lilblockparty.wtf" />
         <meta name="twitter:title" content="Lil Block Party" />
         <meta name="twitter:description" content="Watch the blocks. Pick a lil. Join the party" />
-        <meta name="twitter:image" content="https://www.lilblockparty/images/og.jpeg" />
+        <meta name="twitter:image" content="https://www.lilblockparty.wtf/images/og.jpeg" />
 
         {/* <!-- Meta Tags Generated via https://www.opengraph.xyz --> */}
       </Head>
