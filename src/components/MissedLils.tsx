@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import type { Result } from "ethers/lib/utils";
-import { Dispatch, SetStateAction, useEffect, useLayoutEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-import { AuctionState } from "../pages";
 import Tombstone from "./Tombstone";
 
 interface Props {

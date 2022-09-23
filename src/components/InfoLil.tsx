@@ -15,7 +15,7 @@ interface Props {
   isFetched: boolean;
 }
 
-const InfoLil = ({ data, isFetching, isFetched }: Props) => {
+const InfoLil = ({ data, isFetching }: Props) => {
   const { data: blockNumber } = useBlockNumber();
   const { isConnected } = useAccount();
 

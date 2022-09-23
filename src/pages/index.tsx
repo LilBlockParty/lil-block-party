@@ -1,21 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { Result } from "ethers/lib/utils";
 import type { NextPage } from "next";
 import dynamic from "next/dynamic";
-import { useIdle } from "react-use";
-
-const MissedLils = dynamic(() => import("../components/MissedLils"));
-
-const InfoLil = dynamic(() => import("../components/InfoLil"));
-
-const Wtf = dynamic(() => import("../components/Wtf"));
-
-import { Result } from "ethers/lib/utils";
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import { useIdle } from "react-use";
 import { useContractRead } from "wagmi";
 
 import LilNounsOracleAbi from "../abis/preview.json";
 import EulogyModal from "../components/EulogyModal";
+
+const MissedLils = dynamic(() => import("../components/MissedLils"));
+const InfoLil = dynamic(() => import("../components/InfoLil"));
+const Wtf = dynamic(() => import("../components/Wtf"));
+
+
 
 /*
 
