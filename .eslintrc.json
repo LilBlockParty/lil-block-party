@@ -9,5 +9,9 @@
     "@next/next/no-img-element": "off",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error"
+  },
+  "globals": {
+    "React": true,
+    "JSX": true
   }
 }
