@@ -32,7 +32,7 @@ const InfoLil = ({ data, isFetching }: Props) => {
         <Tab.Group as="div" className="flex flex-col-reverse">
           <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
             <Tab.Panel>
-              {!isFetching && data?.[3] !== undefined && (
+              {!isFetching && data?.[3] && (
                 <img
                   src={`data:image/svg+xml;base64,${data?.[2] || ""}`}
                   alt={"nouns"}
@@ -40,7 +40,7 @@ const InfoLil = ({ data, isFetching }: Props) => {
                 />
               )}
 
-              {isFetching && data?.[3] !== undefined && (
+              {isFetching && data?.[3] && (
                 <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center bg-[#D4D7E1]" />
               )}
 

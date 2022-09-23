@@ -12,9 +12,7 @@ import EulogyModal from "../components/EulogyModal";
 
 const MissedLils = dynamic(() => import("../components/MissedLils"));
 const InfoLil = dynamic(() => import("../components/InfoLil"));
-const Wtf = dynamic(() => import("../components/Wtf"));
-
-
+const Wtf = dynamic(() => import("../components/Wtf"), { ssr: false });
 
 /*
 
