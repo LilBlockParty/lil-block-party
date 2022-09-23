@@ -50,7 +50,7 @@ const Wtf = () => {
           </ul>
         </p>
       </section>
-      <section className="w-full text-left mb-20">
+      <section className="w-full text-left mb-14">
         <h2 className="text-4xl mb-4">About Lil Block Party</h2>
         <p className="max-w-[90ch] text-lg font-balsamiq">
           Lil Block Party is an extension of Lil Nouns DAO. We show you what Lil noun would be
@@ -59,6 +59,17 @@ const Wtf = () => {
           automatically deposited in the Lil Nouns DAO treasury, so Lil Nouns minted on Lil Block
           Party benefit the Lil Nouns community just the same.
         </p>
+      </section>
+
+      <section className="mb-14">
+        <div className="relative h-0 pb-[56.25%]">
+          <iframe
+            src="https://www.loom.com/embed/a6abe7704d8449b789563accea2ca6f9"
+            frameBorder="0"
+            allowFullScreen
+            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+          />
+        </div>
       </section>
 
       <section className="w-full text-left mb-20">
