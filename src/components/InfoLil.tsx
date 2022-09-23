@@ -1,14 +1,13 @@
 import { Tab } from "@headlessui/react";
 import { Result } from "ethers/lib/utils";
-
-import { AuctionState } from "../pages";
+import Link from "next/link";
 import { useAccount, useBlockNumber } from "wagmi";
 
+import { AuctionState } from "../pages";
 import AuctionBtn from "./AuctionBtn";
 import DisabledAuctionBtn from "./DisabledAuctionBtn";
-import Link from "next/link";
-import PendingLil from "./PendingLil";
 import Header from "./Header";
+import PendingLil from "./PendingLil";
 
 interface Props {
   data: Result | undefined;

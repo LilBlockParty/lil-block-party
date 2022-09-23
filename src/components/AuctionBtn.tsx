@@ -1,5 +1,6 @@
 import type { Result } from "ethers/lib/utils";
 import { useAccount, useContractWrite, usePrepareContractWrite } from "wagmi";
+
 import LilNounsOracleAbi from "../abis/preview.json";
 import LoadingSpinner from "./LoadingSpinner";
 

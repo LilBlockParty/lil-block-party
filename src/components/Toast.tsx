@@ -1,8 +1,8 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Dispatch, Fragment, SetStateAction, useState } from "react";
 import { Transition } from "@headlessui/react";
-import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/20/solid";
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
+import { Dispatch, Fragment, SetStateAction, useState } from "react";
 
 interface Props {
   showToast: boolean;

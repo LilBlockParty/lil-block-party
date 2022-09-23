@@ -3,24 +3,19 @@ import type { NextPage } from "next";
 import dynamic from "next/dynamic";
 import { useIdle } from "react-use";
 
-const MissedLils = dynamic(() => import("../components/MissedLils"), {
-  ssr: false,
-});
+const MissedLils = dynamic(() => import("../components/MissedLils"));
 
-const InfoLil = dynamic(() => import("../components/InfoLil"), {
-  ssr: false,
-});
+const InfoLil = dynamic(() => import("../components/InfoLil"));
 
-const Wtf = dynamic(() => import("../components/Wtf"), {
-  ssr: false,
-});
+const Wtf = dynamic(() => import("../components/Wtf"));
+
+import { Result } from "ethers/lib/utils";
+import Head from "next/head";
+import { useEffect, useState } from "react";
+import { useContractRead } from "wagmi";
 
 import LilNounsOracleAbi from "../abis/preview.json";
-import { useContractRead } from "wagmi";
-import { useEffect, useState } from "react";
-import { Result } from "ethers/lib/utils";
 import EulogyModal from "../components/EulogyModal";
-import Head from "next/head";
 
 /*
 

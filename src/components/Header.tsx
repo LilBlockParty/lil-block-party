@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { SiTwitter } from "react-icons/si";
-import { ImDatabase } from "react-icons/im";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import Link from "next/link";
+import { ImDatabase } from "react-icons/im";
+import { SiTwitter } from "react-icons/si";
 
 import Logo from "../images/logo.svg";
 

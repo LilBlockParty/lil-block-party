@@ -1,9 +1,10 @@
-import { useDisconnect, useConnect, useAccount } from "wagmi";
-import EthIcon from "../images/eth.png";
-import { useEnsName } from "wagmi";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Fragment, useRef } from "react";
+import { useAccount,useConnect, useDisconnect } from "wagmi";
+import { useEnsName } from "wagmi";
+
+import EthIcon from "../images/eth.png";
 
 const ConnectWalletBtn = () => {
   const { address, isConnected } = useAccount();

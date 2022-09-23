@@ -1,10 +1,11 @@
-import { Dispatch, Fragment, SetStateAction, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { Result } from "ethers/lib/utils";
 import { useRouter } from "next/router";
-import Tombstone from "./Tombstone";
+import { Dispatch, Fragment, SetStateAction, useState } from "react";
+
 import PendingLil from "../components/PendingLil";
 import Toast from "./Toast";
-import { Result } from "ethers/lib/utils";
+import Tombstone from "./Tombstone";
 
 interface Props {
   open: boolean;
