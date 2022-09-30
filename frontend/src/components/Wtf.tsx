@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-
 const Wtf = () => {
   return (
     <div className="w-full mx-auto max-w-2xl px-4  py-2 lg:max-w-6xl pt-20 mb-48">
