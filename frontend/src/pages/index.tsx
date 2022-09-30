@@ -4,7 +4,6 @@ import type { NextPage } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { useIdle } from "react-use";
 import { useContractRead } from "wagmi";
 
 import EulogyModal from "../components/EulogyModal";
@@ -47,13 +46,11 @@ const Home: NextPage = () => {
     overrides: { blockTag: "pending" },
   });
 
-  const isIdle = useIdle(60e3);
-
   useEffect(() => {
-    if (data?.[3] === AuctionState.ACTIVE || isIdle) return;
+    if (data?.[3] === AuctionState.ACTIVE) return;
 
     setLilData(data);
-  }, [data, isIdle]);
+  }, [data?.[0]]);
 
   const [open, setOpen] = useState(false);
   const [selectedLil, setSelectedLil] = useState({});
