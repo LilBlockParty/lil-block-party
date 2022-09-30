@@ -8,31 +8,26 @@ import Logo from "../images/logo.svg";
 const Header = () => {
   return (
     <div className="w-full flex justify-between items-start">
-      <span className="w-3/5">
+      <span className="w-2/5">
         <Link href="https://lilnouns.wtf">
           <img src={Logo.src} alt="logo" className="cursor-pointer h-10" />
         </Link>
       </span>
 
-      <div className="flex justify-around items-center w-2/5">
+      <div className="flex gap-x-6 justify-end md:justify-between items-center w-3/5">
+        <Link href="#wtf">
+          <a className="text-white text-3xl hover:underline hidden md:block">WTF?</a>
+        </Link>
         <Link href="https://dune.com/nvonpentz/lilblockparty">
-          <a className="text-white text-2xl mr-2 md:mr-0">
-            <ImDatabase />
-          </a>
+          <a className="text-white text-3xl hover:underline hidden md:block">Dune</a>
         </Link>
         <Link href="https://twitter.com/lilblockparty">
-          <a className="text-white text-2xl mr-2 md:mr-0">
-            <SiTwitter />
+          <a className="text-white text-2xl">
+            <a className="text-white text-3xl hover:underline hidden md:block">Twitter</a>
           </a>
         </Link>
 
-        <Link href="#wtf">
-          <a className="text-white text-2xl hover:underline mr-2 md:mr-0">WTF?</a>
-        </Link>
-
-        <span className="hidden md:block">
-          <ConnectButton />
-        </span>
+        <ConnectButton />
       </div>
     </div>
   );
