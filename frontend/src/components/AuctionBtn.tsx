@@ -1,5 +1,6 @@
 import type { Result } from "ethers/lib/utils";
 import { useAccount, useContractWrite, usePrepareContractWrite } from "wagmi";
+
 import { LilNounsOracle } from "../deployments/LilNounsOracle";
 import LoadingSpinner from "./LoadingSpinner";
 
@@ -9,11 +10,10 @@ interface Props {
 }
 
 const AuctionBtn = ({ data, isFetching }: Props) => {
-  const { address, isConnected } = useAccount();
+  const { isConnected } = useAccount();
   const {
     config,
     error: prepareError,
-    isError: isPrepareError,
   } = usePrepareContractWrite({
     addressOrName: LilNounsOracle.address,
     contractInterface: LilNounsOracle.abi,
@@ -22,9 +22,6 @@ const AuctionBtn = ({ data, isFetching }: Props) => {
   });
 
   const {
-    error: writeError,
-    isError: isWriteError,
-    isLoading: isWriteLoading,
     write,
   } = useContractWrite(config);
 

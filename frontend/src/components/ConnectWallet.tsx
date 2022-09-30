@@ -1,9 +1,8 @@
-import { useDisconnect, useConnect, useAccount } from "wagmi";
-import EthIcon from "../images/eth.png";
-import { useEnsName } from "wagmi";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Fragment, useRef } from "react";
+import { useAccount,useConnect, useDisconnect } from "wagmi";
+import { useEnsName } from "wagmi";
 
 const ConnectWalletBtn = () => {
   const { address, isConnected } = useAccount();
@@ -11,8 +10,6 @@ const ConnectWalletBtn = () => {
   const { connect, connectors, isLoading, pendingConnector } = useConnect();
   const {
     data: ensName,
-    isError,
-    isLoading: isEnsLoading,
   } = useEnsName({
     address,
   });
@@ -25,7 +22,7 @@ const ConnectWalletBtn = () => {
   if (isConnected) {
     return (
       <Popover className="relative">
-        {({ open, close }) => (
+        {({ open }) => (
           <>
             <Popover.Button
               className={classNames(

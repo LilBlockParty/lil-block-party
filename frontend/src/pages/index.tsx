@@ -6,8 +6,9 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useIdle } from "react-use";
 import { useContractRead } from "wagmi";
-import { LilNounsOracle } from "../deployments/LilNounsOracle";
+
 import EulogyModal from "../components/EulogyModal";
+import { LilNounsOracle } from "../deployments/LilNounsOracle";
 
 const MissedLils = dynamic(() => import("../components/MissedLils"));
 const InfoLil = dynamic(() => import("../components/InfoLil"));

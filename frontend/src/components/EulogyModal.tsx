@@ -2,7 +2,6 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Result } from "ethers/lib/utils";
 import { Dispatch, Fragment, SetStateAction, useState } from "react";
 
-import PendingLil from "../components/PendingLil";
 import Tombstone from "./Tombstone";
 
 interface Props {
