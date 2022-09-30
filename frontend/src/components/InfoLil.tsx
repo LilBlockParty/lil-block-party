@@ -24,7 +24,7 @@ const InfoLil = ({ data, isFetching }: Props) => {
       <Header />
       <div className="flex flex-wrap items-start pt-8 ">
         <h1 className="text-5xl font-bold mb-2 text-[#F8F8F2] w-full">Lil&apos; Block Party </h1>
-        <p className="font-bold text-[#92FFFF] text-3xl mb-6">
+        <p className="font-bold text-[#92FFFF] text-3xl mb-6 hidden md:block">
           Watch the blocks. Pick a lil. Join the party.
         </p>
       </div>
@@ -51,10 +51,10 @@ const InfoLil = ({ data, isFetching }: Props) => {
         {/* lilNoun info */}
 
         <div className="flex flex-col justify-center mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 my-auto h-full max-w-sm">
-          <div className="mt-8">
+          <div className="md:mt-8">
             {data?.[3] === AuctionState.OVER_NOT_SETTLED && (
               <>
-                <p className="text-[#92FFFF] font-bold mb-6 text-2xl">
+                <p className="text-[#92FFFF] font-bold mb-6 text-2xl hidden md:block">
                   Up next on block {blockNumber}{" "}
                 </p>
                 <h1 className="text-6xl font-bold text-[#F8F8F2]">

@@ -29,6 +29,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       <RainbowKitProvider
         chains={chains}
         modalSize="compact"
+        showRecentTransactions={false}
         theme={lightTheme({
           fontStack: "rounded",
         })}
