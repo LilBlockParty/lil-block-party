@@ -2,6 +2,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
 
 import Logo from "../images/logo.svg";
+import MobileNavigation from "./MobileNav";
 
 const Header = () => {
   return (
@@ -12,7 +13,9 @@ const Header = () => {
         </Link>
       </span>
 
-      <div className="flex gap-x-6 justify-end md:justify-between items-center w-3/5">
+      <MobileNavigation />
+
+      <div className="hidden md:flex gap-x-6 justify-end md:justify-between items-center w-3/5">
         <Link href="#wtf">
           <a className="text-white text-3xl hover:underline hidden md:block">WTF?</a>
         </Link>

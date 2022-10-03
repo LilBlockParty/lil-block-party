@@ -15,7 +15,7 @@ interface Props {
   isFetched: boolean;
 }
 
-const InfoLil = ({ data, isFetching }: Props) => {
+const InfoLil = ({ data, isFetching, isFetched }: Props) => {
   const { data: blockNumber } = useBlockNumber();
   const { isConnected } = useAccount();
 
@@ -32,15 +32,13 @@ const InfoLil = ({ data, isFetching }: Props) => {
         <Tab.Group as="div" className="flex flex-col-reverse">
           <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
             <Tab.Panel>
-              {!isFetching && data?.[3] && (
+              {isFetched && data?.[3] ? (
                 <img
                   src={`data:image/svg+xml;base64,${data?.[2] || ""}`}
                   alt={"nouns"}
                   className="h-full w-full object-cover shadow-xl object-center sm:rounded-lg"
                 />
-              )}
-
-              {isFetching && data?.[3] && (
+              ) : (
                 <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center bg-[#D4D7E1]" />
               )}
 

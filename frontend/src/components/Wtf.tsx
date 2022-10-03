@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 const Wtf = () => {
   return (
-    <div className="w-full mx-auto max-w-2xl px-4  py-2 lg:max-w-6xl pt-20 mb-48">
+    <div className="w-full mx-auto max-w-2xl px-4  py-2 lg:max-w-6xl pt-20 mb-20">
       <section className="w-full text-left mb-8">
         <h1 className="text-5xl mb-8 mt-4" id="wtf">
           WTF?
@@ -127,6 +127,15 @@ const Wtf = () => {
             copy & design
           </li>
         </ul>
+        <p className="text-2xl mb-2">
+          funded via{" "}
+          <a
+            className="text-[#D63C5E] hover:underline"
+            href="https://etherscan.io/tx/0x0517bbe28d7091a548f437d17fde58ca503f60e538da4d1e6f3738fe3b39a912"
+          >
+            Lil Nouns DAO
+          </a>
+        </p>
         <p className="text-2xl ">
           funded via{" "}
           <a className="text-[#D63C5E] hover:underline" href="https://prop.house/proposal/1340">
