@@ -70,10 +70,10 @@ export default function MobileNavigation(props: any) {
               <Popover.Button aria-label="Close menu" className="-m-1 p-1">
                 <CloseIcon className="h-6 w-6 text-zinc-500 dark:text-zinc-400" />
               </Popover.Button>
-              <h2 className="text-4xl font-medium text-zinc-800 dark:text-zinc-300">Navigation</h2>
+              <h2 className="text-4xl font-medium text-zinc-700 dark:text-zinc-300">Navigation</h2>
             </div>
             <nav className="mt-6">
-              <ul className="my-12  text-3xl text-zinc-800 mb-12 flex flex-col gap-y-12 justify-center items-start w-full">
+              <ul className="my-12  text-3xl text-zinc-700 mb-12 flex flex-col gap-y-12 justify-center items-start w-full">
                 <MobileNavItem href="#wtf">WTF?</MobileNavItem>
                 <MobileNavItem href="https://dune.com/nvonpentz/lilblockparty">Dune</MobileNavItem>
                 <MobileNavItem href="https://twitter.com/lilblockparty">Twitter</MobileNavItem>
