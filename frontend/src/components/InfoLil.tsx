@@ -32,40 +32,38 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
         <Tab.Group as="div" className="flex flex-col-reverse">
           <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
             <Tab.Panel>
-              {isFetched && data?.[3] ? (
+              {isFetched && data?.[3] && (
                 <img
                   src={`data:image/svg+xml;base64,${data?.[2] || ""}`}
                   alt={"nouns"}
-                  className="h-full w-full object-cover shadow-xl object-center sm:rounded-lg"
+                  className="h-full w-full object-cover shadow-xl object-center sm:rounded-lg relative"
                 />
-              ) : (
-                <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center bg-[#D4D7E1]" />
               )}
 
-              {data?.[3] && isFetched === undefined && <PendingLil />}
+              {data?.[3] === undefined && <PendingLil />}
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
         {/* lilNoun info */}
 
-        <div className="flex flex-col justify-center mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 my-auto h-full max-w-sm">
-          <div className="md:mt-8">
+        <div className="flex flex-col justify-center mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 my-auto h-full md:max-w-sm">
+          <div className="md:mt-8 w-full">
             {data?.[3] === AuctionState.OVER_NOT_SETTLED && (
               <>
                 <p className="text-[#92FFFF] font-bold mb-6 text-2xl hidden md:block">
                   Up next on block {blockNumber}{" "}
                 </p>
                 <h1 className="text-6xl font-bold text-[#F8F8F2]">
-                  {data?.[1] && `Lil Noun # ${parseInt(data[1]._hex.toString())}`}
+                  Lil Noun
+                  <span className="ml-[0.5ch]">
+                    {data?.[1] && `# ${parseInt(data[1]._hex.toString())}`}
+                  </span>
                 </h1>
-
                 <div className="mt-3 mb-3">
                   <h2 className="sr-only">lilNoun information</h2>
                   <p className="text-5xl text-[#F8F8F2]">Ξ 0.15</p>
                 </div>
-
                 {isConnected && <AuctionBtn data={data} isFetching={isFetching} />}
-
                 <Link href="#wtf">
                   <a className="text-[#92FFFF] underline font-balsamiq mt-4 inline-block">
                     Learn more about settling and bidding on Lil Nouns
@@ -74,8 +72,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
               </>
             )}
 
-            {data?.[3] === AuctionState.ACTIVE ||
-              (data?.[3] === undefined && <DisabledAuctionBtn />)}
+            {isFetched && !isFetching && data?.[3] === undefined && <DisabledAuctionBtn />}
           </div>
         </div>
       </div>
