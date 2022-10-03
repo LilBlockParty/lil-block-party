@@ -42,7 +42,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
                 <div className="h-full w-full drop-shadow-md sm:rounded-lg flex justify-center bg-[#D4D7E1]" />
               )}
 
-              {data?.[3] === undefined && <PendingLil />}
+              {data?.[3] && isFetched === undefined && <PendingLil />}
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
