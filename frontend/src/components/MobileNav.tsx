@@ -72,7 +72,7 @@ export default function MobileNavigation(props: any) {
               <h2 className="text-4xl font-medium text-zinc-700 dark:text-zinc-300">Navigation</h2>
             </div>
             <nav className="mt-6">
-              <ul className="my-12  text-3xl text-zinc-700 mb-12 flex flex-col gap-y-12 justify-center items-start w-full">
+              <ul className="my-12  text-3xl text-zinc-700 mb-12 dark:text-zinc-300 flex flex-col gap-y-12 justify-center items-start w-full">
                 <MobileNavItem href="#wtf">WTF?</MobileNavItem>
                 <MobileNavItem href="https://dune.com/nvonpentz/lilblockparty">Dune</MobileNavItem>
                 <MobileNavItem href="https://twitter.com/lilblockparty">Twitter</MobileNavItem>
