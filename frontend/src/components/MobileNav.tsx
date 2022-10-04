@@ -1,7 +1,6 @@
 import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon } from "@heroicons/react/20/solid";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import Link from "next/link";
 import { Fragment } from "react";
 
 interface ItemProps {
@@ -27,14 +26,15 @@ function CloseIcon(props: Record<string, unknown>) {
 function MobileNavItem({ href, children }: ItemProps) {
   return (
     <li>
-      <Popover.Button as={Link} href={href} className="block py-2">
-        {children}
+      <Popover.Button className="block py-2">
+        <a href={href}>{children}</a>
       </Popover.Button>
     </li>
   );
 }
 
 export default function MobileNavigation(props: any) {
+  console.log(props);
   return (
     <Popover {...props} className="inline-block md:hidden">
       <Popover.Button className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-2xl text-zinc-800 shadow-lg shadow-zinc-800/5 backdrop-blur dark:bg-zinc-700/90 dark:text-zinc-200">
