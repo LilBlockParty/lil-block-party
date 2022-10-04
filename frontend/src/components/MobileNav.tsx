@@ -34,7 +34,7 @@ function MobileNavItem({ href, children }: ItemProps) {
   );
 }
 
-export default function MobileNavigation(props: unknown[]) {
+export default function MobileNavigation(props: any) {
   return (
     <Popover {...props} className="inline-block md:hidden">
       <Popover.Button className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-2xl text-zinc-800 shadow-lg shadow-zinc-800/5 backdrop-blur dark:bg-zinc-700/90 dark:text-zinc-200">
