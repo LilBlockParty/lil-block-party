@@ -1,5 +1,5 @@
 import { Popover, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { Bars3Icon } from "@heroicons/react/20/solid";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
 import { Fragment } from "react";
@@ -34,12 +34,11 @@ function MobileNavItem({ href, children }: ItemProps) {
   );
 }
 
-export default function MobileNavigation(props: any) {
+export default function MobileNavigation(props: unknown[]) {
   return (
     <Popover {...props} className="inline-block md:hidden">
       <Popover.Button className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-2xl text-zinc-800 shadow-lg shadow-zinc-800/5 backdrop-blur dark:bg-zinc-700/90 dark:text-zinc-200">
-        Menu
-        <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
+        <Bars3Icon className="w-6 h-6" />
       </Popover.Button>
       <Transition.Root>
         <Transition.Child

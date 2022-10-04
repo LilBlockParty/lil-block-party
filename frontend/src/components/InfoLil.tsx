@@ -20,7 +20,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
   const { isConnected } = useAccount();
 
   return (
-    <div className="mx-auto max-w-2xl px-4 pt-6 pb-12 lg:max-w-6xl">
+    <div className="mx-auto max-w-2xl px-1.5 md:px-4 pt-6 pb-12 lg:max-w-6xl">
       <Header />
       <div className="flex flex-wrap items-start pt-8 ">
         <h1 className="text-5xl font-bold mb-2 text-[#F8F8F2] w-full">Lil&apos; Block Party </h1>
@@ -46,18 +46,15 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
         </Tab.Group>
         {/* lilNoun info */}
 
-        <div className="flex flex-col justify-center mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 my-auto h-full md:max-w-sm">
+        <div className="flex flex-col justify-center mt-3 md:mt-10 md:px-4 sm:mt-16 sm:px-0 lg:mt-0 my-auto h-full md:max-w-md">
           <div className="md:mt-8 w-full">
             {data?.[3] === AuctionState.OVER_NOT_SETTLED && (
               <>
                 <p className="text-[#92FFFF] font-bold mb-6 text-2xl hidden md:block">
                   Up next on block {blockNumber}{" "}
                 </p>
-                <h1 className="text-6xl font-bold text-[#F8F8F2]">
-                  Lil Noun
-                  <span className="ml-[0.5ch]">
-                    {data?.[1] && `# ${parseInt(data[1]._hex.toString())}`}
-                  </span>
+                <h1 className="text-5xl md:text-6xl font-bold text-[#F8F8F2] w-full">
+                  Lil Noun {data?.[1] && `# ${parseInt(data[1]._hex.toString())}`}
                 </h1>
                 <div className="mt-3 mb-3">
                   <h2 className="sr-only">lilNoun information</h2>

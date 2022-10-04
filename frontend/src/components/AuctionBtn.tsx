@@ -36,15 +36,12 @@ const AuctionBtn = ({ data, isFetching }: Props) => {
         type="button"
         disabled={isFetching || !isConnected}
         onClick={() => handleButtonClicked()}
-        className="md:inline-flex items-center cursor-pointer rounded-lg border text-center border-transparent bg-[#92FFFF] px-5 py-4 w-full text-xl font-medium text-black shadow-sm hover:bg-[#83e6e6]"
+        className="cursor-pointer rounded-lg border text-center border-transparent bg-[#92FFFF] px-1 py-4 w-full md:max-w-sm text-black shadow-sm hover:bg-[#83e6e6]"
       >
         {isFetching ? (
-          <section className="text-center w-full flex items-center justify-center">
-            <span>Fetching Next Block</span>
-            <LoadingSpinner />
-          </section>
+          <span className="w-full text-3xl text-slate-500">Fetching Block...</span>
         ) : (
-          <span className="w-full text-2xl"> Settle auction</span>
+          <span className="w-full text-3xl">Settle auction</span>
         )}
       </button>
     );
