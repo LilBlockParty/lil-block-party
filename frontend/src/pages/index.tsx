@@ -4,14 +4,13 @@ import type { NextPage } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { useIdle } from "react-use";
 import { useContractRead } from "wagmi";
 
 import EulogyModal from "../components/EulogyModal";
 import { LilNounsOracle } from "../deployments/LilNounsOracle";
 
 const MissedLils = dynamic(() => import("../components/MissedLils"));
-const InfoLil = dynamic(() => import("../components/InfoLil"));
+const InfoLil = dynamic(() => import("../components/InfoLil"), { ssr: false });
 const Wtf = dynamic(() => import("../components/Wtf"), { ssr: false });
 
 /*
@@ -47,13 +46,11 @@ const Home: NextPage = () => {
     overrides: { blockTag: "pending" },
   });
 
-  const isIdle = useIdle(60e3);
-
   useEffect(() => {
-    if (data?.[3] === AuctionState.ACTIVE || isIdle) return;
+    if (data?.[3] === AuctionState.ACTIVE) return;
 
     setLilData(data);
-  }, [data, isIdle]);
+  }, [data?.[0]]);
 
   const [open, setOpen] = useState(false);
   const [selectedLil, setSelectedLil] = useState({});
@@ -84,7 +81,7 @@ const Home: NextPage = () => {
         {/* <!-- Meta Tags Generated via https://www.opengraph.xyz --> */}
       </Head>
       <div className="mx-auto">
-        <div className="bg-[#22212C] ">
+        <div className="bg-[#22212C] min-h-80vh md:min-h-[60vh]">
           <InfoLil data={lilData} isFetching={isFetching} isFetched={isFetched} />
         </div>
         <MissedLils
