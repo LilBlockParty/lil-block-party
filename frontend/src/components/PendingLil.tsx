@@ -1,6 +1,22 @@
-const PendingLil = () => {
+import type { Result } from "ethers/lib/utils";
+
+interface Props {
+  data: Result | undefined;
+}
+
+const PendingLil = ({ data }: Props) => {
   return (
-    <div className="w-full">
+    <div className="w-full relative">
+      {data === undefined ? (
+        <p className="absolute px-2 text-xl md:text-3xl text-slate-200 bg-red-500 w-full overflow-hidden flex flex-nowrap items-center text-right rounded-t-xl text-ellipsis h-16">
+          <span className="block animate-infiniteScroll w-full">
+            AUCTION IN PROGRESS, AUCTION IN PROGRESS
+          </span>
+        </p>
+      ) : (
+        ""
+      )}
+
       <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="400" height="400" rx="20" fill="url(#paint0_linear_179_261)" />
         <path

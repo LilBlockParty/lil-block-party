@@ -5,7 +5,6 @@ import { useAccount, useBlockNumber } from "wagmi";
 
 import { AuctionState } from "../pages";
 import AuctionBtn from "./AuctionBtn";
-import DisabledAuctionBtn from "./DisabledAuctionBtn";
 import Header from "./Header";
 import PendingLil from "./PendingLil";
 
@@ -40,7 +39,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
                 />
               )}
 
-              {data?.[3] === undefined && <PendingLil />}
+              {data?.[3] === undefined && <PendingLil data={data} />}
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
@@ -63,13 +62,26 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
                 {isConnected && <AuctionBtn data={data} isFetching={isFetching} />}
                 <Link href="#wtf">
                   <a className="text-[#92FFFF] underline font-balsamiq mt-4 inline-block">
-                    Learn more about settling and bidding on Lil Nouns
+                    Learn more about settling and bidding on Lil Nouns your hand at bidding on
+                    lilnouns.wtf
                   </a>
                 </Link>
               </>
             )}
 
-            {isFetched && !isFetching && data?.[3] === undefined && <DisabledAuctionBtn />}
+            {data === undefined && (
+              <>
+                <h2 className="text-white text-2xl md:text-3xl mt-1">
+                  An auction is currently in progress!
+                </h2>
+                <p className="text-white text-xl md:text-2xl">
+                  Try your hand at bidding on{" "}
+                  <a className="text-[#92FFFF] hover:underline" href="https://lilnouns.wtf">
+                    lilnouns.wtf
+                  </a>
+                </p>
+              </>
+            )}
           </div>
         </div>
       </div>

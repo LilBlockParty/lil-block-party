@@ -10,6 +10,15 @@ module.exports = {
         sans: ["Londrina Solid", ...fontFamily.sans],
         balsamiq: ["Balsamiq", ...fontFamily.sans],
       },
+      keyframes: {
+        infiniteScroll: {
+          "0%": { transform: "translate(100%, 0)" },
+          "100%": { transform: "translate(-106%, 0)" },
+        },
+      },
+      animation: {
+        infiniteScroll: "infiniteScroll 12s linear infinite",
+      },
     },
   },
   plugins: [
