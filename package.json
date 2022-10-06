@@ -2,7 +2,7 @@
   "private": true,
   "workspaces": ["contracts", "frontend"],
   "scripts": {
-    "dev": "next dev",
+    "dev:fe": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
