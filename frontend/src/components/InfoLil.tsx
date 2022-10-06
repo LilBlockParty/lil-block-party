@@ -62,8 +62,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
                 {isConnected && <AuctionBtn data={data} isFetching={isFetching} />}
                 <Link href="#wtf">
                   <a className="text-[#92FFFF] underline font-balsamiq mt-4 inline-block">
-                    Learn more about settling and bidding on Lil Nouns your hand at bidding on
-                    lilnouns.wtf
+                    Learn more about settling and bidding on Lil Nouns
                   </a>
                 </Link>
               </>
