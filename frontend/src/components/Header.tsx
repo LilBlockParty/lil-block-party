@@ -1,4 +1,4 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import {ConnectButton} from "@rainbow-me/rainbowkit";
 import Link from "next/link";
 
 import Logo from "../images/logo.svg";
@@ -17,14 +17,27 @@ const Header = () => {
 
       <div className="hidden md:flex gap-x-6 justify-end md:justify-between items-center w-3/5">
         <Link href="#wtf">
-          <a className="text-white text-3xl hover:underline hidden md:block">WTF?</a>
+          <a className="text-white text-3xl hover:underline hidden md:block">
+            WTF?
+          </a>
         </Link>
         <Link href="https://dune.com/nvonpentz/lilblockparty">
-          <a className="text-white text-3xl hover:underline hidden md:block">Dune</a>
+          <a className="text-white text-3xl hover:underline hidden md:block">
+            Dune
+          </a>
         </Link>
         <Link href="https://twitter.com/lilblockparty">
           <a className="text-white text-2xl">
-            <a className="text-white text-3xl hover:underline hidden md:block">Twitter</a>
+            <a className="text-white text-3xl hover:underline hidden md:block">
+              Twitter
+            </a>
+          </a>
+        </Link>
+        <Link href="https://discord.gg/YuuvMJ3qD4">
+          <a className="text-white text-2xl">
+            <a className="text-white text-3xl hover:underline hidden md:block">
+              Discord
+            </a>
           </a>
         </Link>
 
