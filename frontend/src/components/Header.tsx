@@ -33,7 +33,7 @@ const Header = () => {
             </a>
           </a>
         </Link>
-        <Link href="https://discord.gg/YuuvMJ3qD4">
+        <Link href="https://discord.gg/HDcEmMWmhc">
           <a className="text-white text-2xl">
             <a className="text-white text-3xl hover:underline hidden md:block">
               Discord
