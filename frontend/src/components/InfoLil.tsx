@@ -44,10 +44,8 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
                 />
               )}
 
-              {/* Display a question mark image if next token is lil nounder's reward */}
-              {data?.[1].mod(10).isZero() && <PendingLil data={data} />}
-
-              {data?.[3] === undefined && <PendingLil data={data} />}
+              {/* Display a question mark image if auction state data is undefined or next token is lil nounder's reward */}
+              {(data?.[3] === undefined || data?.[1].mod(10).isZero()) && <PendingLil data={data} />}
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
