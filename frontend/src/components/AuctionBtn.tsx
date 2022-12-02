@@ -38,7 +38,7 @@ const AuctionBtn = ({ data, isFetching }: Props) => {
             Fetching Block...
           </span>
         ) : data?.[1].mod(10).isZero() ? (
-          <span className="w-full text-3xl">I'm feeling lucky</span>
+          <span className="w-full text-3xl">I&apos;m feeling lucky</span>
         ) : (
           <span className="w-full text-3xl">Settle auction</span>
         )}
