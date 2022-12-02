@@ -11,19 +11,14 @@ interface Props {
 
 const AuctionBtn = ({ data, isFetching }: Props) => {
   const { isConnected } = useAccount();
-  const {
-    config,
-    error: prepareError,
-  } = usePrepareContractWrite({
+  const { config, error: prepareError } = usePrepareContractWrite({
     addressOrName: LilNounsOracle.address,
     contractInterface: LilNounsOracle.abi,
     functionName: "settleAuction",
     args: [data?.[0]],
   });
 
-  const {
-    write,
-  } = useContractWrite(config);
+  const { write } = useContractWrite(config);
 
   const handleButtonClicked = () => {
     console.log(prepareError);
@@ -39,7 +34,11 @@ const AuctionBtn = ({ data, isFetching }: Props) => {
         className="cursor-pointer rounded-lg border text-center border-transparent bg-[#92FFFF] px-1 py-4 w-full md:max-w-sm text-black shadow-sm hover:bg-[#83e6e6]"
       >
         {isFetching ? (
-          <span className="w-full text-3xl text-slate-500">Fetching Block...</span>
+          <span className="w-full text-3xl text-slate-500">
+            Fetching Block...
+          </span>
+        ) : data?.[1].mod(10).isZero() ? (
+          <span className="w-full text-3xl">I'm feeling lucky</span>
         ) : (
           <span className="w-full text-3xl">Settle auction</span>
         )}
