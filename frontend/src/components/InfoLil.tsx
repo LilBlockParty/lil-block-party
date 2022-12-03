@@ -18,6 +18,16 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
   const { data: blockNumber } = useBlockNumber();
   const { isConnected } = useAccount();
 
+  // If token is under the threshhold and ends in 10, return true
+  // https://github.com/lilnounsDAO/lilnouns-monorepo/blob/59ff19a364e631d8e5484823e2982858d99daf8d/packages/nouns-contracts/contracts/NounsToken.sol#L165-L176
+  const isLilNoundersToken = () => {
+    if (data?.[1].lte(175300) && data?.[1].mod(10).isZero()) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <div className="mx-auto max-w-2xl px-1.5 md:px-4 pt-6 pb-12 lg:max-w-6xl">
       <Header />
@@ -31,12 +41,8 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
         <Tab.Group as="div" className="flex flex-col-reverse">
           <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
             <Tab.Panel>
-              {/*
-              Display next lil noun if data has been fetched & is not the lil nounder's reward
-
-              https://github.com/lilnounsDAO/lilnouns-monorepo/blob/59ff19a364e631d8e5484823e2982858d99daf8d/packages/nouns-contracts/contracts/NounsToken.sol#L165-L176
-              */}
-              {isFetched && data?.[3] && !data?.[1].mod(10).isZero() && (
+              {/* Display next lil noun if data has been fetched & is not the lil nounder's reward */}
+              {isFetched && data?.[3] && !isLilNoundersToken() && (
                 <img
                   src={`data:image/svg+xml;base64,${data?.[2] || ""}`}
                   alt={"nouns"}
@@ -45,7 +51,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
               )}
 
               {/* Display a question mark image if auction state data is undefined or next token is lil nounder's reward */}
-              {(data?.[3] === undefined || data?.[1].mod(10).isZero()) && <PendingLil data={data} />}
+              {(data?.[3] === undefined || isLilNoundersToken()) && <PendingLil data={data} />}
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
