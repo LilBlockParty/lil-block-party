@@ -15,4 +15,3 @@ const isLilNoundersToken = (data: Result | undefined) => {
 };
 
 export default isLilNoundersToken;
-
