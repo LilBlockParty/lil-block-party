@@ -33,7 +33,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
           <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
             <Tab.Panel>
               {/* Display next lil noun if data has been fetched & is not the lil nounder's reward */}
-              {isFetched && data?.[3] && !isLilNoundersToken({data}) && (
+              {isFetched && data?.[3] && !isLilNoundersToken(data) && (
                 <img
                   src={`data:image/svg+xml;base64,${data?.[2] || ""}`}
                   alt={"nouns"}
@@ -42,7 +42,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
               )}
 
               {/* Display a question mark image if auction state data is undefined or next token is lil nounder's reward */}
-              {(data?.[3] === undefined || isLilNoundersToken({data})) && <PendingLil data={data} />}
+              {(data?.[3] === undefined || isLilNoundersToken(data)) && <PendingLil data={data} />}
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>

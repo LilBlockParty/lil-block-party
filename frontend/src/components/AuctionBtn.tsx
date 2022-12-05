@@ -37,7 +37,7 @@ const AuctionBtn = ({ data, isFetching }: Props) => {
           <span className="w-full text-3xl text-slate-500">
             Fetching Block...
           </span>
-        ) : isLilNoundersToken({data}) ? (
+        ) : isLilNoundersToken(data) ? (
           <span className="w-full text-3xl">I&apos;m feeling lucky</span>
         ) : (
           <span className="w-full text-3xl">Settle auction</span>
