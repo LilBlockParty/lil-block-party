@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useAccount, useBlockNumber } from "wagmi";
 
 import { AuctionState } from "../pages";
+import isLilNoundersToken from "../utils/IsLilNoundersToken";
 import AuctionBtn from "./AuctionBtn";
 import Header from "./Header";
 import PendingLil from "./PendingLil";
@@ -31,12 +32,8 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
         <Tab.Group as="div" className="flex flex-col-reverse">
           <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
             <Tab.Panel>
-              {/*
-              Display next lil noun if data has been fetched & is not the lil nounder's reward
-
-              https://github.com/lilnounsDAO/lilnouns-monorepo/blob/59ff19a364e631d8e5484823e2982858d99daf8d/packages/nouns-contracts/contracts/NounsToken.sol#L165-L176
-              */}
-              {isFetched && data?.[3] && !data?.[1].mod(10).isZero() && (
+              {/* Display next lil noun if data has been fetched & is not the lil nounder's reward */}
+              {isFetched && data?.[3] && !isLilNoundersToken({data}) && (
                 <img
                   src={`data:image/svg+xml;base64,${data?.[2] || ""}`}
                   alt={"nouns"}
@@ -45,7 +42,7 @@ const InfoLil = ({ data, isFetching, isFetched }: Props) => {
               )}
 
               {/* Display a question mark image if auction state data is undefined or next token is lil nounder's reward */}
-              {(data?.[3] === undefined || data?.[1].mod(10).isZero()) && <PendingLil data={data} />}
+              {(data?.[3] === undefined || isLilNoundersToken({data})) && <PendingLil data={data} />}
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>

@@ -2,7 +2,7 @@ import type { Result } from "ethers/lib/utils";
 import { useAccount, useContractWrite, usePrepareContractWrite } from "wagmi";
 
 import { LilNounsOracle } from "../deployments/LilNounsOracle";
-import LoadingSpinner from "./LoadingSpinner";
+import isLilNoundersToken from "../utils/IsLilNoundersToken";
 
 interface Props {
   data: Result | undefined;
@@ -37,7 +37,7 @@ const AuctionBtn = ({ data, isFetching }: Props) => {
           <span className="w-full text-3xl text-slate-500">
             Fetching Block...
           </span>
-        ) : data?.[1].mod(10).isZero() ? (
+        ) : isLilNoundersToken({data}) ? (
           <span className="w-full text-3xl">I&apos;m feeling lucky</span>
         ) : (
           <span className="w-full text-3xl">Settle auction</span>
