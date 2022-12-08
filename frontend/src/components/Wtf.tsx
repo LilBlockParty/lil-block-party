@@ -33,6 +33,9 @@ const Wtf = () => {
               Settling the auction allows you to mint the shown Lil Noun as the next auction.{" "}
             </li>
             <li className="mb-2">
+              If the token number is divisible by 10, you won't be able to preview the next Lil Noun.{" "}
+            </li>
+            <li className="mb-2">
               Settlement and wallet confirmation have to happen all within the current block.
             </li>
             <li className="mb-2">
