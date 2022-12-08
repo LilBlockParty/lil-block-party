@@ -24,7 +24,7 @@ const Wtf = () => {
               Lil Nouns are determined by the block that they are minted on.{" "}
             </li>
             <li className="mb-2">
-              Lil Block Party lets youwatch, block by block, the next possible Lil Nouns.{" "}
+              Lil Block Party lets you watch, block by block, the next possible Lil Nouns.{" "}
             </li>
             <li className="mb-2">
               The block where “settlement” occurs determines the next Lil Noun.
@@ -39,7 +39,7 @@ const Wtf = () => {
               Settlement and wallet confirmation have to happen all within the current block.
             </li>
             <li className="mb-2">
-              Blocks change REALLY FAST, so decide you want your Lil Noun quickly.You only have
+              Blocks change REALLY FAST, so decide you want your Lil Noun quickly. You only have
               seconds!
             </li>
 
