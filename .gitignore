@@ -46,9 +46,6 @@ yarn-error.log*
 /contracts/artifacts
 /contracts/cache
 /contracts/node_modules
-/contracts/lib
 /contracts/.env
 /contracts/deployments/*.localhost.json
-
-/contracts/lib/*
 /contracts/.gitkeep 

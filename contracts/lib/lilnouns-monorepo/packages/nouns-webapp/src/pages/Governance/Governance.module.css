@@ -1,0 +1,276 @@
+.governanceSwitchBtn {
+  max-width: 10rem;
+  font-size: 16px;
+  font-weight: bold;
+  color: #8C8D92;
+  margin-bottom: 0.5rem;
+  margin-right: 8px;
+
+  border-radius: 32.5px;
+  background-color: #FFFFFF;
+  border: 2px solid #E2E3E8;
+  height: 43px;
+  width: fit-content;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 16px;
+}
+
+.governanceSwitchBtnActive{
+  max-width: 10rem;
+  font-size: 16px;
+  font-weight: bold;
+  color: #8C8D92;
+  margin-bottom: 0.5rem;
+  margin-right: 8px;
+
+  border-radius: 32.5px;
+  background-color: #FFFFFF;
+  height: 43px;
+  width: fit-content;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 16px;
+
+  color: #14161b;
+  border: 2px solid var(--brand-color-blue);
+}
+
+.governanceSwitchBtn2 {
+  max-width: 10rem;
+  font-size: 16px;
+  font-weight: bold;
+  color: #8C8D92;
+  border: 2px solid var(--brand-color-blue);
+  margin-bottom: 0.5rem;
+
+  border-radius: 32.5px;
+  background-color: #FFFFFF;
+  border: 2px solid #E2E3E8;
+  height: 43px;
+  width: fit-content;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 16px;
+}
+
+.governanceSwitchBtn2Active {
+  max-width: 10rem;
+  font-size: 16px;
+  font-weight: bold;
+  color: #8C8D92;
+  border: 2px solid var(--brand-color-blue);
+  margin-bottom: 0.5rem;
+
+  border-radius: 32.5px;
+  background-color: #FFFFFF;
+  border: 2px solid #E2E3E8;
+  height: 43px;
+  width: fit-content;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 16px;
+
+  color: #14161b;
+  border: 2px solid var(--brand-color-blue);
+}
+
+.spinner {
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--brand-gray-light-text);
+}
+
+.proposals {
+  display: flex;
+  flex-direction: column;
+}
+
+.proposals>div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.headerWrapper {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: space-between;
+  /* background: rgb(8, 246, 96); */
+}
+
+.headerWrapper span {
+  color: #8c8d92;
+  font-size: 24px;
+  font-family: 'Londrina Solid';
+}
+
+.headerWrapper h1 {
+  color: #14161b;
+  font-size: 56px;
+  font-family: 'Londrina Solid';
+}
+
+.forceFlexRow {
+  flex-direction: row;
+}
+
+.nounInWalletBtnWrapper {
+  display: flex;
+  padding-top: 0.8rem;
+}
+
+.heading {
+  width: 100%;
+}
+
+.nullStateSubmitProposalBtnWrapper {
+  text-align: right;
+}
+
+.nullBtnWrapper {
+  min-width: 10rem;
+}
+
+.heading {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+.headerRow span {
+  color: #8c8d92;
+  font-size: 24px;
+  font-family: 'Londrina Solid';
+}
+
+.headerRow h1 {
+  color: #14161b;
+  font-size: 56px;
+  font-family: 'Londrina Solid';
+}
+
+.subheading {
+  color: var(--brand-dark-green);
+  font-family: 'PT Root UI';
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.boldText {
+  font-family: 'PT Root UI';
+  font-weight: bold;
+}
+
+p {
+  padding-top: 1rem;
+}
+
+@media (max-width: 992px) {
+  .nounInWalletBtnWrapper {
+    width: 100%;
+  }
+
+  .section {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .headerWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* justify-content: space-between; */
+    /* background: rgb(8, 246, 96); */
+  }
+}
+
+.wrapper {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.treasuryInfoCard {
+  margin-bottom: 3rem;
+  border-radius: 20px;
+  border: 1px solid #e2e3e8;
+}
+
+.treasuryAmtWrapper {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.usdTreasuryAmt {
+  padding-top: 0.2rem;
+}
+
+.ethTreasuryAmt {
+  display: flex;
+  height: 3rem;
+  min-width: 9rem;
+  padding-top: 0.2rem;
+}
+
+.ethTreasuryAmt h1 {
+  font-size: 36px;
+  font-family: 'Londrina Solid';
+}
+
+.usdBalance {
+  font-size: 36px;
+  font-family: 'Londrina Solid';
+}
+
+.ethSymbol {
+  font-family: 'PT Root UI' !important;
+  margin-right: 0.5rem;
+}
+
+.BigNounBalance {
+  margin-right: 0.5rem;
+}
+
+.usdBalance {
+  color: var(--brand-gray-light-text);
+  font-family: 'Londrina Solid';
+}
+
+.treasuryInfoText {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-family: 'PT Root UI';
+  font-weight: 500;
+}
+
+@media (min-width: 992px) {
+  .treasuryAmtWrapper {
+    border-right: 2px solid #e2e3e8;
+  }
+
+  .ethTreasuryAmt {
+    border-right: 2px solid #e2e3e8;
+  }
+}
