@@ -1,6 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
+import { Redis } from "@upstash/redis";
 import { Result } from "ethers/lib/utils";
 import { Dispatch, Fragment, SetStateAction, useState } from "react";
+import { useAccount } from "wagmi";
 
 import Tombstone from "./Tombstone";
 
@@ -13,10 +15,21 @@ interface Props {
 
 const newDate = new Date();
 
+const redis = new Redis({
+  url: "https://us1-suitable-crab-39528.upstash.io",
+  token:
+    "AZpoACQgYzQyZDg5NDAtZTVjNy00OGRkLWJjNDQtMTIxMzNmMDNkODkyOTc2YmIyNzEyZTVmNGU1M2EzMGJmYWQ3MjU2NTQ5NDc=",
+});
+
 const EulogyModal = ({ open, setOpen, selectedLil, data }: Props) => {
   const [eulogy, setEulogy] = useState("");
+  const { address } = useAccount();
   const tweetString = encodeURIComponent(
-    `\n🪦 #restinpixels lil noun: ${parseInt(data?.[1]._hex.toString())} @lilblockparty`
+    `\n ${
+      process.env.NEXT_PUBLIC_SITE_URL
+    }/rip/${address} \n🪦 #restinpixels lil noun: ${parseInt(
+      data?.[1]._hex.toString()
+    )} @lilblockparty`
   );
 
   return (
@@ -77,34 +90,40 @@ const EulogyModal = ({ open, setOpen, selectedLil, data }: Props) => {
                     </section>
 
                     <section className="w-full text-white my-auto">
-                      <h2 className="text-5xl">Lil Noun {parseInt(data?.[1]._hex.toString())}</h2>
+                      <h2 className="text-5xl">
+                        Lil Noun {parseInt(data?.[1]._hex.toString())}
+                      </h2>
                       <p className="text-2xl mb-2">
                         Burned On {newDate.toLocaleString().split(",")[0]}
                       </p>
-                      <form onSubmit={(e) => e.preventDefault()}>
-                        <textarea
-                          rows={5}
-                          onChange={(e) => setEulogy(e.target.value)}
-                          className="bg-[#22212C] border rounded w-2/3 text-2xl p-2 block mb-4"
-                          placeholder={`Rest in pixels, Lil Noun ${parseInt(
-                            data?.[1]._hex.toString()
-                          )}`}
-                          minLength={3}
-                        />
-                        <button
-                          type="submit"
-                          className="hidden md:inline-flex items-center cursor-pointer rounded-lg border text-center border-transparent bg-[#FFFF80] px-5 py-2 w-auto md:w-2/3 text-xl font-medium text-black shadow-sm hover:bg-[#e6e673]"
-                          onClick={() => {
-                            if (eulogy.trim().length < 3) return;
-                            window.open(
-                              `https://twitter.com/intent/tweet?text=${eulogy}${tweetString}`,
-                              "_blank"
-                            );
-                          }}
-                        >
-                          <span className="w-full text-2xl">Tweet your eulogy</span>
-                        </button>
-                      </form>
+
+                      <textarea
+                        rows={5}
+                        onChange={(e) => setEulogy(e.target.value)}
+                        className="bg-[#22212C] border rounded w-2/3 text-2xl p-2 block mb-4"
+                        placeholder={`Rest in pixels, Lil Noun ${parseInt(
+                          data?.[1]._hex.toString()
+                        )}`}
+                        minLength={3}
+                      />
+                      <button
+                        type="submit"
+                        className="hidden md:inline-flex items-center cursor-pointer rounded-lg border text-center border-transparent bg-[#FFFF80] px-5 py-2 w-auto md:w-2/3 text-xl font-medium text-black shadow-sm hover:bg-[#e6e673]"
+                        onClick={() => {
+                          if (eulogy.trim().length < 3 || !address) return;
+                          redis.set(address, {
+                            eulogy,
+                            ...selectedLil,
+                            tokenId: parseInt(data?.[1]._hex.toString()),
+                          });
+                          window.open(
+                            `https://twitter.com/intent/tweet?text=${eulogy}${tweetString}`,
+                            "_blank"
+                          );
+                        }}
+                      >
+                        <span className="w-full text-2xl">Tweet your eulogy</span>
+                      </button>
                     </section>
                   </div>
                 </Dialog.Panel>
