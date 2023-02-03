@@ -32,16 +32,16 @@ const Header = () => {
         </Link>
         <Link href="https://twitter.com/lilblockparty" className="text-white text-2xl">
 
-          <a className="text-white text-3xl hover:underline hidden md:block">
+          <span className="text-white text-3xl hover:underline hidden md:block">
             Twitter
-          </a>
+          </span>
 
         </Link>
         <Link href="https://discord.gg/YuuvMJ3qD4" className="text-white text-2xl">
 
-          <a className="text-white text-3xl hover:underline hidden md:block">
+          <span className="text-white text-3xl hover:underline hidden md:block">
             Discord
-          </a>
+          </span>
 
         </Link>
 
