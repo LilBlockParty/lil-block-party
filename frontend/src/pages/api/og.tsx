@@ -18,7 +18,6 @@ const redis = new Redis({
 
 export default async function handler(req: NextRequest) {
   const { searchParams } = req.nextUrl;
-  console.log("fuck");
   const wallet = searchParams.get("wallet");
 
   const data = (await redis.get(wallet || "")) as LilInfo;
