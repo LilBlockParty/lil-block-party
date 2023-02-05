@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useContractRead } from "wagmi";
 
 import EulogyModal from "../components/EulogyModal";
+import Memeorium from "../components/Memeorium";
 import { LilNounsOracle } from "../deployments/LilNounsOracle";
 
 const MissedLils = dynamic(() => import("../components/MissedLils"));
@@ -67,7 +68,10 @@ const Home: NextPage = () => {
         <meta property="og:url" content="https://www.lilblockparty.wtf" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Lil Block Party" />
-        <meta property="og:description" content="Watch the blocks. Pick a lil. Join the party" />
+        <meta
+          property="og:description"
+          content="Watch the blocks. Pick a lil. Join the party"
+        />
         <meta property="og:image" content="https://www.lilblockparty.wtf/images/og.jpeg" />
 
         {/* <!-- Twitter Meta Tags --> */}
@@ -75,7 +79,10 @@ const Home: NextPage = () => {
         <meta property="twitter:domain" content="lilblockparty.wtf" />
         <meta property="twitter:url" content="https://www.lilblockparty.wtf" />
         <meta name="twitter:title" content="Lil Block Party" />
-        <meta name="twitter:description" content="Watch the blocks. Pick a lil. Join the party" />
+        <meta
+          name="twitter:description"
+          content="Watch the blocks. Pick a lil. Join the party"
+        />
         <meta name="twitter:image" content="https://www.lilblockparty.wtf/images/og.jpeg" />
 
         {/* <!-- Meta Tags Generated via https://www.opengraph.xyz --> */}
@@ -92,6 +99,8 @@ const Home: NextPage = () => {
           setSelectedLil={setSelectedLil}
         />
       </div>
+
+      <Memeorium />
 
       <Wtf />
       <EulogyModal open={open} setOpen={setOpen} selectedLil={selectedLil} data={data} />

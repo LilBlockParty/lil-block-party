@@ -111,7 +111,8 @@ const EulogyModal = ({ open, setOpen, selectedLil, data }: Props) => {
                         className="hidden md:inline-flex items-center cursor-pointer rounded-lg border text-center border-transparent bg-[#FFFF80] px-5 py-2 w-auto md:w-2/3 text-xl font-medium text-black shadow-sm hover:bg-[#e6e673]"
                         onClick={() => {
                           if (eulogy.trim().length < 3 || !address) return;
-                          redis.set(address, {
+                          redis.sadd('eulogy', {
+                            address,
                             eulogy,
                             ...selectedLil,
                             tokenId: parseInt(data?.[1]._hex.toString()),
