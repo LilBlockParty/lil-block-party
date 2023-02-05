@@ -28,8 +28,8 @@ export default function Memeorium() {
     getEulogies();
   }, []);
   return (
-    <div className="hidden md:block mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-0 lg:max-w-6xl mt-14">
-      <div className="-mt-20 flex items-center">
+    <div className="hidden md:block mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-0 lg:max-w-6xl">
+      <div className=" flex items-center">
         <div>
           <Tombstone />
           <h2 className="text-5xl font-bold text-gray-900 mt-6">In Memeorium</h2>
