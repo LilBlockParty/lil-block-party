@@ -20,7 +20,7 @@ export default async function handler(
       const fmt = data.map((lil) => {
         return JSON.parse(lil);
       });
-      res.setHeader("Cache-Control", "max-age=120, stale-while-revalidate=240");
+      res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
       res.status(200).send(fmt);
       break;
 
