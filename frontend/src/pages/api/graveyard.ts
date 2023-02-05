@@ -8,7 +8,7 @@ type EulogyInfo = {
   tokenId: number;
 };
 
-const redis = new Redis(process.env.REDIS_STRING);
+const redis = new Redis(process.env.REDIS_STRING || "");
 
 export default async function handler(
   req: NextApiRequest,

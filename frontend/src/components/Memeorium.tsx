@@ -1,5 +1,4 @@
 import { WalletIcon } from "@heroicons/react/24/outline";
-import { Redis } from "@upstash/redis";
 import { useEffect, useState } from "react";
 
 import Tombstone from "./Tombstone";
