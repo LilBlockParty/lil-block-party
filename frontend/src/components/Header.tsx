@@ -6,7 +6,7 @@ import { Fragment } from "react";
 
 import Logo from "../images/logo.svg";
 
-function CloseIcon(props) {
+function CloseIcon(props: Record<string, string>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -21,7 +21,7 @@ function CloseIcon(props) {
   );
 }
 
-function MobileNavItem({ href, children }) {
+function MobileNavItem({ href, children }: { href: string; children: string }) {
   return (
     <li>
       <Popover.Button as={Link} href={href} className="block py-2">
