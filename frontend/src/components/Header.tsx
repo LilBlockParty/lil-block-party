@@ -45,7 +45,7 @@ const Header = () => {
 
         </Link>
 
-        <ConnectButton />
+        <ConnectButton showBalance={false} />
       </div>
     </div>
   );
