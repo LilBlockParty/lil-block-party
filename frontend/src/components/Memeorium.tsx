@@ -11,19 +11,18 @@ type EulogyInfo = {
   tokenId: number;
 };
 
-const redis = new Redis({
-  url: "https://us1-singular-duckling-39560.upstash.io",
-  token:
-    "AZqIACQgYjY4NTlhNzktM2QyNi00M2VlLTk4MTItZWIwZDk1ZDc1MmUzMTgzM2Y3YmEzYjVhNDMzY2I3NTZmMjg4ZWU2MDRlZDY=",
-});
+
 
 export default function Memeorium() {
   const [eulogy, setEulogy] = useState<EulogyInfo[]>([]);
   useEffect(() => {
     async function getEulogies() {
-      const data: EulogyInfo[] = await redis.smembers("eulogy");
-      console.info(data, "set data");
-      setEulogy(data);
+      const res = await fetch("/api/graveyard")
+      if(res.ok) {
+        const data = await res.json()
+        console.info(data, "set data");
+        setEulogy(data);
+      }
     }
     getEulogies();
   }, []);

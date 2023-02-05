@@ -1,5 +1,4 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Redis } from "@upstash/redis";
 import { Result } from "ethers/lib/utils";
 import { Dispatch, Fragment, SetStateAction, useState } from "react";
 import { useAccount } from "wagmi";
@@ -14,12 +13,6 @@ interface Props {
 }
 
 const newDate = new Date();
-
-const redis = new Redis({
-  url: "https://us1-singular-duckling-39560.upstash.io",
-  token:
-    "AZqIACQgYjY4NTlhNzktM2QyNi00M2VlLTk4MTItZWIwZDk1ZDc1MmUzMTgzM2Y3YmEzYjVhNDMzY2I3NTZmMjg4ZWU2MDRlZDY=",
-});
 
 const EulogyModal = ({ open, setOpen, selectedLil, data }: Props) => {
   const [eulogy, setEulogy] = useState("");
@@ -109,14 +102,27 @@ const EulogyModal = ({ open, setOpen, selectedLil, data }: Props) => {
                       <button
                         type="submit"
                         className="hidden md:inline-flex items-center cursor-pointer rounded-lg border text-center border-transparent bg-[#FFFF80] px-5 py-2 w-auto md:w-2/3 text-xl font-medium text-black shadow-sm hover:bg-[#e6e673]"
-                        onClick={() => {
+                        onClick={async () => {
                           if (eulogy.trim().length < 3 || !address) return;
-                          redis.sadd('eulogy', {
-                            address,
-                            eulogy,
-                            ...selectedLil,
-                            tokenId: parseInt(data?.[1]._hex.toString()),
+                          const res = await fetch("/api/graveyard", {
+                            method: "POST",
+                            body: JSON.stringify({
+                              address,
+                              eulogy,
+                              ...selectedLil,
+                              tokenId: parseInt(data?.[1]._hex.toString()),
+                            }),
                           });
+
+                          if(res.ok) {
+                            console.log("OK")
+                          }
+                          // redis.sadd("eulogy", {
+                          //   address,
+                          //   eulogy,
+                          //   ...selectedLil,
+                          //   tokenId: parseInt(data?.[1]._hex.toString()),
+                          // });
                           window.open(
                             `https://twitter.com/intent/tweet?text=${eulogy}${tweetString}`,
                             "_blank"
