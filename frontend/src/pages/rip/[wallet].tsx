@@ -13,10 +13,9 @@ export type LilInfo = {
 };
 
 const redis = new Redis({
-  url: "https://us1-suitable-crab-39528.upstash.io",
-  token:
-    "AZpoACQgYzQyZDg5NDAtZTVjNy00OGRkLWJjNDQtMTIxMzNmMDNkODkyOTc2YmIyNzEyZTVmNGU1M2EzMGJmYWQ3MjU2NTQ5NDc=",
-});
+  url: 'https://us1-singular-duckling-39560.upstash.io',
+  token: 'AZqIACQgYjY4NTlhNzktM2QyNi00M2VlLTk4MTItZWIwZDk1ZDc1MmUzMTgzM2Y3YmEzYjVhNDMzY2I3NTZmMjg4ZWU2MDRlZDY=',
+})
 
 export default function RipPage() {
   const router = useRouter();
