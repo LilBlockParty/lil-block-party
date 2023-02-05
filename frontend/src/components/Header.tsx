@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Fragment } from "react";
 
 import Logo from "../images/logo.svg";
-import MobileNavigation from "./MobileNav";
 
 function CloseIcon(props) {
   return (
