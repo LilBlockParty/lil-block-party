@@ -1,4 +1,3 @@
-import { Redis } from "@upstash/redis";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -12,11 +11,6 @@ export type LilInfo = {
   tokenId: number;
 };
 
-const redis = new Redis({
-  url: 'https://us1-singular-duckling-39560.upstash.io',
-  token: 'AZqIACQgYjY4NTlhNzktM2QyNi00M2VlLTk4MTItZWIwZDk1ZDc1MmUzMTgzM2Y3YmEzYjVhNDMzY2I3NTZmMjg4ZWU2MDRlZDY=',
-})
-
 export default function RipPage() {
   const router = useRouter();
   const { wallet } = router.query;
@@ -28,16 +22,15 @@ export default function RipPage() {
 
   useEffect(() => {
     if (!wallet) return;
-    const walletSchema = z.string().length(42);
-    async function fetchLil() {
-      const parsedWallet = walletSchema.parse(wallet);
-      const data = (await redis.get(parsedWallet)) as LilInfo;
-      if (data) {
+    async function getEulogies() {
+      const res = await fetch("/api/graveyard", { body: JSON.stringify(wallet) });
+      if (res.ok) {
+        const data = await res.json();
+        console.info(data, "set data");
         setLilInfo(data);
       }
     }
-
-    fetchLil();
+    getEulogies();
   }, [wallet]);
 
   return (
