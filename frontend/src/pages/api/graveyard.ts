@@ -20,6 +20,7 @@ export default async function handler(
       const fmt = data.map((lil) => {
         return JSON.parse(lil);
       });
+      res.setHeader("Cache-Control", "s-maxage=900, stale-while-revalidate");
       res.status(200).send(fmt);
       break;
 
