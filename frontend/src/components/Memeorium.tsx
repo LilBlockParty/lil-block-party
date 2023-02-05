@@ -28,12 +28,12 @@ export default function Memeorium() {
     getEulogies();
   }, []);
   return (
-    <div className="mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-0 lg:max-w-6xl mt-14">
+    <div className="hidden md:block mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-0 lg:max-w-6xl mt-14">
       <div className="-mt-20 flex items-center">
         <div>
           <Tombstone />
           <h2 className="text-5xl font-bold text-gray-900 mt-6">In Memeorium</h2>
-          <div className="bg-white hidden md:block">
+          <div className="bg-white">
             <div className="mx-auto max-w-2xl sm:py-4 sm:px-6 md:px-0 lg:max-w-6xl">
               <div className="flex pb-10 pt-1 w-full">
                 <div className="flex flex-wrap gap-3">
@@ -51,14 +51,13 @@ export default function Memeorium() {
                           />
                         </div>
                         <div className="flex items-center">
-                          <WalletIcon height={28} /> 
-                          
-                          <span className="ml-2">{lil.address.slice(0, 6)}...{lil.address.slice(-6)}</span>
+                          <WalletIcon height={28} />
+
+                          <span className="ml-2">
+                            {lil.address.slice(0, 6)}...{lil.address.slice(-6)}
+                          </span>
                         </div>
-                        <p className="font-balsamiq">
-                          
-                          {lil.eulogy}
-                        </p>
+                        <p className="font-balsamiq">{lil.eulogy}</p>
                       </div>
                     );
                   })}
