@@ -20,7 +20,7 @@ export default function Memeorium() {
   const [eulogy, setEulogy] = useState<EulogyInfo[]>([]);
   useEffect(() => {
     async function getEulogies() {
-      const data = await redis.smembers("eulogy");
+      const data: EulogyInfo[] = await redis.smembers("eulogy");
       console.info(data, "set data");
       setEulogy(data);
     }
