@@ -1,3 +1,4 @@
+import { WalletIcon } from "@heroicons/react/24/outline";
 import { Redis } from "@upstash/redis";
 import { useEffect, useState } from "react";
 
@@ -39,16 +40,25 @@ export default function Memeorium() {
                   {eulogy?.map((lil, index) => {
                     if (!lil.imgData) return;
                     return (
-                      <div key={index} className="group relative drop-shadow-md max-w-[256px]">
-                        <div className=" rounded-md bg-gray-200  lg:aspect-none ">
+                      <div key={index} className="group relative  max-w-[256px]">
+                        <div className=" rounded-md bg-gray-200  lg:aspect-none">
                           <img
                             width={208}
                             height={208}
                             src={`data:image/svg+xml;base64,${lil.imgData}`}
-                            className=" object-cover object-center"
+                            className="drop-shadow-md object-cover object-center mb-2"
                             alt="lil"
                           />
                         </div>
+                        <div className="flex items-center">
+                          <WalletIcon height={28} /> 
+                          
+                          <span className="ml-2">{lil.address.slice(0, 6)}...{lil.address.slice(-6)}</span>
+                        </div>
+                        <p className="font-balsamiq">
+                          
+                          {lil.eulogy}
+                        </p>
                       </div>
                     );
                   })}
