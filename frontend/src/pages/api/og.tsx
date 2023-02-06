@@ -7,7 +7,7 @@ import { LilInfo } from "../rip/[wallet]";
 
 export const config = {
   runtime: "edge",
-  matcher: '/rip',
+  matcher: "/rip",
 };
 
 const redis = new Redis({
