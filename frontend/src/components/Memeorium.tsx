@@ -10,15 +10,13 @@ type EulogyInfo = {
   tokenId: number;
 };
 
-
-
 export default function Memeorium() {
   const [eulogy, setEulogy] = useState<EulogyInfo[]>([]);
   useEffect(() => {
     async function getEulogies() {
-      const res = await fetch("/api/graveyard")
-      if(res.ok) {
-        const data = await res.json()
+      const res = await fetch("/api/graveyard");
+      if (res.ok) {
+        const data = await res.json();
         console.info(data, "set data");
         setEulogy(data);
       }
@@ -30,7 +28,9 @@ export default function Memeorium() {
       <div className=" flex items-center">
         <div>
           <Tombstone />
-          <h2 className="text-5xl font-bold text-gray-900 mt-6">In Memeorium</h2>
+          <h2 className="text-5xl font-bold text-gray-900 mt-6" id="inMemorium">
+            In Memeorium
+          </h2>
           <div className="bg-white">
             <div className="mx-auto max-w-2xl sm:py-4 sm:px-6 md:px-0 lg:max-w-6xl">
               <div className="flex pb-10 pt-1 w-full">
