@@ -8,8 +8,8 @@ import Tombstone from "../../components/Tombstone";
 export type LilInfo = {
   address: string;
   eulogy: string;
-  imgData: string;
-  tokenId: number;
+  img_data: string;
+  token_id: number;
 };
 
 export default function RipPage() {
@@ -19,8 +19,8 @@ export default function RipPage() {
     {
       address: "",
       eulogy: "",
-      imgData: "",
-      tokenId: 0,
+      img_data: "",
+      token_id: 0,
     },
   ]);
 
@@ -53,7 +53,7 @@ export default function RipPage() {
 
                   <div className="ml-4">
                     <h3 className=" text-gray-400 text-3xl mt-4">
-                      RIP to the almost Lil #: {lil.tokenId}
+                      RIP to the almost Lil #: {lil.token_id}
                     </h3>
                     <span className="text-white text-xl block">{lil?.eulogy}</span>
                   </div>
@@ -61,7 +61,7 @@ export default function RipPage() {
                 <div className="flex justify-center max-w-5xl mx-auto">
                   <section className="w-full mr-8 mt-8">
                     <img
-                      src={`data:image/svg+xml;base64,${lil.imgData}`}
+                      src={`data:image/svg+xml;base64,${lil.img_data}`}
                       className=" object-cover object-center min-h-[500px] mr-auto rounded-md"
                       alt="lil"
                     />

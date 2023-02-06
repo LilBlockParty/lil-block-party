@@ -6,9 +6,10 @@ import { nanoid } from "nanoid";
 import type { NextApiRequest, NextApiResponse } from "next";
 import sharp from "sharp";
 
-import { s3Client } from "../../core/s3";
+import { s3Client } from "../../../core/s3";
+import { supabase } from "../../../core/supabaseClient";
 
-type EulogyInfo = {
+export type EulogyInfo = {
   address: string;
   eulogy: string;
   imgData: string;
@@ -22,12 +23,14 @@ export default async function handler(
 ): Promise<void> {
   switch (req.method) {
     case "GET":
-      const data = await redis.smembers("eulogy");
-      const fmt = data.map((lil) => {
-        return JSON.parse(lil);
-      });
+      // const data = await redis.smembers(`eulogy`);
+      // const fmt = data.map((lil) => {
+      //   return JSON.parse(lil);
+      // });
+
+      const data = await supabase.from("eulogies").select()
       res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate");
-      res.status(200).send(fmt);
+      res.status(200).send(data.data);
       break;
 
     case "POST":
@@ -52,22 +55,34 @@ export default async function handler(
 
       try {
         await s3Client.send(new PutObjectCommand(bucketParams));
-        console.log(
-          "Successfully uploaded object: " + bucketParams.Bucket + "/" + bucketParams.Key
-        );
+        fs.unlink(`./public/images/${uid}.jpeg`, (err) => {
+          console.log(err);
+        });
       } catch (err) {
         console.log("Error", err);
       }
-      redis.sadd(
-        "eulogy",
-        JSON.stringify({
-          uid,
+      // redis.sadd(
+      //   `eulogy-${address}`,
+      //   JSON.stringify({
+      //     uid,
+      //     address,
+      //     eulogy,
+      //     imgData,
+      //     tokenId,
+      //   })
+      // );
+
+      const idk = await supabase
+        .from("eulogies")
+        .insert({
           address,
           eulogy,
-          imgData,
-          tokenId,
-        })
-      );
+          img_data: imgData,
+          token_id: tokenId,
+          img_url: `https://lbp-images.nyc3.cdn.digitaloceanspaces.com/${uid}.jpeg`,
+        });
+
+        console.log(idk)
       res.status(200).send("");
       break;
 

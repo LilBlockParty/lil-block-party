@@ -6,7 +6,7 @@ import Tombstone from "./Tombstone";
 type EulogyInfo = {
   address: string;
   eulogy: string;
-  imgData: string;
+  img_data: string;
   tokenId: number;
 };
 
@@ -36,14 +36,14 @@ export default function Memeorium() {
               <div className="flex pb-10 pt-1 w-full">
                 <div className="flex flex-wrap gap-3">
                   {eulogy?.map((lil, index) => {
-                    if (!lil.imgData) return;
+                    if (!lil.img_data) return;
                     return (
                       <div key={index} className="group relative  max-w-[256px]">
                         <div className=" rounded-md bg-gray-200  lg:aspect-none">
                           <img
                             width={208}
                             height={208}
-                            src={`data:image/svg+xml;base64,${lil.imgData}`}
+                            src={`data:image/svg+xml;base64,${lil.img_data}`}
                             className="drop-shadow-md object-cover object-center mb-2"
                             alt="lil"
                           />
