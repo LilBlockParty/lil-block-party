@@ -77,12 +77,12 @@ const Header = () => {
                   <Popover.Button aria-label="Close menu" className="-m-1 p-1">
                     <CloseIcon className="h-6 w-6 text-zinc-500 dark:text-zinc-400" />
                   </Popover.Button>
-                  <h2 className="text-xl font-medium text-zinc-600 dark:text-zinc-400">
+                  <h2 className="text-2xl font-medium text-zinc-600 dark:text-zinc-400">
                     Navigation
                   </h2>
                 </div>
                 <nav className="mt-6">
-                  <ul className="-my-2 divide-y divide-zinc-100 text-xl text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
+                  <ul className="-my-2 divide-y divide-zinc-100 text-2xl text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
                     {/* <MobileNavItem href="#wtf">WTF</MobileNavItem> */}
                     {/* <MobileNavItem href="/articles">Articles</MobileNavItem> */}
                     {/* <MobileNavItem href="/projects">Projects</MobileNavItem>
