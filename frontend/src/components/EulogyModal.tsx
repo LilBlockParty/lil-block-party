@@ -17,13 +17,7 @@ const newDate = new Date();
 const EulogyModal = ({ open, setOpen, selectedLil, data }: Props) => {
   const [eulogy, setEulogy] = useState("");
   const { address } = useAccount();
-  const tweetString = encodeURIComponent(
-    `\n ${
-      process.env.NEXT_PUBLIC_SITE_URL
-    }/rip/${address} \n🪦 #restinpixels lil noun: ${parseInt(
-      data?.[1]._hex.toString()
-    )} @lilblockparty`
-  );
+  const tweetString = "";
 
   return (
     <>
@@ -104,8 +98,6 @@ const EulogyModal = ({ open, setOpen, selectedLil, data }: Props) => {
                         className="hidden md:inline-flex items-center cursor-pointer rounded-lg border text-center border-transparent bg-[#FFFF80] px-5 py-2 w-auto md:w-2/3 text-xl font-medium text-black shadow-sm hover:bg-[#e6e673]"
                         onClick={async () => {
                           if (eulogy.trim().length < 3 || !address) return;
-
-                          console.log(selectedLil, "selected lil");
                           const res = await fetch("/api/graveyard", {
                             method: "POST",
                             body: JSON.stringify({
@@ -117,8 +109,15 @@ const EulogyModal = ({ open, setOpen, selectedLil, data }: Props) => {
                           });
 
                           if (res.ok) {
+                            const info = await res.json();
                             window.open(
-                              `https://twitter.com/intent/tweet?text=${eulogy}${tweetString}`,
+                              `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                                `\n ${
+                                  process.env.NEXT_PUBLIC_SITE_URL
+                                }/lil/${info[0].id} \n🪦 #restinpixels lil noun: ${parseInt(
+                                  data?.[1]._hex.toString()
+                                )} @lilblockparty`
+                              )}`,
                               "_blank"
                             );
                           }

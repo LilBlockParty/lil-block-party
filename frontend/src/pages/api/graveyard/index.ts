@@ -67,16 +67,18 @@ export default async function handler(
       //   })
       // );
 
-      const idk = await supabase.from("eulogies").insert({
-        address,
-        eulogy,
-        img_data,
-        token_id,
-        img_url: `https://lbp-images.nyc3.cdn.digitaloceanspaces.com/${uid}.jpeg`,
-      });
+      const idk = await supabase
+        .from("eulogies")
+        .insert({
+          address,
+          eulogy,
+          img_data,
+          token_id,
+          img_url: `https://lbp-images.nyc3.cdn.digitaloceanspaces.com/${uid}.jpeg`,
+        })
+        .select();
 
-      console.log(idk);
-      res.status(200).send("");
+      res.status(200).send(idk.data);
       break;
 
     default:
