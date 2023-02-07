@@ -54,8 +54,8 @@ export default function RipPage() {
                     <span className="text-white text-xl block">{lil?.eulogy}</span>
                   </div>
                 </div>
-                <div className="flex justify-center max-w-5xl mx-auto">
-                  <section className="w-full mr-8 mt-8">
+                <div className="flex justify-center max-w-lg mx-auto">
+                  <section className="w-full mt-8">
                     <img
                       src={lil.img_url}
                       className=" object-cover object-center min-h-[500px] mr-auto rounded-md"
