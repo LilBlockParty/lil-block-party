@@ -51,12 +51,12 @@ export default async function handler(req: NextRequest) {
             marginBottom: "15px",
           }}
         >
-          RIP to the almost Lil #: {data?.tokenId}
+          RIP to the almost Lil #: {data?.token_id}
         </h3>
         <img
           width="500"
           height="500"
-          src={`data:image/svg+xml;base64,${data?.imgData}`}
+          src={`data:image/svg+xml;base64,${data?.img_data}`}
           style={{
             borderRadius: 64,
             marginRight: "16px",
