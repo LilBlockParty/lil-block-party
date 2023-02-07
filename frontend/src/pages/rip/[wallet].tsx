@@ -3,20 +3,16 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 
+import { EulogyInfo } from "../../components/Memeorium";
 import Tombstone from "../../components/Tombstone";
-
-export type LilInfo = {
-  address: string;
-  eulogy: string;
-  img_data: string;
-  token_id: number;
-};
 
 export default function RipPage() {
   const router = useRouter();
   const { wallet } = router.query;
-  const [lilInfo, setLilInfo] = useState<LilInfo[]>([
+  const [lilInfo, setLilInfo] = useState<EulogyInfo[]>([
     {
+      id: "",
+      img_url: "",
       address: "",
       eulogy: "",
       img_data: "",
@@ -29,7 +25,7 @@ export default function RipPage() {
     async function getEulogies() {
       const res = await fetch("/api/graveyard");
       if (res.ok) {
-        const data: LilInfo[] = await res.json();
+        const data: EulogyInfo[] = await res.json();
         data.filter((lil) => lil.address);
         console.info(data, "set data");
         setLilInfo(data);
@@ -61,7 +57,7 @@ export default function RipPage() {
                 <div className="flex justify-center max-w-5xl mx-auto">
                   <section className="w-full mr-8 mt-8">
                     <img
-                      src={`data:image/svg+xml;base64,${lil.img_data}`}
+                      src={lil.img_url}
                       className=" object-cover object-center min-h-[500px] mr-auto rounded-md"
                       alt="lil"
                     />
