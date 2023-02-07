@@ -3,20 +3,14 @@ import { ImageResponse } from "@vercel/og";
 import Redis from "ioredis";
 import { NextRequest } from "next/server";
 
-import { LilInfo } from "../rip/[wallet]";
-
 export const config = {
   runtime: "edge",
   matcher: "/rip",
 };
 
-
-
 export default async function handler(req: NextRequest) {
   const { searchParams } = req.nextUrl;
   const wallet = searchParams.get("wallet");
-
-
 
   if (!wallet) {
     return new ImageResponse(<>Visit with &quot;?username=vercel&quot;</>, {
