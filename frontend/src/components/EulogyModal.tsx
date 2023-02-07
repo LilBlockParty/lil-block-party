@@ -104,29 +104,24 @@ const EulogyModal = ({ open, setOpen, selectedLil, data }: Props) => {
                         className="hidden md:inline-flex items-center cursor-pointer rounded-lg border text-center border-transparent bg-[#FFFF80] px-5 py-2 w-auto md:w-2/3 text-xl font-medium text-black shadow-sm hover:bg-[#e6e673]"
                         onClick={async () => {
                           if (eulogy.trim().length < 3 || !address) return;
+
+                          console.log(selectedLil, "selected lil");
                           const res = await fetch("/api/graveyard", {
                             method: "POST",
                             body: JSON.stringify({
                               address,
                               eulogy,
-                              ...selectedLil,
-                              tokenId: parseInt(data?.[1]._hex.toString()),
+                              img_data: selectedLil.imgData,
+                              token_id: parseInt(data?.[1]._hex.toString()),
                             }),
                           });
 
-                          if(res.ok) {
-                            console.log("OK")
+                          if (res.ok) {
+                            window.open(
+                              `https://twitter.com/intent/tweet?text=${eulogy}${tweetString}`,
+                              "_blank"
+                            );
                           }
-                          // redis.sadd("eulogy", {
-                          //   address,
-                          //   eulogy,
-                          //   ...selectedLil,
-                          //   tokenId: parseInt(data?.[1]._hex.toString()),
-                          // });
-                          window.open(
-                            `https://twitter.com/intent/tweet?text=${eulogy}${tweetString}`,
-                            "_blank"
-                          );
                         }}
                       >
                         <span className="w-full text-2xl">Tweet your eulogy</span>

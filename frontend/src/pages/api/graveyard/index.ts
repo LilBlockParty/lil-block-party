@@ -6,15 +6,10 @@ import { nanoid } from "nanoid";
 import type { NextApiRequest, NextApiResponse } from "next";
 import sharp from "sharp";
 
+import { EulogyInfo } from "../../../components/Memeorium";
 import { s3Client } from "../../../core/s3";
 import { supabase } from "../../../core/supabaseClient";
 
-export type EulogyInfo = {
-  address: string;
-  eulogy: string;
-  imgData: string;
-  tokenId: number;
-};
 const redis = new Redis(process.env.REDIS_STRING || "");
 
 export default async function handler(
@@ -28,17 +23,17 @@ export default async function handler(
       //   return JSON.parse(lil);
       // });
 
-      const data = await supabase.from("eulogies").select()
+      const { data } = await supabase.from("eulogies").select("eulogy,img_url,address,id");
       res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate");
-      res.status(200).send(data.data);
+      res.status(200).send(data);
       break;
 
     case "POST":
-      // console.log(req.body);
       // const data: EulogyInfo[] = await redis.smembers("eulogy");
       const uid = nanoid();
-      const { address, eulogy, imgData, tokenId }: EulogyInfo = JSON.parse(req.body);
-      const imgBuffer = Buffer.from(imgData, "base64");
+      const { address, eulogy, img_data, token_id }: EulogyInfo = JSON.parse(req.body);
+
+      const imgBuffer = Buffer.from(img_data, "base64");
 
       // this write the svg to disk
       // fs.writeFileSync("new-path.svg", imgBuffer, {});
@@ -72,17 +67,15 @@ export default async function handler(
       //   })
       // );
 
-      const idk = await supabase
-        .from("eulogies")
-        .insert({
-          address,
-          eulogy,
-          img_data: imgData,
-          token_id: tokenId,
-          img_url: `https://lbp-images.nyc3.cdn.digitaloceanspaces.com/${uid}.jpeg`,
-        });
+      const idk = await supabase.from("eulogies").insert({
+        address,
+        eulogy,
+        img_data,
+        token_id,
+        img_url: `https://lbp-images.nyc3.cdn.digitaloceanspaces.com/${uid}.jpeg`,
+      });
 
-        console.log(idk)
+      console.log(idk);
       res.status(200).send("");
       break;
 

@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 
 import Tombstone from "./Tombstone";
 
-type EulogyInfo = {
+export type EulogyInfo = {
+  id: string;
   address: string;
   eulogy: string;
   img_data: string;
-  tokenId: number;
+  img_url: string;
+  token_id: number;
 };
 
 export default function Memeorium() {
@@ -17,7 +19,7 @@ export default function Memeorium() {
       const res = await fetch("/api/graveyard");
       if (res.ok) {
         const data = await res.json();
-        console.info(data, "set data");
+        console.table(data);
         setEulogy(data);
       }
     }
@@ -36,14 +38,14 @@ export default function Memeorium() {
               <div className="flex pb-10 pt-1 w-full">
                 <div className="flex flex-wrap gap-3">
                   {eulogy?.map((lil, index) => {
-                    if (!lil.img_data) return;
+                    if (!lil.img_url) return;
                     return (
                       <div key={index} className="group relative  max-w-[256px]">
                         <div className=" rounded-md bg-gray-200  lg:aspect-none">
                           <img
                             width={208}
                             height={208}
-                            src={`data:image/svg+xml;base64,${lil.img_data}`}
+                            src={lil.img_url}
                             className="drop-shadow-md object-cover object-center mb-2"
                             alt="lil"
                           />
