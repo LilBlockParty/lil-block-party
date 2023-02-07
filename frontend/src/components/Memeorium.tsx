@@ -1,4 +1,5 @@
 import { WalletIcon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import Tombstone from "./Tombstone";
@@ -14,6 +15,7 @@ export type EulogyInfo = {
 
 export default function Memeorium() {
   const [eulogy, setEulogy] = useState<EulogyInfo[]>([]);
+  const router = useRouter();
   useEffect(() => {
     async function getEulogies() {
       const res = await fetch("/api/graveyard");
@@ -40,7 +42,13 @@ export default function Memeorium() {
                   {eulogy?.map((lil, index) => {
                     if (!lil.img_url) return;
                     return (
-                      <div key={index} className="group relative  max-w-[256px]">
+                      <div
+                        key={index}
+                        className="group relative  max-w-[256px] cursor-pointer hover:drop-shadow-xl"
+                        onClick={() => {
+                          router.push(`/lil/${lil.id}`);
+                        }}
+                      >
                         <div className=" rounded-md bg-gray-200  lg:aspect-none">
                           <img
                             width={208}
