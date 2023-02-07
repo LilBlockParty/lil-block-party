@@ -68,7 +68,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { data: eulogy, error } = await supabase
     .from("eulogies")
     .select("eulogy,img_url,address,token_id")
-    .eq("id", context.query.uuid);
+    .eq("id", context.query.id);
 
   if (!error) {
     return {

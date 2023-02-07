@@ -8,11 +8,11 @@ export default async function handler(
   res: NextApiResponse
 ): Promise<void> {
   const redis = new Redis(process.env.REDIS_STRING || "");
-  const { uuid } = req.query;
+  const { id } = req.query;
   const { data: eulogies, error } = await supabase
     .from("eulogies")
     .select("eulogy,img_url,address,token_id")
-    .eq("id", uuid)
+    .eq("id", id)
     
 
   return res.status(200).json(eulogies);

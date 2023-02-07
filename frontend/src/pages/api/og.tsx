@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { Redis } from "@upstash/redis";
 import { ImageResponse } from "@vercel/og";
+import Redis from "ioredis";
 import { NextRequest } from "next/server";
 
 import { LilInfo } from "../rip/[wallet]";
@@ -10,19 +10,15 @@ export const config = {
   matcher: "/rip",
 };
 
-const redis = new Redis({
-  url: "https://us1-suitable-crab-39528.upstash.io",
-  token:
-    "AZpoACQgYzQyZDg5NDAtZTVjNy00OGRkLWJjNDQtMTIxMzNmMDNkODkyOTc2YmIyNzEyZTVmNGU1M2EzMGJmYWQ3MjU2NTQ5NDc=",
-});
+
 
 export default async function handler(req: NextRequest) {
   const { searchParams } = req.nextUrl;
   const wallet = searchParams.get("wallet");
 
-  const data = (await redis.get(wallet || "")) as LilInfo;
 
-  if (!wallet || !data) {
+
+  if (!wallet) {
     return new ImageResponse(<>Visit with &quot;?username=vercel&quot;</>, {
       width: 1200,
       height: 630,
@@ -45,7 +41,7 @@ export default async function handler(req: NextRequest) {
           alignItems: "center",
         }}
       >
-        <h3
+        {/* <h3
           style={{
             marginTop: "0px",
             marginBottom: "15px",
@@ -61,7 +57,7 @@ export default async function handler(req: NextRequest) {
             borderRadius: 64,
             marginRight: "16px",
           }}
-        />
+        /> */}
       </div>
     ),
     {

@@ -30,7 +30,7 @@ export default async function handler(
 
     case "POST":
       // const data: EulogyInfo[] = await redis.smembers("eulogy");
-      const uid = nanoid();
+      const id = nanoid();
       const { address, eulogy, img_data, token_id }: EulogyInfo = JSON.parse(req.body);
 
       const imgBuffer = Buffer.from(img_data, "base64");
@@ -38,19 +38,19 @@ export default async function handler(
       // this write the svg to disk
       // fs.writeFileSync("new-path.svg", imgBuffer, {});
 
-      await sharp(imgBuffer).jpeg().toFile(`./public/images/${uid}.jpeg`);
-      const blob = fs.readFileSync(`./public/images/${uid}.jpeg`);
+      await sharp(imgBuffer).jpeg().toFile(`/tmp/${id}.jpeg`);
+      const blob = fs.readFileSync(`/tmp/${id}.jpeg`);
 
       const bucketParams = {
         Bucket: "lbp-images",
         ACL: "public-read",
-        Key: `${uid}.jpeg`,
+        Key: `${id}.jpeg`,
         Body: blob,
       };
 
       try {
         await s3Client.send(new PutObjectCommand(bucketParams));
-        fs.unlink(`./public/images/${uid}.jpeg`, (err) => {
+        fs.unlink(`/tmp/${id}.jpeg`, (err) => {
           console.log(err);
         });
       } catch (err) {
@@ -59,7 +59,7 @@ export default async function handler(
       // redis.sadd(
       //   `eulogy-${address}`,
       //   JSON.stringify({
-      //     uid,
+      //     id,
       //     address,
       //     eulogy,
       //     imgData,
@@ -70,11 +70,12 @@ export default async function handler(
       const idk = await supabase
         .from("eulogies")
         .insert({
+          id,
           address,
           eulogy,
           img_data,
           token_id,
-          img_url: `https://lbp-images.nyc3.cdn.digitaloceanspaces.com/${uid}.jpeg`,
+          img_url: `https://lbp-images.nyc3.cdn.digitaloceanspaces.com/${id}.jpeg`,
         })
         .select();
 
