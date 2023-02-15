@@ -1,7 +1,7 @@
 import Redis from "ioredis";
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { supabase } from "../../../core/supabaseClient";
+import { prisma } from "../../../core/db";
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,11 +9,15 @@ export default async function handler(
 ): Promise<void> {
   const redis = new Redis(process.env.REDIS_STRING || "");
   const { id } = req.query;
-  const { data: eulogies, error } = await supabase
-    .from("eulogies")
-    .select("eulogy,img_url,address,token_id")
-    .eq("id", id)
-    
 
-  return res.status(200).json(eulogies);
+  if (!id || typeof id !== "string") {
+    return res.status(400).send("");
+  }
+
+  const data = await prisma.eulogies.findMany({
+    where: { id: id },
+    select: { eulogy: true, img_url: true, address: true, token_id: true },
+  });
+
+  return res.status(200).json(data);
 }

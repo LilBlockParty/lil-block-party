@@ -18,16 +18,21 @@ export default async function handler(
 ): Promise<void> {
   switch (req.method) {
     case "GET":
-      // const data = await redis.smembers(`eulogy`);
-      // const fmt = data.map((lil) => {
-      //   return JSON.parse(lil);
-      // });
+      const cacheData = await redis.smembers(`eulogies`);
+      const fmt = cacheData.map((lil) => {
+        return JSON.parse(lil);
+      });
+
+      if (fmt.length > 0) {
+        res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate");
+        console.log("hit")
+        return res.status(200).send(fmt);
+      }
 
       const data = await prisma.eulogies.findMany({
         select: { eulogy: true, img_url: true, address: true, id: true },
       });
 
-      res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate");
       res.status(200).send(data);
       break;
 
@@ -59,18 +64,18 @@ export default async function handler(
       } catch (err) {
         console.log("Error", err);
       }
-      // redis.sadd(
-      //   `eulogy-${address}`,
-      //   JSON.stringify({
-      //     id,
-      //     address,
-      //     eulogy,
-      //     imgData,
-      //     tokenId,
-      //   })
-      // );
+      redis.sadd(
+        `eulogies`,
+        JSON.stringify({
+          id,
+          address,
+          eulogy,
+          img_url: `https://lbp-images.nyc3.cdn.digitaloceanspaces.com/${id}.jpeg`,
+          token_id,
+        })
+      );
 
-      const shipIt = await prisma.eulogies.create({
+      const postData = await prisma.eulogies.create({
         data: {
           id,
           address,
@@ -81,7 +86,7 @@ export default async function handler(
         },
       });
 
-      res.status(200).send("");
+      res.status(200).send(postData);
       break;
 
     default:

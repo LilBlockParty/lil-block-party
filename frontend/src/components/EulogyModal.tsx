@@ -114,7 +114,7 @@ const EulogyModal = ({ open, setOpen, selectedLil, data }: Props) => {
                               `https://twitter.com/intent/tweet?text=${encodeURIComponent(
                                 `\n ${
                                   process.env.NEXT_PUBLIC_SITE_URL
-                                }/lil/${info[0].id} \n🪦 #restinpixels lil noun: ${parseInt(
+                                }/lil/${info.id} \n🪦 #restinpixels lil noun: ${parseInt(
                                   data?.[1]._hex.toString()
                                 )} @lilblockparty`
                               )}`,
