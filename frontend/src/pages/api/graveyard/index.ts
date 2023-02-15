@@ -7,8 +7,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import sharp from "sharp";
 
 import { EulogyInfo } from "../../../components/Memeorium";
+import { prisma } from "../../../core/db";
 import { s3Client } from "../../../core/s3";
-import { supabase } from "../../../core/supabaseClient";
 
 const redis = new Redis(process.env.REDIS_STRING || "");
 
@@ -23,7 +23,10 @@ export default async function handler(
       //   return JSON.parse(lil);
       // });
 
-      const { data } = await supabase.from("eulogies").select("eulogy,img_url,address,id");
+      const data = await prisma.eulogies.findMany({
+        select: { eulogy: true, img_url: true, address: true, id: true },
+      });
+
       res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate");
       res.status(200).send(data);
       break;
@@ -67,19 +70,18 @@ export default async function handler(
       //   })
       // );
 
-      const idk = await supabase
-        .from("eulogies")
-        .insert({
+      const shipIt = await prisma.eulogies.create({
+        data: {
           id,
           address,
           eulogy,
           img_data,
           token_id,
           img_url: `https://lbp-images.nyc3.cdn.digitaloceanspaces.com/${id}.jpeg`,
-        })
-        .select();
+        },
+      });
 
-      res.status(200).send(idk.data);
+      res.status(200).send("");
       break;
 
     default:
