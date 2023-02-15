@@ -89,7 +89,9 @@ const Header = () => {
                     <MobileNavItem href="https://github.com/mhmulford0">Github</MobileNavItem> */}
 
                     <MobileNavItem href="#wtf">WTF?</MobileNavItem>
-                    <MobileNavItem href="#inMemorium">In Memorium</MobileNavItem>
+                    <span className="hidden md:inline">
+                      <MobileNavItem href="#inMemorium">In Memorium</MobileNavItem>
+                    </span>
                     <MobileNavItem href="https://dune.com/nvonpentz/lilblockparty">
                       Dune
                     </MobileNavItem>
