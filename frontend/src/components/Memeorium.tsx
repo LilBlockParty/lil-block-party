@@ -28,7 +28,7 @@ export default function Memeorium() {
     getEulogies();
   }, []);
   return (
-    <div className="hidden md:block mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-0 lg:max-w-6xl">
+    <div className="hidden md:block mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-6 lg:max-w-6xl">
       <div className=" flex items-center">
         <div>
           <Tombstone />
@@ -49,7 +49,7 @@ export default function Memeorium() {
                           router.push(`/lil/${lil.id}`);
                         }}
                       >
-                        <div className=" rounded-md bg-gray-200  lg:aspect-none filter grayscale hover:filter-none transition-transform duration-150 ease-in-out hover:scale-105">
+                        <div className=" rounded-md lg:aspect-none filter grayscale hover:filter-none transition-transform duration-150 ease-in-out hover:scale-105">
                           <img
                             width={208}
                             height={208}
@@ -65,7 +65,7 @@ export default function Memeorium() {
                             {lil.address.slice(0, 6)}...{lil.address.slice(-6)}
                           </span>
                         </div>
-                        <p className="font-balsamiq">{lil.eulogy}</p>
+                        <p className="font-balsamiq w-[20ch] break-words">{lil.eulogy}</p>
                       </div>
                     );
                   })}
