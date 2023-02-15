@@ -49,7 +49,7 @@ export default function Memeorium() {
                           router.push(`/lil/${lil.id}`);
                         }}
                       >
-                        <div className=" rounded-md bg-gray-200  lg:aspect-none filter grayscale hover:filter-none">
+                        <div className=" rounded-md bg-gray-200  lg:aspect-none filter grayscale hover:filter-none transition-transform duration-150 ease-in-out hover:scale-105">
                           <img
                             width={208}
                             height={208}

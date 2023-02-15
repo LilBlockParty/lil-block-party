@@ -57,9 +57,9 @@ export default function MissedLils({
               return (
                 <div
                   key={index}
-                  className="group relative drop-shadow-md max-w-[256px]"
+                  className="group relative drop-shadow-md max-w-[256px] transition-transform duration-150 ease-in-out hover:scale-105"
                 >
-                  <div className=" rounded-md bg-gray-200  lg:aspect-none ">
+                  <div className=" rounded-md bg-gray-200  lg:aspect-none  cursor-pointer">
                     <img
                       width={208}
                       height={208}
