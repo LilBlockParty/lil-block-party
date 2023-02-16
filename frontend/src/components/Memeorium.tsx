@@ -26,6 +26,7 @@ export default function Memeorium() {
       const data: Promise<EulogyInfo[]> = res.json();
       return data;
     },
+    initialData: []
   });
 
   if (isLoading) {
