@@ -39,10 +39,10 @@ export default function LilPage({ eulogy }: Props) {
         </div>
         <div key={eulogy.token_id} className="mx-auto">
           <section className="mx-auto mb-12">
-            <div className="flex flex-wrap w-full items-center">
+            <div className="flex flex-wrap flex-col w-full items-center">
               <Tombstone />
 
-              <div className="ml-4">
+              <div className="">
                 <h3 className=" text-gray-400 text-3xl mt-4">
                   RIP to the almost Lil #: {eulogy.token_id}
                 </h3>
@@ -50,7 +50,7 @@ export default function LilPage({ eulogy }: Props) {
               </div>
             </div>
             <div className="flex justify-center max-w-5xl">
-              <section className="w-full mr-8 mt-8">
+              <section className="w-full mt-8">
                 <img
                   src={eulogy.img_url}
                   className=" object-cover object-center  mx-auto rounded-md"

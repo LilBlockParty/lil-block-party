@@ -1,4 +1,5 @@
 import { WalletIcon } from "@heroicons/react/24/outline";
+import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -14,19 +15,46 @@ export type EulogyInfo = {
 };
 
 export default function Memeorium() {
-  const [eulogy, setEulogy] = useState<EulogyInfo[]>([]);
   const router = useRouter();
-  useEffect(() => {
-    async function getEulogies() {
-      const res = await fetch("/api/graveyard");
-      if (res.ok) {
-        const data = await res.json();
-        console.table(data);
-        setEulogy(data);
-      }
-    }
-    getEulogies();
-  }, []);
+  const {
+    isError,
+    isLoading,
+    data: eulogy,
+    error,
+  } = useQuery({
+    queryKey: ["getWalletLil"],
+    queryFn: async () => {
+      const res = await fetch(`/api/graveyard`);
+      const data: Promise<EulogyInfo[]> = res.json();
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return (
+      <div className="hidden md:block mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-6 lg:max-w-6xl">
+        <div className=" flex items-center">
+          <div>
+            <Tombstone />
+            <h2 className="text-5xl font-bold text-gray-900 mt-6" id="inMemorium">
+              In Memeorium
+            </h2>
+            <div className="bg-white">
+              <div className="mx-auto max-w-2xl sm:py-4 sm:px-6 md:px-0 lg:max-w-6xl">
+                <div className="flex pb-10 pt-1 w-full">
+                  <h2 className="text-black text-4xl text-center">Loading...</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return <p>Could not fetch Memeories</p>;
+  }
   return (
     <div className="hidden md:block mx-auto max-w-2xl sm:py-12 sm:px-6 md:px-6 lg:max-w-6xl">
       <div className=" flex items-center">
@@ -65,7 +93,6 @@ export default function Memeorium() {
                             {lil.address.slice(0, 6)}...{lil.address.slice(-6)}
                           </span>
                         </div>
-                        <p className="font-balsamiq w-[20ch] break-words">{lil.eulogy}</p>
                       </div>
                     );
                   })}

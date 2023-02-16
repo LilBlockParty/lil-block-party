@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -25,6 +26,17 @@ export default function RipPage() {
     }
     getEulogies();
   }, [wallet]);
+
+  const { isLoading, data } = useQuery({
+    queryKey: ["getWalletLil"],
+    queryFn: async () => {
+      const data = await fetch(`/api/graveyard/${wallet}`);
+      return data;
+    },
+  });
+
+  console.log(isLoading);
+  console.log(data);
 
   if (!lilInfo || lilInfo.length === 0) {
     return (
@@ -59,18 +71,18 @@ export default function RipPage() {
                 <div>
                   <Tombstone />
 
-                  <div className="ml-4 grid">
+                  <>
                     <h3 className=" text-gray-400 text-3xl mt-4">
                       RIP to the almost Lil #: {lil.token_id}
                     </h3>
                     <span className="text-white text-xl block">{lil?.eulogy}</span>
-                  </div>
+                  </>
                 </div>
                 <div className="flex justify-center max-w-lg mx-auto">
                   <section className="w-full mt-8">
                     <img
                       src={lil.img_url}
-                      className=" object-cover object-center min-h-[500px] mr-auto rounded-md"
+                      className=" object-cover object-center min-h-[384px] mr-auto rounded-md"
                       alt="lil"
                     />
                   </section>

@@ -63,7 +63,7 @@ const Wtf = () => {
         </p>
       </section>
 
-      <section className="mb-14">
+      {/* <section className="mb-14">
         <div className="relative h-0 pb-[56.25%]">
           <iframe
             src="https://www.loom.com/embed/a6abe7704d8449b789563accea2ca6f9"
@@ -72,7 +72,7 @@ const Wtf = () => {
             style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
           />
         </div>
-      </section>
+      </section> */}
 
       <section className="w-full text-left mb-20">
         <h2 className="text-4xl mb-4">Settling Auctions</h2>
