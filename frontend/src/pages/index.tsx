@@ -65,25 +65,25 @@ const Home: NextPage = () => {
         <meta name="description" content="Watch the blocks. Pick a lil. Join the party" />
 
         {/* <!-- Facebook Meta Tags --> */}
-        <meta property="og:url" content="https://www.lilblockparty.wtf" />
+        <meta property="og:url" content="https://www.lbp.wtf" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Lil Block Party" />
         <meta
           property="og:description"
           content="Watch the blocks. Pick a lil. Join the party"
         />
-        <meta property="og:image" content="https://www.lilblockparty.wtf/images/og.jpeg" />
+        <meta property="og:image" content="https://www.lbp.wtf/images/og.jpeg" />
 
         {/* <!-- Twitter Meta Tags --> */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="lilblockparty.wtf" />
-        <meta property="twitter:url" content="https://www.lilblockparty.wtf" />
+        <meta property="twitter:domain" content="lbp.wtf" />
+        <meta property="twitter:url" content="https://www.lbp.wtf" />
         <meta name="twitter:title" content="Lil Block Party" />
         <meta
           name="twitter:description"
           content="Watch the blocks. Pick a lil. Join the party"
         />
-        <meta name="twitter:image" content="https://www.lilblockparty.wtf/images/og.jpeg" />
+        <meta name="twitter:image" content="https://www.lbp.wtf/images/og.jpeg" />
 
         {/* <!-- Meta Tags Generated via https://www.opengraph.xyz --> */}
       </Head>
