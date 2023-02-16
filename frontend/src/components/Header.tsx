@@ -93,7 +93,6 @@ const Header = () => {
                         <span className="hidden md:inline">
                           <MobileNavItem href="/#inMemorium">In Memorium</MobileNavItem>
                         </span>
-                        <MobileNavItem href={`/rip/${address}`}>My Memeories</MobileNavItem>
                       </>
                     ) : (
                       <>
@@ -101,6 +100,7 @@ const Header = () => {
                       </>
                     )}
 
+                    <MobileNavItem href={`/rip/${address}`}>My Memeories</MobileNavItem>
                     <MobileNavItem href="https://dune.com/nvonpentz/lilblockparty">
                       Dune
                     </MobileNavItem>

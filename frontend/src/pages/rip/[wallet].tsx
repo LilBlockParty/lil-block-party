@@ -10,21 +10,12 @@ import Tombstone from "../../components/Tombstone";
 export default function RipPage() {
   const router = useRouter();
   const { wallet } = router.query;
-  const [lilInfo, setLilInfo] = useState<EulogyInfo[]>([
-    {
-      id: "",
-      img_url: "",
-      address: "",
-      eulogy: "",
-      img_data: "",
-      token_id: 0,
-    },
-  ]);
+  const [lilInfo, setLilInfo] = useState<EulogyInfo[] | null>(null);
 
   useEffect(() => {
     if (!wallet) return;
     async function getEulogies() {
-      const res = await fetch("/api/graveyard");
+      const res = await fetch(`/api/graveyard/${wallet}`);
       if (res.ok) {
         const data: EulogyInfo[] = await res.json();
         data.filter((lil) => lil.address);
@@ -35,23 +26,40 @@ export default function RipPage() {
     getEulogies();
   }, [wallet]);
 
+  if (!lilInfo || lilInfo.length === 0) {
+    return (
+      <>
+        <Head>
+          <title>Your Memeories</title>
+        </Head>{" "}
+        <div className="mx-auto pt-6 bg-[#22212C] min-h-screen px-6">
+          <Header />
+          <h1 className="text-5xl text-white text-center m-20">No Memeories Made, yet!</h1>
+        </div>
+      </>
+    );
+  }
+
+  console.log(lilInfo);
+
   return (
     <>
       <Head>
-        <title>Your Memories</title>
+        <title>Your Memeories</title>
       </Head>
-      <div className="mx-auto flex flex-wrap pt-6 bg-[#22212C] min-h-screen">
-        <div className="mx-auto w-full px-1.5 md:px-4 pt-6 pb-12 lg:max-w-6xl">
-          <Header />
-        </div>
-        {lilInfo.map((lil) => {
-          return (
-            <>
-              <section className="mx-auto mb-12">
-                <div className="flex flex-wrap w-full items-center">
+      <div className="mx-auto pt-6 bg-[#22212C] min-h-screen px-6">
+        <Header />
+        <section>
+          <h1 className="text-5xl text-white text-center mb-20">Your Memories</h1>
+        </section>
+        <div className="grid grid-cols-3 gap-4 w-full">
+          {lilInfo.map((lil) => {
+            return (
+              <section key={lil.id}>
+                <div>
                   <Tombstone />
 
-                  <div className="ml-4">
+                  <div className="ml-4 grid">
                     <h3 className=" text-gray-400 text-3xl mt-4">
                       RIP to the almost Lil #: {lil.token_id}
                     </h3>
@@ -68,9 +76,9 @@ export default function RipPage() {
                   </section>
                 </div>
               </section>
-            </>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </>
   );

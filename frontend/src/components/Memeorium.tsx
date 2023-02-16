@@ -38,13 +38,13 @@ export default function Memeorium() {
           <div className="bg-white">
             <div className="mx-auto max-w-2xl sm:py-4 sm:px-6 md:px-0 lg:max-w-6xl">
               <div className="flex pb-10 pt-1 w-full">
-                <div className="flex flex-wrap gap-3">
+                <div className="grid grid-cols-4 gap-3">
                   {eulogy?.map((lil, index) => {
                     if (!lil.img_url) return;
                     return (
                       <div
                         key={index}
-                        className="group relative  max-w-[256px] cursor-pointer hover:drop-shadow-xl"
+                        className="group relative  max-w-[256px] cursor-pointer hover:drop-shadow-xl "
                         onClick={() => {
                           router.push(`/lil/${lil.id}`);
                         }}
