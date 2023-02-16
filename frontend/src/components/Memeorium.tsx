@@ -1,7 +1,6 @@
 import { WalletIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
 import Tombstone from "./Tombstone";
 
@@ -20,7 +19,6 @@ export default function Memeorium() {
     isError,
     isLoading,
     data: eulogy,
-    error,
   } = useQuery({
     queryKey: ["getWalletLil"],
     queryFn: async () => {

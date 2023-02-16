@@ -65,13 +65,8 @@ export default function LilPage({ eulogy }: Props) {
   );
 }
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  // const { data: eulogy, error } = await supabase
-  //   .from("eulogies")
-  //   .select("eulogy,img_url,address,token_id")
-  //   .eq("id", context.query.id);
 
   if (!context.query.id || typeof context.query.id !== "string") {
-    console.log("no query id");
     return { props: {} };
   }
 
@@ -82,8 +77,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       },
       select: { eulogy: true, img_url: true, token_id: true, id: true },
     });
-    console.log("🧨");
-    console.log(data);
     return {
       props: { eulogy: data },
     };

@@ -45,7 +45,6 @@ export default function MissedLils({
     return(<></>)
   }
 
-  console.log(missedList)
   return (
     <div className="bg-white hidden md:block">
       <div className="mx-auto max-w-2xl sm:py-4 sm:px-6 md:px-6 lg:max-w-6xl">

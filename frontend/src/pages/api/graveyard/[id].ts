@@ -14,8 +14,6 @@ export default async function handler(
     return res.status(400).send("");
   }
 
-  console.log(id)
-
   const data = await prisma.eulogies.findMany({
     where: { address: id },
     select: { eulogy: true, img_url: true, address: true, token_id: true },

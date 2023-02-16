@@ -25,7 +25,6 @@ export default async function handler(
 
       if (fmt.length > 0) {
         res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate");
-        console.log("hit")
         return res.status(200).send(fmt);
       }
 

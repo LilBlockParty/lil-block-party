@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { z } from "zod";
 
 import Header from "../../components/Header";
 import { EulogyInfo } from "../../components/Memeorium";
@@ -35,9 +34,6 @@ export default function RipPage() {
     },
   });
 
-  console.log(isLoading);
-  console.log(data);
-
   if (!lilInfo || lilInfo.length === 0) {
     return (
       <>
@@ -51,8 +47,6 @@ export default function RipPage() {
       </>
     );
   }
-
-  console.log(lilInfo);
 
   return (
     <>
