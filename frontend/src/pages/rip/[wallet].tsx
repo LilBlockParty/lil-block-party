@@ -48,7 +48,7 @@ export default function RipPage() {
       <Head>
         <title>Your Memeories</title>
       </Head>
-      <div className="mx-auto pt-6 bg-[#22212C] min-h-screen px-6">
+      <div className="mx-auto pt-6 bg-[#22212C] min-h-screen px-6 pb-32">
         <Header />
         <section>
           <h1 className="text-5xl text-white text-center m-20">Your Memories</h1>
