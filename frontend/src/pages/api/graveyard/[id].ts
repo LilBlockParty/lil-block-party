@@ -1,4 +1,3 @@
-import Redis from "ioredis";
 import { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../../core/db";

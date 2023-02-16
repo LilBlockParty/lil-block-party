@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import Header from "../../components/Header";
 import { EulogyInfo } from "../../components/Memeorium";
+import ThreeDotLoader from "../../components/ThreeDotLoader";
 import Tombstone from "../../components/Tombstone";
 
 export default function RipPage() {
@@ -24,10 +25,15 @@ export default function RipPage() {
       <>
         <Head>
           <title>Your Memeories</title>
-        </Head>{" "}
+        </Head>
         <div className="mx-auto pt-6 bg-[#22212C] min-h-screen px-6">
           <Header />
-          <h1 className="text-5xl text-white text-center m-20">No Memeories Made, yet!</h1>
+          <section>
+            <h1 className="text-5xl text-white text-center mb-20">Your Memories</h1>
+            <section className="max-w-xs mx-auto">
+              <ThreeDotLoader />
+            </section>
+          </section>
         </div>
       </>
     );
@@ -51,7 +57,7 @@ export default function RipPage() {
           {data.map((lil) => {
             return (
               <section key={lil.id}>
-                <div>
+                <>
                   <Tombstone />
 
                   <>
@@ -60,7 +66,7 @@ export default function RipPage() {
                     </h3>
                     <span className="text-white text-xl block">{lil?.eulogy}</span>
                   </>
-                </div>
+                </>
                 <div className="flex justify-center max-w-lg mx-auto">
                   <section className="w-full mt-8">
                     <img
