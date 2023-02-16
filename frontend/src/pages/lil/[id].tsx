@@ -2,6 +2,7 @@ import { WalletIcon } from "@heroicons/react/20/solid";
 import { GetServerSidePropsContext } from "next";
 import Head from "next/head";
 
+import Header from "../../components/Header";
 import { EulogyInfo } from "../../components/Memeorium";
 import Tombstone from "../../components/Tombstone";
 import { prisma } from "../../core/db";
@@ -35,7 +36,10 @@ export default function LilPage({ eulogy }: Props) {
         />
         <meta name="twitter:image" content={eulogy.img_url} />
       </Head>
-      <div className="mx-auto flex flex-wrap pt-6 bg-[#22212C] min-h-screen">
+      <div className="mx-auto flex flex-col flex-wrap pt-6 bg-[#22212C] min-h-screen">
+        <div className="mx-auto w-full px-1.5 md:px-4 pt-6 pb-12 lg:max-w-6xl">
+          <Header />
+        </div>
         <div key={eulogy.token_id} className="mx-auto">
           <section className="mx-auto mb-12">
             <div className="flex flex-wrap w-full items-center">
