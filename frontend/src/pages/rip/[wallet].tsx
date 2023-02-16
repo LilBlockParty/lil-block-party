@@ -51,9 +51,9 @@ export default function RipPage() {
       <div className="mx-auto pt-6 bg-[#22212C] min-h-screen px-6">
         <Header />
         <section>
-          <h1 className="text-5xl text-white text-center mb-20">Your Memories</h1>
+          <h1 className="text-5xl text-white text-center m-20">Your Memories</h1>
         </section>
-        <div className="grid grid-cols-3 gap-4 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
           {data.map((lil) => {
             return (
               <section key={lil.id}>
@@ -71,8 +71,11 @@ export default function RipPage() {
                   <section className="w-full mt-8">
                     <img
                       src={lil.img_url}
-                      className=" object-cover object-center min-h-[384px] mr-auto rounded-md"
+                      className=" object-cover object-center min-h-[384px] mr-auto rounded-md cursor-pointer"
                       alt="lil"
+                      onClick={() => {
+                        router.push(`/lil/${lil.id}`);
+                      }}
                     />
                   </section>
                 </div>
