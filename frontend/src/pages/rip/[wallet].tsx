@@ -51,24 +51,24 @@ export default function RipPage() {
       <div className="mx-auto pt-6 bg-[#22212C] min-h-screen px-6 pb-32">
         <Header />
         <section>
-          <h1 className="text-5xl text-white text-center m-20">Your Memories</h1>
+          <h1 className="text-5xl text-white text-center mt-20 mb-32">Your Memories</h1>
         </section>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
           {data.map((lil) => {
             return (
-              <section key={lil.id}>
+              <section key={lil.id} className="flex flex-col justify-center items-center mb-20">
                 <>
                   <Tombstone />
 
                   <>
-                    <h3 className=" text-gray-400 text-3xl mt-4">
+                    <h3 className=" text-gray-400 text-3xl mt-1 mb-4">
                       RIP to the almost Lil #: {lil.token_id}
                     </h3>
                     <span className="text-white text-xl block">{lil?.eulogy}</span>
                   </>
                 </>
                 <div className="flex justify-center max-w-lg mx-auto">
-                  <section className="w-full mt-8">
+                  <section className="w-full mt-4">
                     <img
                       src={lil.img_url}
                       className=" object-cover object-center min-h-[384px] mr-auto rounded-md cursor-pointer"
