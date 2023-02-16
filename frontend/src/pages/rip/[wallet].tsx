@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 
+import Header from "../../components/Header";
 import { EulogyInfo } from "../../components/Memeorium";
 import Tombstone from "../../components/Tombstone";
 
@@ -40,6 +41,9 @@ export default function RipPage() {
         <title>Your Memories</title>
       </Head>
       <div className="mx-auto flex flex-wrap pt-6 bg-[#22212C] min-h-screen">
+        <div className="mx-auto w-full px-1.5 md:px-4 pt-6 pb-12 lg:max-w-6xl">
+          <Header />
+        </div>
         {lilInfo.map((lil) => {
           return (
             <>

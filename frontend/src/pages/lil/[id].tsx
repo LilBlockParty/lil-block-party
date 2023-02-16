@@ -12,10 +12,7 @@ interface Props {
 }
 
 export default function LilPage({ eulogy }: Props) {
-  console.log("❋");
-  console.log;
   if (!eulogy) {
-    console.log("fucked");
     return <div className="mx-auto flex flex-wrap pt-6 bg-[#22212C] min-h-screen"></div>;
   }
 
