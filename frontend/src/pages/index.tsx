@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 import { useContractRead } from "wagmi";
 
 import EulogyModal from "../components/EulogyModal";
-import Memeorium from "../components/Memeorium";
 import MissedLils from "../components/MissedLils";
 import { LilNounsOracle } from "../deployments/LilNounsOracle";
 
 const InfoLil = dynamic(() => import("../components/InfoLil"), { ssr: false });
 const Wtf = dynamic(() => import("../components/Wtf"), { ssr: false });
+const Memeorium = dynamic(() => import("../components/Memeorium"), { ssr: false });
 
 /*
 

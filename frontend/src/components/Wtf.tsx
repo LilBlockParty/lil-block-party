@@ -106,7 +106,7 @@ const Wtf = () => {
             <a className="text-[#D63C5E] hover:underline" href="https://twitter.com/mulford_dev">
               @mulford.eth
             </a>{" "}
-            dev
+            frontend & backend
           </li>
 
           <li className="mb-2">

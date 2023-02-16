@@ -1,16 +1,14 @@
 import fs from "node:fs";
 
 import { PutObjectCommand } from "@aws-sdk/client-s3";
-import Redis from "ioredis";
 import { nanoid } from "nanoid";
 import type { NextApiRequest, NextApiResponse } from "next";
 import sharp from "sharp";
 
 import { EulogyInfo } from "../../../components/Memeorium";
 import { prisma } from "../../../core/db";
+import { redisClient } from "../../../core/redis";
 import { s3Client } from "../../../core/s3";
-
-const redis = new Redis(process.env.REDIS_STRING || "");
 
 export default async function handler(
   req: NextApiRequest,
@@ -18,14 +16,13 @@ export default async function handler(
 ): Promise<void> {
   switch (req.method) {
     case "GET":
-      const cacheData = await redis.smembers(`eulogies`);
-      const fmt = cacheData.map((lil) => {
-        return JSON.parse(lil);
-      });
+      const cacheData = await redisClient.smembers(`eulogies`);
 
-      if (fmt.length > 0) {
+      console.log(cacheData);
+
+      if (cacheData.length > 0) {
         res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate");
-        return res.status(200).send(fmt);
+        return res.status(200).send(cacheData);
       }
 
       const data = await prisma.eulogies.findMany({
@@ -63,7 +60,7 @@ export default async function handler(
       } catch (err) {
         console.log("Error", err);
       }
-      redis.sadd(
+      redisClient.sadd(
         `eulogies`,
         JSON.stringify({
           id,

@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
 import Header from "../../components/Header";
 import { EulogyInfo } from "../../components/Memeorium";
@@ -10,31 +9,17 @@ import Tombstone from "../../components/Tombstone";
 export default function RipPage() {
   const router = useRouter();
   const { wallet } = router.query;
-  const [lilInfo, setLilInfo] = useState<EulogyInfo[] | null>(null);
 
-  useEffect(() => {
-    if (!wallet) return;
-    async function getEulogies() {
-      const res = await fetch(`/api/graveyard/${wallet}`);
-      if (res.ok) {
-        const data: EulogyInfo[] = await res.json();
-        data.filter((lil) => lil.address);
-        console.info(data, "set data");
-        setLilInfo(data);
-      }
-    }
-    getEulogies();
-  }, [wallet]);
-
-  const { isLoading, data } = useQuery({
-    queryKey: ["getWalletLil"],
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ["getWalletLil", wallet],
     queryFn: async () => {
-      const data = await fetch(`/api/graveyard/${wallet}`);
+      const res = await fetch(`/api/graveyard/${wallet}`);
+      const data: Promise<EulogyInfo[]> = await res.json();
       return data;
     },
   });
 
-  if (!lilInfo || lilInfo.length === 0) {
+  if (isLoading) {
     return (
       <>
         <Head>
@@ -48,6 +33,10 @@ export default function RipPage() {
     );
   }
 
+  if (isError) {
+    return <p>errpr</p>;
+  }
+
   return (
     <>
       <Head>
@@ -59,7 +48,7 @@ export default function RipPage() {
           <h1 className="text-5xl text-white text-center mb-20">Your Memories</h1>
         </section>
         <div className="grid grid-cols-3 gap-4 w-full">
-          {lilInfo.map((lil) => {
+          {data.map((lil) => {
             return (
               <section key={lil.id}>
                 <div>

@@ -7,7 +7,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> {
-  const redis = new Redis(process.env.REDIS_STRING || "");
   const { id } = req.query;
 
   if (!id || typeof id !== "string") {
